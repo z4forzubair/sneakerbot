@@ -1,2 +1,9 @@
-psycopg2-binary==2.8.6
+asgiref==3.3.4
 Django==3.2.1
+django-phonenumber-field==5.1.0
+django-widget-tweaks==1.4.8
+phonenumbers==8.12.22
+Pillow==8.2.0
+psycopg2-binary==2.8.6
+pytz==2021.1
+sqlparse==0.4.1
