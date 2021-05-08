@@ -24,7 +24,7 @@ class Account(models.Model):
         choices=TYPES_CHOICES,
         default=UNKNOWN,
     )
-    photo = models.ImageField(upload_to= 'images/')
+    photo = models.ImageField(upload_to='media/')
     phone_number = PhoneNumberField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
