@@ -21,9 +21,9 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('', login_required(TemplateView.as_view(template_name='home.html')), name='home'),
+    path('admin/', admin.site.urls),            # Django admin route
+    path("", include("authentication.urls")),   # Auth routes - login / register
+    path("", include("churchaio.urls"))         # UI Kits Html files
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
