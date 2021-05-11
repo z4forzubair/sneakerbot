@@ -20,6 +20,12 @@
               <p>Dashboard</p>
             </a>
           </li>
+          <li class="{% if 'tasks' in segment %} active {% endif %} ">
+            <a href="{% url 'tasks' %}">
+              <i class="tim-icons icon-bullet-list-67"></i>
+              <p>Tasks</p>
+            </a>
+          </li>
           <li class="{% if 'icons' in segment %} active {% endif %}">
             <a href="/ui-icons.html">
               <i class="tim-icons icon-atom"></i>
