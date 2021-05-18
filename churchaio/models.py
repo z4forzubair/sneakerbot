@@ -56,6 +56,7 @@ class Proxy(models.Model):
         blank=True,
         null=True
     )
+    # not one to one here, because a proxy can be part of more than one lists
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -105,10 +106,10 @@ class Payment(models.Model):
         choices=PAY.choices,
         default=PAY.CARD,
     )
-    cc_number = CardNumberField('card number', null=True, blank=True)
-    cc_expiry = CardExpiryField('expiration date', null=True, blank=True)
-    cc_code = SecurityCodeField('security code', null=True, blank=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    cc_number = CardNumberField('card number')
+    cc_expiry = CardExpiryField('expiration date')
+    cc_code = SecurityCodeField('security code')
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -119,7 +120,8 @@ class Task(models.Model):
     sku_link = models.URLField(max_length=120)      # db_index???
     task_count = models.IntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # there can be more than one proxy_lists for a task(the mentioned feature might be added later)
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.SET_NULL, blank=True, null=True)
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
+    profile = models.OneToOneField(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
