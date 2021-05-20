@@ -17700,6 +17700,15 @@ table.tablesorter thead tr .headerSortDown {
   background: linear-gradient(0deg, #0098f0 0%, #00f2c3 100%);
 }
 
+.sidebar[data="primary"],
+.off-canvas-sidebar[data="primary"] {
+  background: #ba54f5;
+  background: -webkit-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  background: -o-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  background: -moz-linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+}
+
 .sidebar .user,
 .off-canvas-sidebar .user {
   padding-bottom: 20px;
