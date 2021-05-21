@@ -4,17 +4,20 @@ from churchaio.models import *
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
 
 
+# user will be the current user for all forms
 class TaskForm(forms.Form):
-    # def __init__(self, *args, **kwargs):
-    #     self.user = kwargs.pop('user', None)
-    #     super(UserForm, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(TaskForm, self).__init__(*args, **kwargs)
+        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.request.user)
+        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
+
     store_name = forms.CharField(max_length=50)
     shoe_size = forms.IntegerField()  # to show random
     sku_link = forms.URLField(max_length=120)
     task_count = forms.IntegerField()
-    # user = forms.ForeignKey(User, on_delete=models.CASCADE)   # it will be current user
-    proxy_list = forms.ModelChoiceField(queryset=ProxyList.objects.all())
-    profile = forms.ModelChoiceField(queryset=Profile.objects.all())
+    proxy_list = forms.ModelChoiceField(queryset=None)
+    profile = forms.ModelChoiceField(queryset=None)
 
 
 class ProfileForm(forms.Form):
@@ -35,6 +38,11 @@ class ProfileForm(forms.Form):
 
 
 class PaymentForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(PaymentForm, self).__init__(*args, **kwargs)
+        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
+
     CARD = 'CARD'
     MANUAL = 'MANUAL'
     PAY_TYPES = (
@@ -45,10 +53,15 @@ class PaymentForm(forms.Form):
     cc_number = CardNumberField(label='Card Number')
     cc_expiry = CardExpiryField(label='Expiration Date')
     cc_code = SecurityCodeField(label='CVV/CVC')
-    profile = forms.ModelChoiceField(queryset=Profile.objects.all())
+    profile = forms.ModelChoiceField(queryset=None)
 
 
 class AddressForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(AddressForm, self).__init__(*args, **kwargs)
+        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
+
     address1 = forms.CharField(max_length=100)
     address2 = forms.IntegerField()
     city = forms.CharField(max_length=50)
@@ -56,7 +69,7 @@ class AddressForm(forms.Form):
     state = forms.CharField(max_length=50)  # to be automated/insert list of states
     zip_code = forms.IntegerField()
     postal_code = forms.IntegerField()
-    profile = forms.ModelChoiceField(queryset=Profile.objects.all())
+    profile = forms.ModelChoiceField(queryset=None)
 
 
 class ProxyListForm(forms.Form):
@@ -64,6 +77,11 @@ class ProxyListForm(forms.Form):
 
 
 class ProxyForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(ProxyForm, self).__init__(*args, **kwargs)
+        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.request.user)
+
     ip_address = forms.GenericIPAddressField()
     port = forms.IntegerField()
     username = forms.CharField(max_length=50)
@@ -75,4 +93,4 @@ class ProxyForm(forms.Form):
         (UNLOCKED, 'Unlocked'),
     )
     status = forms.ChoiceField(choices=STATUS_TYPES)
-    proxy_list = forms.ModelChoiceField(queryset=ProxyList.objects.all())
+    proxy_list = forms.ModelChoiceField(queryset=None)
