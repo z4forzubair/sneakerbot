@@ -2,13 +2,12 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
+from django.forms import ModelForm
 from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
-
-
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     expiry_date = models.DateField()
@@ -18,6 +17,7 @@ class Account(models.Model):
         MALE = 'MALE', _('Male')
         FEMALE = 'FEMALE', _('Female')
         UNKNOWN = 'UNKNOWN', _('Unknown')
+
     sex = models.CharField(
         max_length=8,
         choices=SEX.choices,
@@ -37,6 +37,9 @@ class ProxyList(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         unique_together = ('user', 'name',)
 
@@ -50,7 +53,8 @@ class Proxy(models.Model):
     class STATUS(models.TextChoices):
         LOCKED = 'LOCKED', _('Locked')
         UNLOCKED = 'UNLOCKED', _('Unlocked')
-    status = models.CharField(
+
+    status = models.CharField(  # should have a default unlocked value
         max_length=9,
         choices=STATUS.choices,
         blank=True,
@@ -60,6 +64,9 @@ class Proxy(models.Model):
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # def __str__(self):
+    #     return f'{self.ip_address} {self.port}'
 
 
 class Profile(models.Model):
@@ -71,6 +78,7 @@ class Profile(models.Model):
     class SALUTATION(models.TextChoices):
         MR = 'MR', _('Mr')
         MS = 'MS', _('Ms')
+
     salutation = models.CharField(
         max_length=7,
         choices=SALUTATION.choices,
@@ -79,6 +87,9 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         unique_together = ('user', 'name',)
@@ -89,7 +100,7 @@ class Address(models.Model):
     address2 = models.IntegerField()
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)     # to be automated/make list
+    state = models.CharField(max_length=50)  # to be automated/make list
     zip_code = models.IntegerField()
     postal_code = models.IntegerField()
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
@@ -101,6 +112,7 @@ class Payment(models.Model):
     class PAY(models.TextChoices):
         CARD = 'CARD', _('Card')
         MANUAL = 'MANUAL', _('Manual')
+
     pay_type = models.CharField(
         max_length=7,
         choices=PAY.choices,
@@ -117,7 +129,7 @@ class Payment(models.Model):
 class Task(models.Model):
     store_name = models.CharField(max_length=50)
     shoe_size = models.IntegerField(default=-1)
-    sku_link = models.URLField(max_length=120)      # db_index???
+    sku_link = models.URLField(max_length=120)  # db_index???
     task_count = models.IntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # there can be more than one proxy_lists for a task(the mentioned feature might be added later)
@@ -125,3 +137,33 @@ class Task(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ['store_name', 'shoe_size', 'sku_link', 'task_count', 'proxy_list', 'profile']
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['name', 'first_name', 'last_name', 'email', 'salutation', 'contact']
+
+
+class AddressForm(ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
+
+
+class ProxyListForm(ModelForm):
+    class Meta:
+        model = ProxyList
+        fields = ['name']
+
+
+class ProxyForm(ModelForm):
+    class Meta:
+        model = Proxy
+        fields = '__all__'
