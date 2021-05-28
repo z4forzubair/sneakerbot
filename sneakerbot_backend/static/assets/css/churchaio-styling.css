@@ -1,0 +1,10 @@
+.sidebar .logo .logo-text {
+    text-transform: uppercase;
+    padding: 0 4px 0 0;
+    white-space: nowrap;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 30px;
+    overflow: hidden;
+}
