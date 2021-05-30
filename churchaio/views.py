@@ -248,6 +248,7 @@ def tasks(request):
     request.session['_old_task'] = None
     return tasks_render(form=form, request=request)
 
+<<<<<<< HEAD
 
 def matureTaskStatus(task, proxy_list, profile):
     task_status = task.status
@@ -730,6 +731,14 @@ def updateFavorite(request, profile_id):
             msg = 'Profile updated'
 
     return redirect('billing')
+
+
+@login_required(login_url="/login/")
+def proxies(request):
+    context = {'segment': 'proxies'}
+
+    html_template = loader.get_template('proxies.html')
+    return HttpResponse(html_template.render(context, request))
 
 
 @login_required(login_url="/login/")
