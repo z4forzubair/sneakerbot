@@ -126,23 +126,51 @@ class Payment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
+class TaskManager(models.Manager):
+    def create_task(self, store_name, shoe_size, sku_link, user_id, profile_id, proxy_list_id):
+        task = self.create(
+            store_name=store_name,
+            shoe_size=shoe_size,
+            sku_link=sku_link,
+            proxy_list_id=proxy_list_id,
+            profile_id=profile_id,
+            user_id=user_id
+        )
+        return task
+
+
 class Task(models.Model):
     store_name = models.CharField(max_length=50)
     shoe_size = models.IntegerField(default=-1)
     sku_link = models.URLField(max_length=120)  # db_index???
-    task_count = models.IntegerField(default=1)
+
+    class STATUS(models.TextChoices):
+        IMMATURE = 'IMMATURE', _('Immature')
+        MATURE = 'MATURE', _('Mature')
+        RUNNING = 'RUNNING', _('Running')
+        FAILED = 'FAILED', _('Failed')
+        COMPLETED = 'COMPLETED', _('Completed')
+
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS.choices,
+        default=STATUS.IMMATURE
+    )
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # there can be more than one proxy_lists for a task(the mentioned feature might be added later)
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.SET_NULL, blank=True, null=True)
-    profile = models.OneToOneField(Profile, on_delete=models.SET_NULL, blank=True, null=True)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = TaskManager()
 
 
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['store_name', 'shoe_size', 'sku_link', 'task_count', 'proxy_list', 'profile']
+        fields = ['store_name', 'shoe_size', 'sku_link', 'proxy_list', 'profile']
 
 
 class ProfileForm(ModelForm):
