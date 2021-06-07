@@ -14835,7 +14835,7 @@ img {
 }
 
 .modal-content .modal-header .modal-title {
-  color: #222a42;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .modal-content .modal-header i.tim-icons {
@@ -15706,7 +15706,7 @@ img {
 
 .modal.modal-black .modal-content .modal-header .modal-title,
 .modal.modal-black .modal-content .modal-header .title {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .modal.modal-black .modal-content .modal-body p {
