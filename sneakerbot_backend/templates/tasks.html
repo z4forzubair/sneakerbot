@@ -6,36 +6,54 @@
     <div class="card ">
         <div class="card-header">
             <h4 class="card-title"> Simple Table</h4>
+            <h6 class="card-category">
+                {% if messages %}
+                    {% for msg in messages %}
+                        <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            </h6>
         </div>
+
         <div class="d-flex ml-md-2 justify-content-between mr-md-2">
             <div>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-success small-font small-width" data-toggle="modal" data-target="#add-tasks">
+                <button type="button" name="addtask"
+                        class="btn btn-sm border-bottom border-success small-font small-width" data-toggle="modal"
+                        data-target="#add-tasks">
                     <i class="tim-icons icon-simple-add small pb-1 pr-1"></i>
                     Create Tasks
                 </button>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-danger small-font small-width">
-                    <i class="tim-icons icon-trash-simple small pb-1 pr-1"></i>
-                    Clear Tasks
-                </button>
+                <form action="{% url 'clearTasks' %}" method="post" style="display: inline">
+                    {% csrf_token %}
+                    <button type="submit" name="cleartasks"
+                            class="btn btn-sm border-bottom border-danger small-font small-width">
+                        <i class="tim-icons icon-trash-simple small pb-1 pr-1"></i>
+                        Clear Tasks
+                    </button>
+                </form>
             </div>
 
             <div>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-success small-font small-width">
+                <button type="button" name="starttasks"
+                        class="btn btn-sm border-bottom border-success small-font small-width">
                     <i class="tim-icons icon-triangle-right-17 small pb-1 pr-1"></i>
                     Start Tasks
                 </button>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-danger small-font small-width">
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-danger small-font small-width">
                     <i class="tim-icons icon-button-pause small pb-1 pr-1"></i>
                     Stop Tasks
                 </button>
             </div>
 
             <div>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-primary small-font small-width">
+                <button type="button" name="edittasks"
+                        class="btn btn-sm border-bottom border-primary small-font small-width">
                     <i class="tim-icons icon-pencil small pb-1 pr-1"></i>
                     Edit Tasks
                 </button>
-                <button type="button" name="login" class="btn btn-sm border-bottom border-primary small-font small-width">
+                <button type="button" name="captcha"
+                        class="btn btn-sm border-bottom border-primary small-font small-width">
                     <i class="tim-icons icon-support-17 small pb-1 pr-1"></i>
                     Captcha
                 </button>
@@ -48,118 +66,143 @@
                     <thead class=" text-primary">
                     <tr>
                         <th>
-                            Name
+                            Store
                         </th>
                         <th>
-                            Country
+                            Product
                         </th>
                         <th>
-                            City
+                            Size
+                        </th>
+                        <th>
+                            Profile
+                        </th>
+                        <th>
+                            Proxies
+                        </th>
+                        <th>
+                            Status
                         </th>
                         <th class="text-center">
-                            Salary
+                            Action
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            Dakota Rice
-                        </td>
-                        <td>
-                            Niger
-                        </td>
-                        <td>
-                            Oud-Turnhout
-                        </td>
-                        <td class="text-center">
-                            $36,738
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Minerva Hooper
-                        </td>
-                        <td>
-                            Curaçao
-                        </td>
-                        <td>
-                            Sinaai-Waas
-                        </td>
-                        <td class="text-center">
-                            $23,789
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Sage Rodriguez
-                        </td>
-                        <td>
-                            Netherlands
-                        </td>
-                        <td>
-                            Baileux
-                        </td>
-                        <td class="text-center">
-                            $56,142
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Philip Chaney
-                        </td>
-                        <td>
-                            Korea, South
-                        </td>
-                        <td>
-                            Overland Park
-                        </td>
-                        <td class="text-center">
-                            $38,735
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Doris Greene
-                        </td>
-                        <td>
-                            Malawi
-                        </td>
-                        <td>
-                            Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-center">
-                            $63,542
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Mason Porter
-                        </td>
-                        <td>
-                            Chile
-                        </td>
-                        <td>
-                            Gloucester
-                        </td>
-                        <td class="text-center">
-                            $78,615
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jon Porter
-                        </td>
-                        <td>
-                            Portugal
-                        </td>
-                        <td>
-                            Gloucester
-                        </td>
-                        <td class="text-center">
-                            $98,615
-                        </td>
-                    </tr>
+                    {% for task, edit_form in edit_tasks_list %}
+                        <tr>
+                            <td>
+                                {{ task.store_name }}
+                            </td>
+                            <td>Product from link</td>
+                            <td>
+                                {% if task.shoe_size != -1 %} {{ task.shoe_size }} {% else %} {{ 'Random' }} {% endif %}
+                            </td>
+                            <td>
+                                {{ task.profile }}
+                            </td>
+                            <td>
+                                {{ task.proxy_list }}
+                            </td>
+                            <td>
+                                {{ task.status }}
+                            </td>
+                            <td class="text-center">
+                                <button type="button" name="addtask"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        data-toggle="modal"
+                                        data-target="#add-tasks">
+                                    <i class="tim-icons icon-triangle-right-17 small text-success"></i>
+                                </button>
+                                <button type="button" name="addtask"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        data-toggle="modal"
+                                        data-target="#add-tasks" hidden>
+                                    <i class="tim-icons icon-button-pause small text-danger"></i>
+                                </button>
+                                <button type="button" name="edittask"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        data-toggle="modal"
+                                        data-target="#edit-task-{{ task.id }}">
+                                    <i class="tim-icons icon-pencil small"></i>
+                                </button>
+                                <form action="{% url 'deleteTask' task.id %}" method="post" style="display: inline">
+                                    {% csrf_token %}
+                                    <button type="submit" name="deletetask"
+                                            class="btn btn-sm small-font small-width table-icons">
+                                        <i class="tim-icons icon-trash-simple small text-danger"></i>
+                                    </button>
+                                </form>
+                            </td>
+
+                            <div class="modal fade" id="edit-task-{{ task.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalCenterTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog bg-dark" role="document">
+                                    <div class="modal-content bg-dark">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="exampleModalLongTitle">Edit Task</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{% url 'updateTask' task.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+                                                <div class="form text-white-50">
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Store Name</label>
+                                                            {{ edit_form.store_name }}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Shoe Size</label>
+                                                            {{ edit_form.shoe_size }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            <label>Sku Link</label>
+                                                            {{ edit_form.sku_link }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Profile</label>
+                                                            {{ edit_form.profile }}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Proxy List</label>
+                                                            {{ edit_form.proxy_list }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-row" hidden>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Task Count</label>
+                                                            {{ form.task_count }}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <input type="submit" class="btn btn-primary" value="Update Task">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    {% endfor %}
+
                     </tbody>
                 </table>
             </div>
@@ -171,18 +214,59 @@
         <div class="modal-dialog bg-dark" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h4 class="modal-title" id="exampleModalLongTitle">Add Task</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <form action="{% url 'createTask' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form text-white-50">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Store Name</label>
+                                    {{ form.store_name }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Shoe Size</label>
+                                    {{ form.shoe_size }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Sku Link</label>
+                                    {{ form.sku_link }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Profile</label>
+                                    {{ form.profile }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Proxy List</label>
+                                    {{ form.proxy_list }}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Task Count</label>
+                                    {{ form.task_count }}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Create Task">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
