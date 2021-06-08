@@ -23,16 +23,18 @@
                     <i class="tim-icons icon-simple-add small pb-1 pr-1"></i>
                     Create Tasks
                 </button>
-                <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-danger small-font small-width"
-                        onclick="location.href='{% url 'clearTasks' %}'">
-                    <i class="tim-icons icon-trash-simple small pb-1 pr-1"></i>
-                    Clear Tasks
-                </button>
+                <form action="{% url 'clearTasks' %}" method="post" style="display: inline">
+                    {% csrf_token %}
+                    <button type="submit" name="cleartasks"
+                            class="btn btn-sm border-bottom border-danger small-font small-width">
+                        <i class="tim-icons icon-trash-simple small pb-1 pr-1"></i>
+                        Clear Tasks
+                    </button>
+                </form>
             </div>
 
             <div>
-                <button type="button" name="login"
+                <button type="button" name="starttasks"
                         class="btn btn-sm border-bottom border-success small-font small-width">
                     <i class="tim-icons icon-triangle-right-17 small pb-1 pr-1"></i>
                     Start Tasks
@@ -45,12 +47,12 @@
             </div>
 
             <div>
-                <button type="button" name="login"
+                <button type="button" name="edittasks"
                         class="btn btn-sm border-bottom border-primary small-font small-width">
                     <i class="tim-icons icon-pencil small pb-1 pr-1"></i>
                     Edit Tasks
                 </button>
-                <button type="button" name="login"
+                <button type="button" name="captcha"
                         class="btn btn-sm border-bottom border-primary small-font small-width">
                     <i class="tim-icons icon-support-17 small pb-1 pr-1"></i>
                     Captcha
@@ -94,7 +96,7 @@
                             </td>
                             <td>Product from link</td>
                             <td>
-                                {{ task.shoe_size }}
+                                {% if task.shoe_size != -1 %} {{ task.shoe_size }} {% else %} {{ 'Random' }} {% endif %}
                             </td>
                             <td>
                                 {{ task.profile }}
@@ -124,11 +126,13 @@
                                         data-target="#edit-task-{{ task.id }}">
                                     <i class="tim-icons icon-pencil small"></i>
                                 </button>
-                                <button type="button" name="deletetask"
-                                        class="btn btn-sm small-font small-width table-icons"
-                                        onclick="location.href='{% url 'deleteTask' task.id %}'">
-                                    <i class="tim-icons icon-trash-simple small text-danger"></i>
-                                </button>
+                                <form action="{% url 'deleteTask' task.id %}" method="post" style="display: inline">
+                                    {% csrf_token %}
+                                    <button type="submit" name="deletetask"
+                                            class="btn btn-sm small-font small-width table-icons">
+                                        <i class="tim-icons icon-trash-simple small text-danger"></i>
+                                    </button>
+                                </form>
                             </td>
 
                             <div class="modal fade" id="edit-task-{{ task.id }}" tabindex="-1" role="dialog"

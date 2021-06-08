@@ -42,6 +42,20 @@ def tasks(request):
     return tasks_render(form=form, request=request)
 
 
+def matureTaskStatus(task, proxy_list, profile):
+    if proxy_list is not None and profile is not None:
+        error = None
+        msg = None
+        try:
+            task.status = Task.STATUS.MATURE
+            task.save()
+        except Exception as ex:
+            error = ex
+            msg = 'Could not mature task status'
+        else:
+            msg = 'Task status matured'
+
+
 @login_required(login_url="/login/")
 def createTask(request):
     user = request.user
@@ -62,6 +76,7 @@ def createTask(request):
                         profile_id=form_data['profile'].id if form_data['profile'] is not None else None,
                         user_id=user.id
                     )
+                    matureTaskStatus(task, form_data['proxy_list'], form_data['profile'])
             except Exception as ex:
                 error = ex
                 msg = 'Task could not be created'
@@ -101,6 +116,7 @@ def updateTask(request, task_id):
                 task.profile_id = form_data['profile'].id if form_data['profile'] is not None else None
                 try:
                     task.save()
+                    matureTaskStatus(task, form_data['proxy_list'], form_data['profile'])
                 except Exception as ex:
                     error = ex
                     msg = 'Task could not be updated'
@@ -120,22 +136,23 @@ def updateTask(request, task_id):
 def deleteTask(request, task_id):
     msg = None
     error = None
-    try:
-        task = Task.objects.get(id=task_id)
-    except Task.DoesNotExist:
-        error = 'error'
-        msg = 'The task does not exist'
-        messages.warning(request, msg)
-    else:
+    if request.method == 'POST':
         try:
-            task.delete()
-        except Exception as ex:
-            error = ex
-            msg = 'Task could not be deleted'
+            task = Task.objects.get(id=task_id)
+        except Task.DoesNotExist:
+            error = 'error'
+            msg = 'The task does not exist'
             messages.warning(request, msg)
         else:
-            msg = 'Task deleted!'
-            messages.warning(request, msg)
+            try:
+                task.delete()
+            except Exception as ex:
+                error = ex
+                msg = 'Task could not be deleted'
+                messages.warning(request, msg)
+            else:
+                msg = 'Task deleted!'
+                messages.warning(request, msg)
 
     return redirect('tasks')
 
@@ -144,21 +161,22 @@ def deleteTask(request, task_id):
 def clearTasks(request):
     error = None
     msg = None
-    try:
-        tasks = Task.objects.filter(user_id=request.user)
-    except Task.DoesNotExist:
-        msg = 'No tasks to delete'
-        messages.warning(request, msg)
-    else:
+    if request.method == 'POST':
         try:
-            tasks.delete()
-        except Exception as ex:
-            error = ex
-            msg = 'Tasks could not be deleted'
+            tasks = Task.objects.filter(user_id=request.user)
+        except Task.DoesNotExist:
+            msg = 'No tasks to delete'
             messages.warning(request, msg)
         else:
-            msg = 'Tasks deleted!'
-            messages.warning(request, msg)
+            try:
+                tasks.delete()
+            except Exception as ex:
+                error = ex
+                msg = 'Tasks could not be deleted'
+                messages.warning(request, msg)
+            else:
+                msg = 'All tasks cleared!'
+                messages.warning(request, msg)
 
     return redirect('tasks')
 
