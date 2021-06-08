@@ -7,17 +7,31 @@ from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeFiel
 # user will be the current user for all forms
 class TaskForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
+        self.user = kwargs.pop('user', None)
+        self.task = kwargs.pop('instance', None)
         super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.request.user)
-        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
+        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.user)
+        self.fields['profile'].queryset = Profile.objects.filter(user=self.user)
+        if self.task is not None:
+            self.fields['store_name'].initial = self.task.store_name
+            self.fields['shoe_size'].initial = self.task.shoe_size if self.task.shoe_size != -1 else None
+            self.fields['sku_link'].initial = self.task.sku_link
+            self.fields['profile'].initial = self.task.profile
+            self.fields['proxy_list'].initial = self.task.proxy_list
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     store_name = forms.CharField(max_length=50)
-    shoe_size = forms.IntegerField()  # to show random
+    shoe_size = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Random'
+            }
+        ), required=False)
     sku_link = forms.URLField(max_length=120)
-    task_count = forms.IntegerField()
-    proxy_list = forms.ModelChoiceField(queryset=None)
-    profile = forms.ModelChoiceField(queryset=None)
+    task_count = forms.IntegerField(initial=1)
+    proxy_list = forms.ModelChoiceField(queryset=None, required=False)
+    profile = forms.ModelChoiceField(queryset=None, required=False)
 
 
 class ProfileForm(forms.Form):
