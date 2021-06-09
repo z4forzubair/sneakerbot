@@ -31,14 +31,14 @@ def tasks_render(form, request, msg=None, error=None):
         'form': form,
         'msg': msg
     }
-    return render(request, 'tasks.html', context)
+    return render(request, 'churchaio/tasks.html', context)
 
 
 @login_required(login_url="/login/")
 def tasks(request):
-    old_post = request.session.get('_old_post')
-    form = TaskForm(old_post or None, user=request.user)
-    request.session['_old_post'] = None
+    old_task = request.session.get('_old_task')
+    form = TaskForm(old_task or None, user=request.user)
+    request.session['_old_task'] = None
     return tasks_render(form=form, request=request)
 
 
@@ -89,7 +89,7 @@ def createTask(request):
             msg = 'Task could not be created'
             messages.warning(request, msg)
     if error is not None:
-        request.session['_old_post'] = request.POST
+        request.session['_old_task'] = request.POST
     return redirect('tasks')
 
 
