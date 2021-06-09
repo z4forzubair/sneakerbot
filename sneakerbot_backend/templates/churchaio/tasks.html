@@ -23,7 +23,7 @@
                     <i class="tim-icons icon-simple-add small pb-1 pr-1"></i>
                     Create Tasks
                 </button>
-                <form action="{% url 'clearTasks' %}" method="post" style="display: inline">
+                <form action="{% url 'clearTasks' %}" method="post" class="clear-delete-form">
                     {% csrf_token %}
                     <button type="submit" name="cleartasks"
                             class="btn btn-sm border-bottom border-danger small-font small-width">
@@ -126,7 +126,7 @@
                                         data-target="#edit-task-{{ task.id }}">
                                     <i class="tim-icons icon-pencil small"></i>
                                 </button>
-                                <form action="{% url 'deleteTask' task.id %}" method="post" style="display: inline">
+                                <form action="{% url 'deleteTask' task.id %}" method="post" class="clear-delete-form">
                                     {% csrf_token %}
                                     <button type="submit" name="deletetask"
                                             class="btn btn-sm small-font small-width table-icons">
@@ -194,7 +194,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">Close
                                                 </button>
-                                                <input type="submit" class="btn btn-primary" value="Update Task">
+                                                <input type="submit" class="btn btn-info" value="Update">
                                             </div>
                                         </form>
                                     </div>
@@ -264,7 +264,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Create Task">
+                        <input type="submit" class="btn btn-info" value="Create Task">
                     </div>
                 </form>
             </div>
