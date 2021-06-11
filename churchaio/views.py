@@ -45,11 +45,12 @@ def tasks(request):
 
 
 def matureTaskStatus(task, proxy_list, profile):
-    if proxy_list is not None and profile is not None:
+    task_status = task.status
+    task.status = Task.STATUS.MATURE if proxy_list is not None and profile is not None else Task.STATUS.IMMATURE
+    if task.status != task_status:
         error = None
         msg = None
         try:
-            task.status = Task.STATUS.MATURE
             task.save()
         except Exception as ex:
             error = ex
