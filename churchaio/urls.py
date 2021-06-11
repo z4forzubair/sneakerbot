@@ -5,11 +5,21 @@ urlpatterns = [
 
     # The home page
     path('', views.index, name='home'),
+
+    # task
     path('tasks', views.tasks, name='tasks'),
     path('tasks/create', views.createTask, name='createTask'),
     path('tasks/<int:task_id>/update', views.updateTask, name='updateTask'),
     path('tasks/<int:task_id>/delete', views.deleteTask, name='deleteTask'),
     path('tasks/clear', views.clearTasks, name='clearTasks'),
+
+    # billing profile
+    path('billing_profiles', views.billing, name='billing'),
+    path('billing_profiles/create', views.createBilling, name='createBilling'),
+    path('billing_profiles/<int:profile_id>/update', views.updateBilling, name='updateBilling'),
+    path('billing_profiles/<int:profile_id>/delete', views.deleteBilling, name='deleteBilling'),
+    path('billing_profiles/clear', views.clearBilling, name='clearBilling'),
+    path('billing_profiles/<int:profile_id>/updateFav', views.updateFavorite, name='updateFavorite'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),

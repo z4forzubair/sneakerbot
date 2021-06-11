@@ -17,3 +17,11 @@
 .clear-delete-form{
     display: inline;
 }
+
+.profile-left-margin{
+    margin-left: 15px;
+}
+
+.profile-right-margin{
+    margin-right: 25px;
+}
