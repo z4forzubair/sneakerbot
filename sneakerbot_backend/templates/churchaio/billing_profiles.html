@@ -1,0 +1,552 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Billing Profile {% endblock %}
+
+{% block content %}
+    <div class="card ">
+        <div class="card-header">
+            <h4 class="card-title"> Profiles ({{ count }} Total) </h4>
+            <h6 class="card-category">
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div>
+                            <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </h6>
+        </div>
+
+        <div class="d-flex ml-md-2 justify-content-between mr-md-2">
+            <div class="profile-left-margin">
+                <button type="button" name="addprofile"
+                        class="btn btn-sm border-bottom border-success small-font small-width" data-toggle="modal"
+                        data-target="#add-profile">
+                    <i class="tim-icons icon-simple-add small pb-1 pr-1 text-success"></i>
+                    Create Profile
+                </button>
+            </div>
+            <div class="profile-right-margin">
+                <button type="button" name="clearProfiles"
+                        class="btn btn-sm border-bottom border-danger small-font small-width"
+                        data-toggle="modal" data-target="#clearProfiles">
+                    <i class="tim-icons icon-trash-simple small pb-1 pr-1 text-danger"></i>
+                    Clear Profiles
+                </button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                    <tr>
+                        <th>
+                            Profile Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Card Holder
+                        </th>
+                        <th>
+                            Card Number
+                        </th>
+                        <th>
+                            State
+                        </th>
+                        <th class="text-center">
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for profile, edit_profile_form, edit_address_form, edit_pay_form in edit_profiles_list %}
+                        <tr>
+                            <td>
+                                {{ profile.name }}
+                            </td>
+                            <td>
+                                {{ profile.email }}
+                            </td>
+                            <td>
+                                {{ profile.first_name }}` {{ profile.last_name }}
+                            </td>
+                            <td>
+                                Ending in {{ profile.payment.cc_number|slice:"-3:" }}
+                            </td>
+                            <td>
+                                {{ profile.address.state }}
+                            </td>
+                            <td class="text-center">
+                                <button type="button" name="favprofile"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        onclick="location.href='{% url 'updateFavorite' profile.id %}'">
+                                    <i class="tim-icons icon-heart-2 small {% if profile.favorite == True %} text-success {% endif %}"></i>
+                                </button>
+                                <button type="button" name="editprofile"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        data-toggle="modal"
+                                        data-target="#edit-profile-{{ profile.id }}">
+                                    <i class="tim-icons icon-pencil small"></i>
+                                </button>
+                                <button type="submit" name="deleteProfile"
+                                        class="btn btn-sm small-font small-width table-icons"
+                                        data-toggle="modal" data-target="#delete-profile-{{ profile.id }}">
+                                    <i class="tim-icons icon-trash-simple small text-danger"></i>
+                                </button>
+                            </td>
+
+                            <!-- Delete Profiles Modal -->
+                            <div class="modal fade" id="delete-profile-{{ profile.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog bg-dark" role="document">
+                                    <div class="modal-content bg-dark">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body align-self-md-center">
+                                            <h2>Are you sure?</h2>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No
+                                            </button>
+                                            <form action="{% url 'deleteBilling' profile.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-info">Yes</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="edit-profile-{{ profile.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalCenterTitle"
+                                 aria-hidden="true">
+                                <div class="modal-dialog bg-dark" role="document">
+                                    <div class="modal-content bg-dark">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="exampleModalLongTitle">Edit Profile</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+
+                                        <form action="{% url 'updateBilling' profile.id %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+
+                                                <div role="tabpanel">
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs" role="tablist">
+                                                        <li role="presentation" class="active">
+                                                            <a href="#generalTab" aria-controls="generalTab"
+                                                               role="tab" data-toggle="tab">Basic</a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a href="#addressTab" aria-controls="addressTab" role="tab"
+                                                               data-toggle="tab">Address</a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a href="#paymentTab" aria-controls="paymentTab" role="tab"
+                                                               data-toggle="tab">Payment</a>
+                                                        </li>
+                                                    </ul>
+
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <div role="tabpanel" class="tab-pane active" id="generalTab">
+                                                            <div class="form text-white-50">
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Profile Name</label>
+                                                                        {{ edit_profile_form.name }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Salutation</label>
+                                                                        {{ edit_profile_form.salutation }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>First Name</label>
+                                                                        {{ edit_profile_form.first_name }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Last Name</label>
+                                                                        {{ edit_profile_form.last_name }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Email</label>
+                                                                        {{ edit_profile_form.email }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Phone Number</label>
+                                                                        {{ edit_profile_form.contact }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div role="tabpanel" class="tab-pane" id="addressTab">
+                                                            <div class="form text-white-50">
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-12">
+                                                                        <label>Address 1</label>
+                                                                        {{ edit_address_form.address1 }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Address 2</label>
+                                                                        {{ edit_address_form.address2 }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>City</label>
+                                                                        {{ edit_address_form.city }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Country</label>
+                                                                        {{ edit_address_form.country }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>State</label>
+                                                                        {{ edit_address_form.state }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Zip Code</label>
+                                                                        {{ edit_address_form.zip_code }}
+                                                                    </div>
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Postal Code</label>
+                                                                        {{ edit_address_form.postal_code }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div role="tabpanel" class="tab-pane" id="paymentTab">
+                                                            <div class="form text-white-50">
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Payment Method</label>
+                                                                        {{ edit_pay_form.pay_type }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Card Number</label>
+                                                                        {{ edit_pay_form.cc_number }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>Expiration Date</label>
+                                                                        {{ edit_pay_form.cc_expiry }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-md-6">
+                                                                        <label>CVV/CVC</label>
+                                                                        {{ edit_pay_form.cc_code }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <input type="submit" class="btn btn-info" value="Update">
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% block javascripts %}
+                                <script>
+                                    function addImage(pk) {
+                                        alert("addImage: " + pk);
+                                    }
+
+                                    $('#add-profile .save').click(function (e) {
+                                        e.preventDefault();
+                                        addImage(5);
+                                        $('#add-profile').modal('hide');
+                                        {#$(this).tab('show')#}
+                                        return false;
+                                    })
+
+                                    function addImage(pk) {
+                                        alert("addImage: " + pk);
+                                    }
+
+                                    $('#edit-profile-{{ profile.id }} .save').click(function (e) {
+                                        e.preventDefault();
+                                        addImage(5);
+                                        $('#edit-profile-{{ profile.id }}').modal('hide');
+                                        {#$(this).tab('show')#}
+                                        return false;
+                                    })
+                                </script>
+                            {% endblock javascripts %}
+
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="add-profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog bg-dark" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">New Profile</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{% url 'createBilling' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#generalTab" aria-controls="generalTab"
+                                       role="tab" data-toggle="tab">Basic</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#addressTab" aria-controls="addressTab" role="tab"
+                                       data-toggle="tab">Address</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#paymentTab" aria-controls="paymentTab" role="tab"
+                                       data-toggle="tab">Payment</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="generalTab">
+                                    <div class="form text-white-50">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Profile Name</label>
+                                                {{ profile_form.name }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Salutation</label>
+                                                {{ profile_form.salutation }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>First Name</label>
+                                                {{ profile_form.first_name }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Last Name</label>
+                                                {{ profile_form.last_name }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Email</label>
+                                                {{ profile_form.email }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Phone Number</label>
+                                                {{ profile_form.contact }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="addressTab">
+                                    <div class="form text-white-50">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label>Address 1</label>
+                                                {{ address_form.address1 }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Address 2</label>
+                                                {{ address_form.address2 }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>City</label>
+                                                {{ address_form.city }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Country</label>
+                                                {{ address_form.country }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>State</label>
+                                                {{ address_form.state }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Zip Code</label>
+                                                {{ address_form.zip_code }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Postal Code</label>
+                                                {{ address_form.postal_code }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="paymentTab">
+                                    <div class="form text-white-50">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Payment Method</label>
+                                                {{ pay_form.pay_type }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Card Number</label>
+                                                {{ pay_form.cc_number }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Expiration Date</label>
+                                                {{ pay_form.cc_expiry }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>CVV/CVC</label>
+                                                {{ pay_form.cc_code }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-info" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Profiles Modal -->
+    <div class="modal fade" id="clearProfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog bg-dark" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body align-self-md-center">
+                    <h2>Are you sure?</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <form action="{% url 'clearBilling' %}" method="post" class="clear-delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info">Yes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{#{% block javascripts %}#}
+{##}
+{#    <script>#}
+{#        function addImage(pk) {#}
+{#            alert("addImage: " + pk);#}
+{#        }#}
+{##}
+{#        $('#add-profile .save').click(function (e) {#}
+{#            e.preventDefault();#}
+{#            addImage(5);#}
+{#            $('#add-profile').modal('hide');#}
+{#$(this).tab('show')#}
+{#            return false;#}
+{#        })#}
+{##}
+{##}
+{#        function addImage(pk) {#}
+{#            alert("addImage: " + pk);#}
+{#        }#}
+{##}
+{#        $('#edit-profile-9 .save').click(function (e) {#}
+{#            e.preventDefault();#}
+{#            addImage(5);#}
+{#            $('#edit-profile-9').modal('hide');#}
+{#$(this).tab('show')#}
+{#            return false;#}
+{#        })#}
+{#    </script>#}
+{##}
+{#{% endblock javascripts %}#}
+

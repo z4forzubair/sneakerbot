@@ -30,11 +30,24 @@ class TaskForm(forms.Form):
         ), required=False)
     sku_link = forms.URLField(max_length=120)
     task_count = forms.IntegerField(initial=1)
-    proxy_list = forms.ModelChoiceField(queryset=None, required=False)
-    profile = forms.ModelChoiceField(queryset=None, required=False)
+    proxy_list = forms.ModelChoiceField(queryset=None, required=False, empty_label='Proxy List')
+    profile = forms.ModelChoiceField(queryset=None, required=False, empty_label='Profile')
 
 
 class ProfileForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.profile = kwargs.pop('instance', None)
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        if self.profile is not None:
+            self.fields['name'].initial = self.profile.name
+            self.fields['first_name'].initial = self.profile.first_name
+            self.fields['last_name'].initial = self.profile.last_name
+            self.fields['email'].initial = self.profile.email
+            self.fields['salutation'].initial = self.profile.salutation
+            self.fields['contact'].initial = self.profile.contact
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
     name = forms.CharField(max_length=50)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
@@ -43,19 +56,50 @@ class ProfileForm(forms.Form):
     MR = 'MR'
     MS = 'MS'
     SALUTATION_CHOICES = (
-        (DUMMY, '---------'),
         (MR, 'MR'),
         (MS, 'MS'),
     )
-    salutation = forms.TypedChoiceField(choices=SALUTATION_CHOICES, coerce=DUMMY)
+    salutation = forms.ChoiceField(choices=SALUTATION_CHOICES)
     contact = forms.CharField()
+
+
+class AddressForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.address = kwargs.pop('instance', None)
+        super(AddressForm, self).__init__(*args, **kwargs)
+        if self.address is not None:
+            self.fields['address1'].initial = self.address.address1
+            self.fields['address2'].initial = self.address.address2
+            self.fields['city'].initial = self.address.city
+            self.fields['country'].initial = self.address.country
+            self.fields['state'].initial = self.address.state
+            self.fields['zip_code'].initial = self.address.zip_code
+            self.fields['postal_code'].initial = self.address.postal_code
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+    address1 = forms.CharField(max_length=100)
+    address2 = forms.IntegerField()
+    city = forms.CharField(max_length=50)
+    country = forms.CharField(max_length=50)
+    state = forms.CharField(max_length=50)  # to be automated/insert list of states
+    zip_code = forms.IntegerField()
+    postal_code = forms.IntegerField()
 
 
 class PaymentForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
+        self.user = kwargs.pop('user', None)
+        self.payment = kwargs.pop('instance', None)
         super(PaymentForm, self).__init__(*args, **kwargs)
-        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
+        if self.payment is not None:
+            self.fields['pay_type'].initial = self.payment.pay_type
+            self.fields['cc_number'].initial = self.payment.cc_number
+            self.fields['cc_expiry'].initial = self.payment.cc_expiry
+            self.fields['cc_code'].initial = self.payment.cc_code
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     CARD = 'CARD'
     MANUAL = 'MANUAL'
@@ -67,23 +111,6 @@ class PaymentForm(forms.Form):
     cc_number = CardNumberField(label='Card Number')
     cc_expiry = CardExpiryField(label='Expiration Date')
     cc_code = SecurityCodeField(label='CVV/CVC')
-    profile = forms.ModelChoiceField(queryset=None)
-
-
-class AddressForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(AddressForm, self).__init__(*args, **kwargs)
-        self.fields['profile'].queryset = Profile.objects.filter(user=self.request.user)
-
-    address1 = forms.CharField(max_length=100)
-    address2 = forms.IntegerField()
-    city = forms.CharField(max_length=50)
-    country = forms.CharField(max_length=50)
-    state = forms.CharField(max_length=50)  # to be automated/insert list of states
-    zip_code = forms.IntegerField()
-    postal_code = forms.IntegerField()
-    profile = forms.ModelChoiceField(queryset=None)
 
 
 class ProxyListForm(forms.Form):
