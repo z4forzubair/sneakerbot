@@ -84,6 +84,7 @@ class Profile(models.Model):
         choices=SALUTATION.choices,
     )
     contact = PhoneNumberField()
+    favorite = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -126,19 +127,6 @@ class Payment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class TaskManager(models.Manager):
-    def create_task(self, store_name, shoe_size, sku_link, user_id, profile_id, proxy_list_id):
-        task = self.create(
-            store_name=store_name,
-            shoe_size=shoe_size,
-            sku_link=sku_link,
-            proxy_list_id=proxy_list_id,
-            profile_id=profile_id,
-            user_id=user_id
-        )
-        return task
-
-
 class Task(models.Model):
     store_name = models.CharField(max_length=50)
     shoe_size = models.IntegerField(default=-1)
@@ -163,8 +151,6 @@ class Task(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    objects = TaskManager()
 
 
 class TaskForm(ModelForm):

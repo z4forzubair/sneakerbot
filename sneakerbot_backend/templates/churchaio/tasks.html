@@ -5,7 +5,7 @@
 {% block content %}
     <div class="card ">
         <div class="card-header">
-            <h4 class="card-title"> Simple Table</h4>
+            <h4 class="card-title"> Tasks ({{ count }} Total) </h4>
             <h6 class="card-category">
                 {% if messages %}
                     {% for msg in messages %}
@@ -20,28 +20,26 @@
                 <button type="button" name="addtask"
                         class="btn btn-sm border-bottom border-success small-font small-width" data-toggle="modal"
                         data-target="#add-tasks">
-                    <i class="tim-icons icon-simple-add small pb-1 pr-1"></i>
+                    <i class="tim-icons icon-simple-add small pb-1 pr-1 text-success"></i>
                     Create Tasks
                 </button>
-                <form action="{% url 'clearTasks' %}" method="post" class="clear-delete-form">
-                    {% csrf_token %}
-                    <button type="submit" name="cleartasks"
-                            class="btn btn-sm border-bottom border-danger small-font small-width">
-                        <i class="tim-icons icon-trash-simple small pb-1 pr-1"></i>
-                        Clear Tasks
-                    </button>
-                </form>
+                <button type="button" name="cleartasks"
+                        class="btn btn-sm border-bottom border-danger small-font small-width"
+                        data-toggle="modal" data-target="#clearTasks">
+                    <i class="tim-icons icon-trash-simple small pb-1 pr-1 text-danger"></i>
+                    Clear Tasks
+                </button>
             </div>
 
             <div>
                 <button type="button" name="starttasks"
                         class="btn btn-sm border-bottom border-success small-font small-width">
-                    <i class="tim-icons icon-triangle-right-17 small pb-1 pr-1"></i>
+                    <i class="tim-icons icon-triangle-right-17 small pb-1 pr-1 text-success"></i>
                     Start Tasks
                 </button>
                 <button type="button" name="login"
                         class="btn btn-sm border-bottom border-danger small-font small-width">
-                    <i class="tim-icons icon-button-pause small pb-1 pr-1"></i>
+                    <i class="tim-icons icon-button-pause small pb-1 pr-1 text-danger"></i>
                     Stop Tasks
                 </button>
             </div>
@@ -49,12 +47,12 @@
             <div>
                 <button type="button" name="edittasks"
                         class="btn btn-sm border-bottom border-primary small-font small-width">
-                    <i class="tim-icons icon-pencil small pb-1 pr-1"></i>
+                    <i class="tim-icons icon-pencil small pb-1 pr-1 text-primary"></i>
                     Edit Tasks
                 </button>
                 <button type="button" name="captcha"
                         class="btn btn-sm border-bottom border-primary small-font small-width">
-                    <i class="tim-icons icon-support-17 small pb-1 pr-1"></i>
+                    <i class="tim-icons icon-support-17 small pb-1 pr-1 text-primary"></i>
                     Captcha
                 </button>
             </div>
@@ -214,7 +212,7 @@
         <div class="modal-dialog bg-dark" role="document">
             <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLongTitle">Add Task</h4>
+                    <h4 class="modal-title" id="exampleModalLongTitle">New Task</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -267,6 +265,32 @@
                         <input type="submit" class="btn btn-info" value="Create Task">
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Clear Tasks Modal -->
+    <div class="modal fade" id="clearTasks" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog bg-dark" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body align-self-md-center">
+                    <h2>Are you sure?</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <form action="{% url 'clearTasks' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info">Yes</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

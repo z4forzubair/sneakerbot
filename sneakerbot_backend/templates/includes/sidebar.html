@@ -23,6 +23,12 @@
                         <p>Tasks</p>
                     </a>
                 </li>
+                <li class="{% if 'profiles' in segment %} active {% endif %} ">
+                    <a href="{% url 'billing' %}">
+                        <i class="tim-icons icon-badge"></i>
+                        <p>Billing Profiles</p>
+                    </a>
+                </li>
                 <li class="{% if 'icons' in segment %} active {% endif %}">
                     <a href="/ui-icons.html">
                         <i class="tim-icons icon-atom"></i>
