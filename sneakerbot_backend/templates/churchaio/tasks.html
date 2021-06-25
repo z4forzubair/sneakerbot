@@ -33,7 +33,8 @@
 
             <div>
                 <button type="button" name="starttasks"
-                        class="btn btn-sm border-bottom border-success small-font small-width">
+                        class="btn btn-sm border-bottom border-success small-font small-width"
+                        onclick="location.href='{% url 'startAllTasks' %}'">
                     <i class="tim-icons icon-triangle-right-17 small pb-1 pr-1 text-success"></i>
                     Start Tasks
                 </button>
@@ -106,13 +107,12 @@
                                 {{ task.status }}
                             </td>
                             <td class="text-center">
-                                <button type="button" name="addtask"
+                                <button type="button" name="starttask"
                                         class="btn btn-sm small-font small-width table-icons"
-                                        data-toggle="modal"
-                                        data-target="#add-tasks">
+                                        onclick="location.href='{% url 'startTask' task.id %}'">
                                     <i class="tim-icons icon-triangle-right-17 small text-success"></i>
                                 </button>
-                                <button type="button" name="addtask"
+                                <button type="button" name="stoptask"
                                         class="btn btn-sm small-font small-width table-icons"
                                         data-toggle="modal"
                                         data-target="#add-tasks" hidden>

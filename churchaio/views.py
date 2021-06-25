@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django import template
 from .forms import *
+from .bots.footlocker import *
 
 
 @login_required(login_url="/login/")
@@ -14,6 +15,54 @@ def index(request):
 
     html_template = loader.get_template('index.html')
     return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def startAllTasks(request):
+    breakpoint()
+    # checkout()
+    return redirect('tasks')
+
+
+def failedTaskMessage(request):
+    msg = 'The task failed'
+    messages.warning(request, msg)
+
+
+@login_required(login_url='/login/')
+def startTask(request, task_id):
+    try:
+        task = Task.objects.filter(user_id=request.user.id).get(id=task_id)
+    except Task.DoesNotExist:
+        error = 'error'
+        msg = 'The task does not exist'
+        messages.warning(request, msg)
+    else:
+        if task.status == Task.STATUS.MATURE:
+            url = task.sku_link
+            bot = FootlockerBot(url=url, task=task)
+            breakpoint()
+            if bot.returnStatus():
+                if bot.addToCart():
+                    # add to cart successful
+                    breakpoint()
+                    if bot.checkout():
+                        msg = 'Successfully purchased'
+                        breakpoint()
+                        messages.success(request, msg)
+                    else:
+                        failedTaskMessage(request)
+                else:
+                    failedTaskMessage(request)
+                breakpoint()
+            else:
+                failedTaskMessage(request)
+        else:
+            msg = 'Cannot execute this task'
+            messages.warning(request, msg)
+
+    breakpoint()
+    return redirect('tasks')
 
 
 def tasks_render(form, request, msg=None, error=None):
@@ -256,6 +305,9 @@ def createBilling(request):
                     email=form_data['email'],
                     salutation=form_data['salutation'],
                     contact=form_data['contact'],
+                    day=form_data['day'],
+                    month=form_data['month'],
+                    year=form_data['year'],
                     user_id=user.id
                 )
                 profile.save()
@@ -429,6 +481,9 @@ def updateBilling(request, profile_id):
                 profile.email = form_data['email']
                 profile.salutation = form_data['salutation']
                 profile.contact = form_data['contact']
+                profile.day = form_data['day']
+                profile.month = form_data['month']
+                profile.year = form_data['year']
                 try:
                     profile.save()
                 except Exception as ex:
