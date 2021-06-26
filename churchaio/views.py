@@ -41,27 +41,22 @@ def startTask(request, task_id):
         if task.status == Task.STATUS.MATURE:
             url = task.sku_link
             bot = FootlockerBot(url=url, task=task)
-            breakpoint()
             if bot.returnStatus():
                 if bot.addToCart():
                     # add to cart successful
-                    breakpoint()
                     if bot.checkout():
                         msg = 'Successfully purchased'
-                        breakpoint()
                         messages.success(request, msg)
                     else:
                         failedTaskMessage(request)
                 else:
                     failedTaskMessage(request)
-                breakpoint()
             else:
                 failedTaskMessage(request)
         else:
             msg = 'Cannot execute this task'
             messages.warning(request, msg)
 
-    breakpoint()
     return redirect('tasks')
 
 
