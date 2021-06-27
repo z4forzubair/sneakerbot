@@ -12,6 +12,9 @@ urlpatterns = [
     path('tasks/<int:task_id>/update', views.updateTask, name='updateTask'),
     path('tasks/<int:task_id>/delete', views.deleteTask, name='deleteTask'),
     path('tasks/clear', views.clearTasks, name='clearTasks'),
+    path('tasks/start_all', views.startAllTasks, name='startAllTasks'),
+    path('tasks/<int:task_id>/start', views.startTask, name='startTask'),
+
 
     # billing profile
     path('billing_profiles', views.billing, name='billing'),

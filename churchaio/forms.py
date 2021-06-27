@@ -46,8 +46,12 @@ class ProfileForm(forms.Form):
             self.fields['email'].initial = self.profile.email
             self.fields['salutation'].initial = self.profile.salutation
             self.fields['contact'].initial = self.profile.contact
+            self.fields['day'].initial = self.profile.day
+            self.fields['month'].initial = self.profile.month
+            self.fields['year'].initial = self.profile.year
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
     name = forms.CharField(max_length=50)
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
@@ -56,11 +60,26 @@ class ProfileForm(forms.Form):
     MR = 'MR'
     MS = 'MS'
     SALUTATION_CHOICES = (
-        (MR, 'MR'),
-        (MS, 'MS'),
+        (MR, 'Mr'),
+        (MS, 'Ms'),
     )
     salutation = forms.ChoiceField(choices=SALUTATION_CHOICES)
     contact = forms.CharField()
+    day = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Day'
+            }), max_value=31)
+    month = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Month'
+            }), max_value=12)
+    year = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Year'
+            }))
 
 
 class AddressForm(forms.Form):
@@ -83,7 +102,25 @@ class AddressForm(forms.Form):
     address2 = forms.IntegerField()
     city = forms.CharField(max_length=50)
     country = forms.CharField(max_length=50)
-    state = forms.CharField(max_length=50)  # to be automated/insert list of states
+    VIC = 'VIC'
+    WA = 'WA'
+    TAS = 'TAS'
+    QLD = 'QLD'
+    NT = 'NT'
+    SA = 'SA'
+    NSW = 'NSW'
+    ACT = 'ACT'
+    STATE_CHOICES = (
+        (VIC,  'Victoria'),
+        (WA,  'Western Australia'),
+        (TAS,  'Tasmania'),
+        (QLD,  'Queensland'),
+        (NT,  'Northern Territory'),
+        (SA,  'South Australia'),
+        (NSW,  'New South Wales'),
+        (ACT,  'Australian Capital Territory'),
+    )
+    state = forms.ChoiceField(choices=STATE_CHOICES)
     zip_code = forms.IntegerField()
     postal_code = forms.IntegerField()
 

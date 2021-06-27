@@ -83,6 +83,9 @@ class Profile(models.Model):
         max_length=7,
         choices=SALUTATION.choices,
     )
+    day = models.PositiveSmallIntegerField()
+    month = models.PositiveSmallIntegerField()
+    year = models.PositiveSmallIntegerField()
     contact = PhoneNumberField()
     favorite = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -101,7 +104,22 @@ class Address(models.Model):
     address2 = models.IntegerField()
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)  # to be automated/make list
+
+    class AU_STATES(models.TextChoices):
+        VIC = 'VIC', _('VIC')
+        WA = 'WA', _('WA')
+        TAS = 'TAS', _('TAS')
+        QLD = 'QLD', _('QLD')
+        NT = 'NT', _('NT')
+        SA = 'SA', _('SA')
+        NSW = 'NSW', _('NSW')
+        ACT = 'ACT', _('ACT')
+
+    state = models.CharField(
+        max_length=4,
+        choices=AU_STATES.choices,
+        default=AU_STATES.VIC,
+    )
     zip_code = models.IntegerField()
     postal_code = models.IntegerField()
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
@@ -162,7 +180,7 @@ class TaskForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'first_name', 'last_name', 'email', 'salutation', 'contact']
+        fields = ['name', 'first_name', 'last_name', 'email', 'salutation', 'contact', 'day', 'month', 'year']
 
 
 class AddressForm(ModelForm):
