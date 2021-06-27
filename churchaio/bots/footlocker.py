@@ -110,6 +110,16 @@ class FootlockerBot:
     def __init__(self, url, task):
         self.task = task
         self.url = url
+        self.url = 'https://www.footlocker.com.au/en/p/jordan-ma2-men-shoes-107543?v=244102109204'
+
+        # proxies
+        proxy_list = self.task.proxy_list
+        # proxies = proxy_list.proxy_set.all()
+        proxy = proxy_list.proxy_set.get(id=1)
+        proxies = {
+          'http': f"http://{proxy.ip_address}:{proxy.port}",
+          'https': f'http://{proxy.ip_address}:{proxy.port}',
+        }
 
         self.sizes = []
         self.SKUs = []
@@ -117,9 +127,15 @@ class FootlockerBot:
         self.SKU_id = None
 
         self.response_status = True
+        proxies = {
+            'http': 'http://51.79.144.52:8000',
+            'https': 'http://51.79.144.52:8000',
+        }
         self.session = requests.Session()
+        # self.session.proxies.update(proxies)
         try:
-            self.response = self.session.get(url, timeout=120)
+            self.response = self.session.get(self.url, timeout=120)
+            # self.response = self.session.get(self.url, proxies=proxies, timeout=120)
             self.response.raise_for_status()
         except Exception as ex:
             self.response_status = False
