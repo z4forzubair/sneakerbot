@@ -31,6 +31,20 @@ class Account(models.Model):
     # phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
 
 
+class Configuration(models.Model):
+    timeout = models.PositiveSmallIntegerField()
+    retry = models.PositiveIntegerField()
+    monitor = models.PositiveIntegerField()
+    sleep = models.PositiveSmallIntegerField()
+    # may be in separate Notification table
+    # notifications = models.BooleanField(default=True)
+    # sounds = models.BooleanField(default=True)
+    # captcha = models.BooleanField(default=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 class ProxyList(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
