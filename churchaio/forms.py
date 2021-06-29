@@ -111,14 +111,14 @@ class AddressForm(forms.Form):
     NSW = 'NSW'
     ACT = 'ACT'
     STATE_CHOICES = (
-        (VIC,  'Victoria'),
-        (WA,  'Western Australia'),
-        (TAS,  'Tasmania'),
-        (QLD,  'Queensland'),
-        (NT,  'Northern Territory'),
-        (SA,  'South Australia'),
-        (NSW,  'New South Wales'),
-        (ACT,  'Australian Capital Territory'),
+        (VIC, 'Victoria'),
+        (WA, 'Western Australia'),
+        (TAS, 'Tasmania'),
+        (QLD, 'Queensland'),
+        (NT, 'Northern Territory'),
+        (SA, 'South Australia'),
+        (NSW, 'New South Wales'),
+        (ACT, 'Australian Capital Territory'),
     )
     state = forms.ChoiceField(choices=STATE_CHOICES)
     zip_code = forms.IntegerField()
@@ -172,3 +172,16 @@ class ProxyForm(forms.Form):
     )
     status = forms.ChoiceField(choices=STATUS_TYPES)
     proxy_list = forms.ModelChoiceField(queryset=None)
+
+
+class ConfigurationForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.config = kwargs.pop('instance', None)
+        super(ConfigurationForm, self).__init__(*args, **kwargs)
+        # for visible in self.visible_fields():
+        #     visible.field.widget.attrs['class'] = 'form-control'
+
+    timeout = forms.IntegerField(min_value=0)
+    retry = forms.IntegerField(min_value=0)
+    monitor = forms.IntegerField(min_value=0)
