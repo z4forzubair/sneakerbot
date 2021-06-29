@@ -25,3 +25,7 @@
 .profile-right-margin{
     margin-right: 25px;
 }
+
+.signup-card-body{
+    padding: 25px 25px 0 !important;
+}
