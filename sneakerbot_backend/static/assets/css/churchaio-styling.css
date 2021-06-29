@@ -26,6 +26,18 @@
     margin-right: 25px;
 }
 
-.signup-card-body{
+.signup-card-body {
     padding: 25px 25px 0 !important;
+}
+
+.zero-margin-bottom{
+    margin-bottom: 0;
+}
+
+.profile-span{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.profile-delays-inline{
+    margin-left: 15px;
 }

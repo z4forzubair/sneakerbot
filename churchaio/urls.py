@@ -6,6 +6,11 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
+    # user
+    path('user_profile', views.userProfile, name='userProfile'),
+    path('user_profile/update', views.updateUserProfile, name='updateUserProfile'),
+    # path('user_profile/<int:user_id>/update', views.updateUserProfile, name='updateUserProfile'),
+
     # task
     path('tasks', views.tasks, name='tasks'),
     path('tasks/create', views.createTask, name='createTask'),

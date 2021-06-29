@@ -213,3 +213,15 @@ class ProxyForm(ModelForm):
     class Meta:
         model = Proxy
         fields = '__all__'
+
+
+class ConfigurationForm(ModelForm):
+    class Meta:
+        model = Configuration
+        fields = ['monitor', 'timeout', 'retry']
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']

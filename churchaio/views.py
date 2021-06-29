@@ -17,6 +17,33 @@ def index(request):
     return HttpResponse(html_template.render(context, request))
 
 
+@login_required(login_url='/login/')
+def userProfile(request):
+    user = request.user
+    config_form = ConfigurationForm(request.POST or None, user=user)
+    context = {
+        'segment': 'userprofile',
+        'config_form': config_form
+    }
+    return render(request, 'page-user.html', context=context)
+
+
+@login_required(login_url='/login/')
+def updateUserProfile(request):
+    breakpoint()
+    user = request.user
+    if request.method == 'POST':
+        config_form = ConfigurationForm(request.POST, user=user)
+        breakpoint()
+        if config_form.is_valid():
+            form_data = config_form.cleaned_data
+            breakpoint()
+        else:
+            breakpoint()
+
+    return redirect('userProfile')
+
+
 @login_required(login_url="/login/")
 def startAllTasks(request):
     breakpoint()
