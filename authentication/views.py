@@ -10,6 +10,8 @@ from .forms import LoginForm, SignUpForm
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     form = LoginForm(request.POST or None)
 
     msg = None
@@ -32,6 +34,8 @@ def login_view(request):
 
 
 def register_user(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     msg = None
     success = False
 
@@ -45,8 +49,9 @@ def register_user(request):
 
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
-
-            # return redirect("/login/")
+            if user is not None:
+                login(request=request, user=user)
+                return redirect('home')  # to change it with edit profile page in a new PR
 
         else:
             msg = 'Form is not valid'

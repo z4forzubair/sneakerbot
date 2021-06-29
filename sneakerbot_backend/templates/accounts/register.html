@@ -35,10 +35,27 @@
 
                     {% else %}
 
-                        <div class="card-body">
+                        <div class="signup-card-body card-body">
 
                             <div class="row">
-                                <div class="col-md-3 px-md-1">
+                                <div class="col-md-4 px-md-1">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        {{ form.first_name }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4 px-md-1">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-danger">{{ form.first_name.errors }}</span>
+                            <span class="text-danger">{{ form.last_name.errors }}</span>
+
+                            <div class="row">
+                                <div class="col-md-4 px-md-1">
                                     <div class="form-group">
                                         <label>Username</label>
                                         {{ form.username }}
@@ -48,7 +65,7 @@
                             <span class="text-danger">{{ form.username.errors }}</span>
 
                             <div class="row">
-                                <div class="col-md-3 px-md-1">
+                                <div class="col-md-4 px-md-1">
                                     <div class="form-group">
                                         <label>Email</label>
                                         {{ form.email }}
@@ -58,23 +75,20 @@
                             <span class="text-danger">{{ form.email.errors }}</span>
 
                             <div class="row">
-                                <div class="col-md-3 px-md-1">
+                                <div class="col-md-4 px-md-1">
                                     <div class="form-group">
                                         <label>Password</label>
                                         {{ form.password1 }}
                                     </div>
                                 </div>
-                            </div>
-                            <span class="text-danger">{{ form.password1.errors }}</span>
-
-                            <div class="row">
-                                <div class="col-md-3 px-md-1">
+                                <div class="col-md-4 px-md-1">
                                     <div class="form-group">
-                                        <label>Password Check</label>
+                                        <label>Confirm Password</label>
                                         {{ form.password2 }}
                                     </div>
                                 </div>
                             </div>
+                            <span class="text-danger">{{ form.password1.errors }}</span>
                             <span class="text-danger">{{ form.password2.errors }}</span>
 
                         </div>
