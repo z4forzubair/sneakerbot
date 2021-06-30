@@ -21,35 +21,56 @@ class LoginForm(forms.Form):
 
 
 class SignUpForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.instance = kwargs.pop('instance', None)
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "First Name"
+            }
+        ))
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Last Name"
+            }
+        ))
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Username",
-                "class": "form-control"
+                "placeholder": "Username"
             }
         ))
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
-                "placeholder": "Email",
-                "class": "form-control"
+                "placeholder": "Email"
             }
         ))
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "Password",
-                "class": "form-control"
+                "placeholder": "Password"
             }
         ))
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "placeholder": "Password check",
-                "class": "form-control"
+                "placeholder": "Confirm Password"
             }
         ))
 
+    def clean(self):
+        cd = self.cleaned_data
+        if User.objects.filter(email=cd.get('email')).exists():
+            self.add_error('email', "Email already exists !")
+        return cd
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
