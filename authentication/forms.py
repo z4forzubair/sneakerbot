@@ -65,6 +65,12 @@ class SignUpForm(UserCreationForm):
             }
         ))
 
+    def clean(self):
+        cd = self.cleaned_data
+        if User.objects.filter(email=cd.get('email')).exists():
+            self.add_error('email', "Email already exists !")
+        return cd
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name')
