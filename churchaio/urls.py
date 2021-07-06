@@ -6,6 +6,12 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
+    # user
+    path('user_profile/', views.userProfile, name='userProfile'),
+    path('user_profile/update/', views.updateUserProfile, name='updateUserProfile'),
+    path('user_profile/change_picture/', views.updateProfilePicture, name='updateProfilePicture'),
+    # path('user_profile/<int:user_id>/update', views.updateUserProfile, name='updateUserProfile'),
+
     # task
     path('tasks', views.tasks, name='tasks'),
     path('tasks/create', views.createTask, name='createTask'),
@@ -25,5 +31,6 @@ urlpatterns = [
     path('billing_profiles/<int:profile_id>/updateFav', views.updateFavorite, name='updateFavorite'),
 
     # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages'),
+    # re_path(r'^.*\.*', views.pages, name='pages'),
+    # to change for 404/500 response
 ]

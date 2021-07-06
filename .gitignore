@@ -4,7 +4,7 @@
 venv/*
 .local/
 .idea/
-uploads/
+media/
 .mutmut-cache
 workspace  # For CI
 .DS_Store

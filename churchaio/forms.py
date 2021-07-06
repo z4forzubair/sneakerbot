@@ -111,14 +111,14 @@ class AddressForm(forms.Form):
     NSW = 'NSW'
     ACT = 'ACT'
     STATE_CHOICES = (
-        (VIC,  'Victoria'),
-        (WA,  'Western Australia'),
-        (TAS,  'Tasmania'),
-        (QLD,  'Queensland'),
-        (NT,  'Northern Territory'),
-        (SA,  'South Australia'),
-        (NSW,  'New South Wales'),
-        (ACT,  'Australian Capital Territory'),
+        (VIC, 'Victoria'),
+        (WA, 'Western Australia'),
+        (TAS, 'Tasmania'),
+        (QLD, 'Queensland'),
+        (NT, 'Northern Territory'),
+        (SA, 'South Australia'),
+        (NSW, 'New South Wales'),
+        (ACT, 'Australian Capital Territory'),
     )
     state = forms.ChoiceField(choices=STATE_CHOICES)
     zip_code = forms.IntegerField()
@@ -172,3 +172,94 @@ class ProxyForm(forms.Form):
     )
     status = forms.ChoiceField(choices=STATUS_TYPES)
     proxy_list = forms.ModelChoiceField(queryset=None)
+
+
+class ConfigurationForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.config = kwargs.pop('instance', None)
+        super(ConfigurationForm, self).__init__(*args, **kwargs)
+        if self.config is not None:
+            self.fields['timeout'].initial = self.config.timeout
+            self.fields['retry'].initial = self.config.retry
+            self.fields['monitor'].initial = self.config.monitor
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+    timeout = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Timeout'
+            }), min_value=0)
+    retry = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Retry'
+            }), min_value=0)
+    monitor = forms.IntegerField(
+        widget=forms.NumberInput(
+            attrs={
+                'placeholder': 'Monitor'
+            }), min_value=0)
+
+
+class AccountForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.account = kwargs.pop('instance', None)
+        super(AccountForm, self).__init__(*args, **kwargs)
+        if self.account is not None:
+            self.fields['sex'].initial = self.account.sex
+            self.fields['phone_number'].initial = self.account.phone_number
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+    MALE = 'MALE'
+    FEMALE = 'FEMALE'
+    SEX_CHOICES = (
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+    )
+    sex = forms.ChoiceField(choices=SEX_CHOICES)
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Phone Number"
+            }
+        ))
+
+
+class PictureForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(PictureForm, self).__init__(*args, **kwargs)
+    picture = forms.ImageField()
+
+
+class UserForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.instance = kwargs.pop('instance', None)
+        super(UserForm, self).__init__(*args, **kwargs)
+        if self.user is not None:
+            self.fields['first_name'].initial = self.user.first_name
+            self.fields['last_name'].initial = self.user.last_name
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "First Name"
+            }
+        ))
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Last Name"
+            }
+        ))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name')
