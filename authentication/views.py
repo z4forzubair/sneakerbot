@@ -51,7 +51,7 @@ def register_user(request):
             success = True
             if user is not None:
                 login(request=request, user=user)
-                return redirect('home')  # to change it with edit profile page in a new PR
+                return redirect('userProfile')
 
         else:
             msg = 'Form is not valid'

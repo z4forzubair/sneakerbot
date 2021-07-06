@@ -10,8 +10,8 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    expiry_date = models.DateField()
-    renew_count = models.IntegerField(default=0)
+    expiry_date = models.DateField(null=True, blank=True)
+    renew_count = models.IntegerField(null=True, blank=True, default=0)
 
     class SEX(models.TextChoices):
         MALE = 'MALE', _('Male')
@@ -23,12 +23,17 @@ class Account(models.Model):
         choices=SEX.choices,
         default=SEX.UNKNOWN
     )
-    photo = models.ImageField(upload_to='media/')
     phone_number = PhoneNumberField()
+    complete_status = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    # phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # validators should be a list
+
+
+class Picture(models.Model):
+    picture = models.ImageField(null=True, blank=True, upload_to='img/%y')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Configuration(models.Model):
@@ -213,3 +218,21 @@ class ProxyForm(ModelForm):
     class Meta:
         model = Proxy
         fields = '__all__'
+
+
+class ConfigurationForm(ModelForm):
+    class Meta:
+        model = Configuration
+        fields = ['monitor', 'timeout', 'retry']
+
+
+class AccountForm(ModelForm):
+    class Meta:
+        model = Account
+        fields = ['sex', 'phone_number']
+
+
+class PictureForm(ModelForm):
+    class Meta:
+        model = Picture
+        fields = ['picture']
