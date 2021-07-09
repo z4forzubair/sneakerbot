@@ -41,20 +41,27 @@ def register_user(request):
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
-
-            msg = 'User created - please <a href="/login">login</a>.'
-            success = True
-            if user is not None:
-                login(request=request, user=user)
-                return redirect('userProfile')
-
+        try:
+            users = User.objects.filter(is_active=True)
+        except Exception as ex:
+            msg = 'Could not load users'
         else:
-            msg = 'Form is not valid'
+            if users.count() < 10:
+                if form.is_valid():
+                    form.save()
+                    username = form.cleaned_data.get("username")
+                    raw_password = form.cleaned_data.get("password1")
+                    user = authenticate(username=username, password=raw_password)
+
+                    msg = 'User created - please <a href="/login">login</a>.'
+                    success = True
+                    if user is not None:
+                        login(request=request, user=user)
+                        return redirect('userProfile')
+                else:
+                    msg = 'Form is not valid'
+            else:
+                msg = 'Already reached max number of active users!'
     else:
         form = SignUpForm()
 
