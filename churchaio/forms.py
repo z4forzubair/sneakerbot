@@ -19,7 +19,7 @@ class TaskForm(forms.Form):
             self.fields['profile'].initial = self.task.profile
             self.fields['proxy_list'].initial = self.task.proxy_list
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     store_name = forms.CharField(max_length=50)
     shoe_size = forms.IntegerField(
@@ -50,7 +50,7 @@ class ProfileForm(forms.Form):
             self.fields['month'].initial = self.profile.month
             self.fields['year'].initial = self.profile.year
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     name = forms.CharField(max_length=50)
     first_name = forms.CharField(max_length=50)
@@ -96,7 +96,7 @@ class AddressForm(forms.Form):
             self.fields['zip_code'].initial = self.address.zip_code
             self.fields['postal_code'].initial = self.address.postal_code
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     address1 = forms.CharField(max_length=100)
     address2 = forms.IntegerField()
@@ -136,7 +136,7 @@ class PaymentForm(forms.Form):
             self.fields['cc_expiry'].initial = self.payment.cc_expiry
             self.fields['cc_code'].initial = self.payment.cc_code
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     CARD = 'CARD'
     MANUAL = 'MANUAL'
