@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
 from .forms import LoginForm, SignUpForm
@@ -12,8 +13,8 @@ from .forms import LoginForm, SignUpForm
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('home')
-    form = LoginForm(request.POST or None)
 
+    form = LoginForm(request.POST or None)
     msg = None
 
     if request.method == "POST":
@@ -23,8 +24,16 @@ def login_view(request):
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                return redirect("/")
+                try:
+                    sessions = Session.objects.all()
+                except Exception as ex:
+                    msg = 'Some issue found with sessions'
+                else:
+                    if sessions.count() < 10:
+                        login(request, user)
+                        return redirect("/")
+                    else:
+                        msg = 'Already reached max users limit!'
             else:
                 msg = 'Invalid credentials'
         else:
@@ -50,8 +59,16 @@ def register_user(request):
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
             if user is not None:
-                login(request=request, user=user)
-                return redirect('userProfile')
+                try:
+                    sessions = Session.objects.all()
+                except Exception as ex:
+                    msg = 'Some issue found with sessions'
+                else:
+                    if sessions.count() < 10:
+                        login(request=request, user=user)
+                        return redirect('userProfile')
+                    else:
+                        msg = 'User created, but already reached max logged in users limit!'
 
         else:
             msg = 'Form is not valid'
