@@ -59,8 +59,16 @@ def register_user(request):
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
             if user is not None:
-                login(request=request, user=user)
-                return redirect('userProfile')
+                try:
+                    sessions = Session.objects.all()
+                except Exception as ex:
+                    msg = 'Some issue found with sessions'
+                else:
+                    if sessions.count() < 10:
+                        login(request=request, user=user)
+                        return redirect('userProfile')
+                    else:
+                        msg = 'User created, but already reached max logged in users limit!'
 
         else:
             msg = 'Form is not valid'
