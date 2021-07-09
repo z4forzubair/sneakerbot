@@ -145,24 +145,28 @@
 
                                                 <div role="tabpanel">
                                                     <!-- Nav tabs -->
-                                                    <ul class="nav nav-tabs" role="tablist">
-                                                        <li role="presentation" class="active">
-                                                            <a href="#generalTab" aria-controls="generalTab"
+                                                    <ul class="nav nav-tabs row" role="tablist">
+
+                                                        <li id = 'basic-tab-{{ profile.id }}' role="presentation" class="active col-md-5">
+                                                            <a href="#generalTabHTML-{{ profile.id }}" aria-controls="generalTabHTML-{{ profile.id }}"
                                                                role="tab" data-toggle="tab">Basic</a>
                                                         </li>
-                                                        <li role="presentation">
-                                                            <a href="#addressTab" aria-controls="addressTab" role="tab"
+
+                                                        <li id="address-tab-{{ profile.id }}" role="presentation" class="col-md-4">
+                                                            <a href="#addressTabHTML-{{ profile.id }}" aria-controls="addressTabHTML-{{ profile.id }}" role="tab"
                                                                data-toggle="tab">Address</a>
                                                         </li>
-                                                        <li role="presentation">
-                                                            <a href="#paymentTab" aria-controls="paymentTab" role="tab"
+
+                                                        <li id="payment-tab-{{ profile.id }}" role="presentation" class="col-md-3 li-text-align">
+                                                            <a href="#paymentTabHTML-{{ profile.id }}" aria-controls="paymentTabHTML-{{ profile.id }}" role="tab"
                                                                data-toggle="tab">Payment</a>
                                                         </li>
+
                                                     </ul>
 
                                                     <!-- Tab panes -->
                                                     <div class="tab-content">
-                                                        <div role="tabpanel" class="tab-pane active" id="generalTab">
+                                                        <div role="tabpanel" class="tab-pane active" id="generalTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6">
@@ -213,7 +217,7 @@
 
                                                         </div>
 
-                                                        <div role="tabpanel" class="tab-pane" id="addressTab">
+                                                        <div role="tabpanel" class="tab-pane" id="addressTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12">
@@ -258,7 +262,7 @@
 
                                                         </div>
 
-                                                        <div role="tabpanel" class="tab-pane" id="paymentTab">
+                                                        <div role="tabpanel" class="tab-pane" id="paymentTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6">
@@ -310,16 +314,16 @@
                             {% block javascripts %}
                                 <script>
                                     function addImage(pk) {
-                                        alert("addImage: " + pk);
-                                    }
-
-                                    $('#add-profile .save').click(function (e) {
-                                        e.preventDefault();
-                                        addImage(5);
-                                        $('#add-profile').modal('hide');
-                                        {#$(this).tab('show')#}
-                                        return false;
-                                    })
+-                                        alert("addImage: " + pk);
+-                                    }
+-
+-                                    $('#add-profile .save').click(function (e) {
+-                                        e.preventDefault();
+-                                        addImage(5);
+-                                        $('#add-profile').modal('hide');
+-                                        {#$(this).tab('show')#}
+-                                        return false;
+-                                    })
 
                                     function addImage(pk) {
                                         alert("addImage: " + pk);
@@ -360,24 +364,24 @@
 
                         <div role="tabpanel">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#generalTab" aria-controls="generalTab"
+                            <ul class="nav nav-tabs row" role="tablist">
+                                <li role="presentation" class="active col-md-5">
+                                    <a href="#generalTabHTML" aria-controls="generalTabHTML"
                                        role="tab" data-toggle="tab">Basic</a>
                                 </li>
-                                <li role="presentation">
-                                    <a href="#addressTab" aria-controls="addressTab" role="tab"
+                                <li role="presentation" class="col-md-4">
+                                    <a href="#addressTabHTML" aria-controls="addressTabHTML" role="tab"
                                        data-toggle="tab">Address</a>
                                 </li>
-                                <li role="presentation">
-                                    <a href="#paymentTab" aria-controls="paymentTab" role="tab"
+                                <li role="presentation" class="col-md-3">
+                                    <a href="#paymentTabHTML" aria-controls="paymentTabHTML" role="tab"
                                        data-toggle="tab">Payment</a>
                                 </li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="generalTab">
+                                <div role="tabpanel" class="tab-pane active" id="generalTabHTML">
                                     <div class="form text-white-50">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
@@ -428,7 +432,7 @@
 
                                 </div>
 
-                                <div role="tabpanel" class="tab-pane" id="addressTab">
+                                <div role="tabpanel" class="tab-pane" id="addressTabHTML">
                                     <div class="form text-white-50">
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
@@ -473,7 +477,7 @@
 
                                 </div>
 
-                                <div role="tabpanel" class="tab-pane" id="paymentTab">
+                                <div role="tabpanel" class="tab-pane" id="paymentTabHTML">
                                     <div class="form text-white-50">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
