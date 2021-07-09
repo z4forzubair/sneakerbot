@@ -184,7 +184,7 @@ class ConfigurationForm(forms.Form):
             self.fields['retry'].initial = self.config.retry
             self.fields['monitor'].initial = self.config.monitor
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     timeout = forms.IntegerField(
         widget=forms.NumberInput(
@@ -212,7 +212,7 @@ class AccountForm(forms.Form):
             self.fields['sex'].initial = self.account.sex
             self.fields['phone_number'].initial = self.account.phone_number
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     MALE = 'MALE'
     FEMALE = 'FEMALE'
@@ -245,7 +245,7 @@ class UserForm(forms.Form):
             self.fields['first_name'].initial = self.user.first_name
             self.fields['last_name'].initial = self.user.last_name
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     first_name = forms.CharField(
         widget=forms.TextInput(
