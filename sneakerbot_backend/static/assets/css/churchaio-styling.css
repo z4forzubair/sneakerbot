@@ -45,3 +45,11 @@
 .image-upload>input {
   display: none;
 }
+
+.custom-options {
+    background-color: #212529 !important;
+}
+
+.li-text-align {
+    text-align: right;
+}

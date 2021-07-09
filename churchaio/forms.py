@@ -19,7 +19,7 @@ class TaskForm(forms.Form):
             self.fields['profile'].initial = self.task.profile
             self.fields['proxy_list'].initial = self.task.proxy_list
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     store_name = forms.CharField(max_length=50)
     shoe_size = forms.IntegerField(
@@ -50,7 +50,7 @@ class ProfileForm(forms.Form):
             self.fields['month'].initial = self.profile.month
             self.fields['year'].initial = self.profile.year
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     name = forms.CharField(max_length=50)
     first_name = forms.CharField(max_length=50)
@@ -96,7 +96,7 @@ class AddressForm(forms.Form):
             self.fields['zip_code'].initial = self.address.zip_code
             self.fields['postal_code'].initial = self.address.postal_code
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     address1 = forms.CharField(max_length=100)
     address2 = forms.IntegerField()
@@ -136,7 +136,7 @@ class PaymentForm(forms.Form):
             self.fields['cc_expiry'].initial = self.payment.cc_expiry
             self.fields['cc_code'].initial = self.payment.cc_code
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     CARD = 'CARD'
     MANUAL = 'MANUAL'
@@ -184,7 +184,7 @@ class ConfigurationForm(forms.Form):
             self.fields['retry'].initial = self.config.retry
             self.fields['monitor'].initial = self.config.monitor
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     timeout = forms.IntegerField(
         widget=forms.NumberInput(
@@ -212,7 +212,7 @@ class AccountForm(forms.Form):
             self.fields['sex'].initial = self.account.sex
             self.fields['phone_number'].initial = self.account.phone_number
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     MALE = 'MALE'
     FEMALE = 'FEMALE'
@@ -245,7 +245,7 @@ class UserForm(forms.Form):
             self.fields['first_name'].initial = self.user.first_name
             self.fields['last_name'].initial = self.user.last_name
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     first_name = forms.CharField(
         widget=forms.TextInput(
