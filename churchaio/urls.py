@@ -31,5 +31,5 @@ urlpatterns = [
 
     # Matches any html file
     # to change the following and its view to handle 404/500 responses
-    re_path(r'^.*\.*', views.pages, name='pages'),
+    # re_path(r'^.*\.*', views.pages, name='pages'),
 ]
