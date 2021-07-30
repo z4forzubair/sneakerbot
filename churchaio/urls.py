@@ -20,7 +20,6 @@ urlpatterns = [
     path('tasks/start_all/', views.startAllTasks, name='startAllTasks'),
     path('tasks/<int:task_id>/start/', views.startTask, name='startTask'),
 
-
     # billing profile
     path('billing_profiles/', views.billing, name='billing'),
     path('billing_profiles/create/', views.createBilling, name='createBilling'),
@@ -28,6 +27,9 @@ urlpatterns = [
     path('billing_profiles/<int:profile_id>/delete/', views.deleteBilling, name='deleteBilling'),
     path('billing_profiles/clear/', views.clearBilling, name='clearBilling'),
     path('billing_profiles/<int:profile_id>/updateFav/', views.updateFavorite, name='updateFavorite'),
+
+    path('send_discord/', views.send_discord, name='send_discord'),
+
 
     # Matches any html file
     # to change the following and its view to handle 404/500 responses

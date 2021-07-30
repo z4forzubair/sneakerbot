@@ -7,6 +7,7 @@ from django.contrib import messages
 from django import template
 from .forms import *
 from .bots.footlocker import *
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 
 @login_required(login_url="/login/")
@@ -15,6 +16,23 @@ def index(request):
 
     html_template = loader.get_template('index.html')
     return HttpResponse(html_template.render(context, request))
+
+
+# https://pypi.org/project/discord-webhook/
+@login_required(login_url='/login/')
+def send_discord(request):
+    # can also be multiple urls in a list
+    webhook_url = 'https://discord.com/api/webhooks/870609792866078730/7bgW7nRjirQ8cJcp_nbfKKxycYcy9TysnJeAN84kYgZm-r0y3PjWicWwoE5WvsGDAgjq'
+    # webhook = DiscordWebhook(url=webhook_url, rate_limit_retry=True,
+    #                          content='the message will be delivered when the rate limit is off/lifted')
+
+    # embedded msg below
+    webhook = DiscordWebhook(url=webhook_url)
+    embed = DiscordEmbed(title='Sneaker purchased', description='sneaker with url this purchased', color='f8f003')
+    # add embed object to webhook
+    webhook.add_embed(embed)
+    response = webhook.execute()
+    return redirect('tasks')
 
 
 @login_required(login_url='/login/')
