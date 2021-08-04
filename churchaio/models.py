@@ -64,9 +64,9 @@ class ProxyList(models.Model):
 
 
 class Proxy(models.Model):
-    ip_address = models.GenericIPAddressField()
-    port = models.IntegerField()
-    username = models.CharField(max_length=50)  # , unique=False
+    ip_address = models.CharField(max_length=50)
+    port = models.CharField(max_length=5)
+    username = models.CharField(max_length=100)  # , u   nique=False
     password = models.CharField(max_length=50)
 
     class STATUS(models.TextChoices):
@@ -79,7 +79,6 @@ class Proxy(models.Model):
         blank=True,
         null=True
     )
-    # not one to one here, because a proxy can be part of more than one lists
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
