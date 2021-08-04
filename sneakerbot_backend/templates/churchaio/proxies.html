@@ -1,0 +1,198 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Proxies {% endblock %}
+
+{% block content %}
+    <div class="card ">
+        <div class="card-header row">
+            <h4 class="card-title col-md-6"> Proxies</h4>
+            <form action="{% url 'setProxyList' %}" method="post" class="col-md-6">
+                {% csrf_token %}
+                {{ proxy_dropdown.proxy_list }}
+                <button type="submit" name="select_proxy_list" id="select_proxy_list" hidden></button>
+            </form>
+        </div>
+        <div class="card-header">
+            <h6 class="card-category">
+                {% if messages %}
+                    {% for msg in messages %}
+                        <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+            </h6>
+        </div>
+        <div class="d-flex ml-md-2 justify-content-between mr-md-2">
+            <div>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-success small-font small-width" data-toggle="modal"
+                        data-target="#proxy-list">
+                    <i class="tim-icons icon-simple-add small pb-1 pr-1 text-success"></i>
+                    Create Proxies
+                </button>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-danger small-font small-width">
+                    <i class="tim-icons icon-trash-simple small pb-1 pr-1 text-danger"></i>
+                    Clear Proxies
+                </button>
+            </div>
+
+            <div>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-success small-font small-width">
+                    <i class="tim-icons icon-compass-05 small pb-1 pr-1"></i>
+                    Test Proxies
+                </button>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-danger small-font small-width">
+                    <i class="tim-icons icon-button-pause small pb-1 pr-1"></i>
+                    Stop Test
+                </button>
+            </div>
+
+            <div>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-primary small-font small-width">
+                    <i class="tim-icons icon-simple-remove small pb-1 pr-1"></i>
+                    Clear Failed
+                </button>
+                <button type="button" name="login"
+                        class="btn btn-sm border-bottom border-neutral small-font small-width">
+                    <i class="tim-icons icon-bag-16 small pb-1 pr-1"></i>
+                    Buy Proxies
+                </button>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                    <tr>
+                        <th>
+                            IP
+                        </th>
+                        <th>
+                            Port
+                        </th>
+                        <th>
+                            Username
+                        </th>
+                        <th>
+                            Password
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th class="text-center">
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for proxy in proxies %}
+                        <tr>
+                            <td>
+                                {{ proxy.ip_address|slice:":12" }}
+                            </td>
+                            <td>
+                                {{ proxy.port }}
+                            </td>
+                            <td>
+                                {{ proxy.username|slice:":10" }}
+                            </td>
+                            <td>
+                                {{ proxy.password|slice:":12" }}
+                            </td>
+                            <td>
+                                {{ proxy.status }}
+                            </td>
+                            <td class="text-center">
+                                <form action="{% url 'deleteProxy' proxy.id %}" method="post" class="clear-delete-form">
+                                    {% csrf_token %}
+                                    <button type="submit" name="deleteproxy"
+                                            class="btn btn-sm small-font small-width table-icons">
+                                        <i class="tim-icons icon-trash-simple small text-danger"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proxy List Name -->
+    <div class="modal fade" id="proxy-list" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog bg-dark" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3>Proxy List Name</h3>
+                    {{ proxy_list_form.name }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-info" onclick="add_proxy_list()" data-dismiss="modal">
+                        Continue and Add Proxies
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="add-proxies" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog bg-dark" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{% url 'createProxies' %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {{ form.proxies }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+    <script>
+        $('#id_proxy_list ').change(function () {
+            $('#select_proxy_list').click()
+        })
+
+        function add_proxy_list() {
+            proxy_name = $("#id_name").val()
+            $.ajax({
+                url: "{% url 'createProxyList' %}",
+                data: {"name": proxy_name},
+                success: function (data) {
+                    if (data.msg != null) {
+                        alert(data.msg)
+                    } else {
+                        $("#add-proxies").modal('show');
+                    }
+                }
+            })
+        }
+    </script>
+{% endblock javascripts %}

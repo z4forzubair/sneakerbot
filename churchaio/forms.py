@@ -150,28 +150,33 @@ class PaymentForm(forms.Form):
     cc_code = SecurityCodeField(label='CVV/CVC')
 
 
-class ProxyListForm(forms.Form):
-    name = forms.CharField(max_length=50)
-
-
 class ProxyForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(ProxyForm, self).__init__(*args, **kwargs)
-        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.request.user)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control proxy-area'
+    proxies = forms.CharField(widget=forms.Textarea)
 
-    ip_address = forms.GenericIPAddressField()
-    port = forms.IntegerField()
-    username = forms.CharField(max_length=50)
-    password = forms.CharField(max_length=50)
-    LOCKED = 'UNLOCKED'
-    UNLOCKED = 'UNLOCKED'
-    STATUS_TYPES = (
-        (LOCKED, 'Locked'),
-        (UNLOCKED, 'Unlocked'),
-    )
-    status = forms.ChoiceField(choices=STATUS_TYPES)
-    proxy_list = forms.ModelChoiceField(queryset=None)
+
+class ProxyListForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(ProxyListForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+    name = forms.CharField(max_length=50)
+
+
+class ProxyDropdownForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        self.request = kwargs.pop('request', None)
+        super(ProxyDropdownForm, self).__init__(*args, **kwargs)
+        self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.user)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control proxy-dropdown'
+    proxy_list = forms.ModelChoiceField(queryset=None, empty_label='Select Proxy List')
 
 
 class ConfigurationForm(forms.Form):
