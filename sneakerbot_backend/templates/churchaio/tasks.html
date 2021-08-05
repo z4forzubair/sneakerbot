@@ -93,7 +93,9 @@
                             <td>
                                 {{ task.store_name }}
                             </td>
-                            <td>Product from link</td>
+                            <td>
+                                <a href="{{ task.sku_link}}">{{ task.sku_link|slice:"35:45"}}</a>
+                            </td>
                             <td>
                                 {% if task.shoe_size != -1 %} {{ task.shoe_size }} {% else %} {{ 'Random' }} {% endif %}
                             </td>
