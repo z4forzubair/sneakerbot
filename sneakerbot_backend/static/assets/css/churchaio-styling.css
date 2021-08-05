@@ -42,8 +42,8 @@
     margin-left: 15px;
 }
 
-.image-upload>input {
-  display: none;
+.image-upload > input {
+    display: none;
 }
 
 .custom-options {
@@ -52,4 +52,14 @@
 
 .li-text-align {
     text-align: right;
+}
+
+.proxy-area {
+    max-height: 100% !important;
+}
+
+.proxy-dropdown{
+    width: 100% !important;
+    float: right;
+    background-color: #0a0c0d !important;
 }

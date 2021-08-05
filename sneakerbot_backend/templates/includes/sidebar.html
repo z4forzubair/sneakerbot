@@ -29,6 +29,12 @@
                         <p>Billing Profiles</p>
                     </a>
                 </li>
+                <li class="{% if 'proxies' in segment %} active {% endif %} ">
+                    <a href="{% url 'proxies' %}">
+                        <i class="tim-icons icon-spaceship"></i>
+                        <p>Proxies</p>
+                    </a>
+                </li>
                 <li class="{% if 'icons' in segment %} active {% endif %}">
                     <a href="/ui-icons.html">
                         <i class="tim-icons icon-atom"></i>
