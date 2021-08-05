@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 from churchaio import views
 
 urlpatterns = [
@@ -7,34 +7,34 @@ urlpatterns = [
     path('', views.index, name='home'),
 
     # user
-    path('user_profile/', views.userProfile, name='userProfile'),
-    path('user_profile/update/', views.updateUserProfile, name='updateUserProfile'),
-    path('user_profile/change_picture/', views.updateProfilePicture, name='updateProfilePicture'),
+    path('user_profile/', views.user_profile, name='userProfile'),
+    path('user_profile/update/', views.update_user_profile, name='updateUserProfile'),
+    path('user_profile/change_picture/', views.update_profile_picture, name='updateProfilePicture'),
 
     # task
     path('tasks/', views.tasks, name='tasks'),
-    path('tasks/create/', views.createTask, name='createTask'),
-    path('tasks/<int:task_id>/update/', views.updateTask, name='updateTask'),
-    path('tasks/<int:task_id>/delete/', views.deleteTask, name='deleteTask'),
-    path('tasks/clear/', views.clearTasks, name='clearTasks'),
-    path('tasks/start_all/', views.startAllTasks, name='startAllTasks'),
-    path('tasks/<int:task_id>/start/', views.startTask, name='startTask'),
+    path('tasks/create/', views.create_task, name='createTask'),
+    path('tasks/<int:task_id>/update/', views.update_task, name='updateTask'),
+    path('tasks/<int:task_id>/delete/', views.delete_task, name='deleteTask'),
+    path('tasks/clear/', views.clear_tasks, name='clearTasks'),
+    path('tasks/start_all/', views.start_all_tasks, name='startAllTasks'),
+    path('tasks/<int:task_id>/start/', views.start_task, name='startTask'),
 
 
     # billing profile
     path('billing_profiles/', views.billing, name='billing'),
-    path('billing_profiles/create/', views.createBilling, name='createBilling'),
-    path('billing_profiles/<int:profile_id>/update/', views.updateBilling, name='updateBilling'),
-    path('billing_profiles/<int:profile_id>/delete/', views.deleteBilling, name='deleteBilling'),
-    path('billing_profiles/clear/', views.clearBilling, name='clearBilling'),
-    path('billing_profiles/<int:profile_id>/updateFav/', views.updateFavorite, name='updateFavorite'),
+    path('billing_profiles/create/', views.create_billing, name='createBilling'),
+    path('billing_profiles/<int:profile_id>/update/', views.update_billing, name='updateBilling'),
+    path('billing_profiles/<int:profile_id>/delete/', views.delete_billing, name='deleteBilling'),
+    path('billing_profiles/clear/', views.clear_billing, name='clearBilling'),
+    path('billing_profiles/<int:profile_id>/updateFav/', views.update_favorite, name='updateFavorite'),
 
     # proxies
     path('proxies/', views.proxies, name='proxies'),
-    path('proxies/create_list/', views.createProxyList, name='createProxyList'),
-    path('proxies/create/', views.createProxies, name='createProxies'),
-    path('proxies/<int:proxy_id>/delete/', views.deleteProxy, name='deleteProxy'),
-    path('proxies/set_list/', views.setProxyList, name='setProxyList')
+    path('proxies/create_list/', views.create_proxy_list, name='createProxyList'),
+    path('proxies/create/', views.create_proxies, name='createProxies'),
+    path('proxies/<int:proxy_id>/delete/', views.delete_proxy, name='deleteProxy'),
+    path('proxies/set_list/', views.set_proxy_list, name='setProxyList'),
 
     # Matches any html file
     # to change the following and its view to handle 404/500 responses
