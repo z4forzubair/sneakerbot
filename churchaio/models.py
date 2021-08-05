@@ -66,14 +66,14 @@ class ProxyList(models.Model):
 class Proxy(models.Model):
     ip_address = models.CharField(max_length=50)
     port = models.CharField(max_length=5)
-    username = models.CharField(max_length=100)  # , u   nique=False
+    username = models.CharField(max_length=100)
     password = models.CharField(max_length=50)
 
     class STATUS(models.TextChoices):
         LOCKED = 'LOCKED', _('Locked')
         UNLOCKED = 'UNLOCKED', _('Unlocked')
 
-    status = models.CharField(  # should have a default unlocked value
+    status = models.CharField(
         max_length=9,
         choices=STATUS.choices,
         blank=True,
@@ -82,9 +82,6 @@ class Proxy(models.Model):
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    # def __str__(self):
-    #     return f'{self.ip_address} {self.port}'
 
 
 class Profile(models.Model):
@@ -211,12 +208,6 @@ class ProxyListForm(ModelForm):
     class Meta:
         model = ProxyList
         fields = ['name']
-
-
-class ProxyForm(ModelForm):
-    class Meta:
-        model = Proxy
-        fields = '__all__'
 
 
 class ConfigurationForm(ModelForm):
