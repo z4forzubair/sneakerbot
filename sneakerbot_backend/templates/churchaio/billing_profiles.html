@@ -38,7 +38,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table tablesorter " id="">
+                <table class="table tablesorter " id="myTable" data-page-length="25">
                     <thead class=" text-primary">
                     <tr>
                         <th>
@@ -147,18 +147,26 @@
                                                     <!-- Nav tabs -->
                                                     <ul class="nav nav-tabs row" role="tablist">
 
-                                                        <li id = 'basic-tab-{{ profile.id }}' role="presentation" class="active col-md-5">
-                                                            <a href="#generalTabHTML-{{ profile.id }}" aria-controls="generalTabHTML-{{ profile.id }}"
+                                                        <li id='basic-tab-{{ profile.id }}' role="presentation"
+                                                            class="active col-md-5">
+                                                            <a href="#generalTabHTML-{{ profile.id }}"
+                                                               aria-controls="generalTabHTML-{{ profile.id }}"
                                                                role="tab" data-toggle="tab">Basic</a>
                                                         </li>
 
-                                                        <li id="address-tab-{{ profile.id }}" role="presentation" class="col-md-4">
-                                                            <a href="#addressTabHTML-{{ profile.id }}" aria-controls="addressTabHTML-{{ profile.id }}" role="tab"
+                                                        <li id="address-tab-{{ profile.id }}" role="presentation"
+                                                            class="col-md-4">
+                                                            <a href="#addressTabHTML-{{ profile.id }}"
+                                                               aria-controls="addressTabHTML-{{ profile.id }}"
+                                                               role="tab"
                                                                data-toggle="tab">Address</a>
                                                         </li>
 
-                                                        <li id="payment-tab-{{ profile.id }}" role="presentation" class="col-md-3 li-text-align">
-                                                            <a href="#paymentTabHTML-{{ profile.id }}" aria-controls="paymentTabHTML-{{ profile.id }}" role="tab"
+                                                        <li id="payment-tab-{{ profile.id }}" role="presentation"
+                                                            class="col-md-3 li-text-align">
+                                                            <a href="#paymentTabHTML-{{ profile.id }}"
+                                                               aria-controls="paymentTabHTML-{{ profile.id }}"
+                                                               role="tab"
                                                                data-toggle="tab">Payment</a>
                                                         </li>
 
@@ -166,7 +174,8 @@
 
                                                     <!-- Tab panes -->
                                                     <div class="tab-content">
-                                                        <div role="tabpanel" class="tab-pane active" id="generalTabHTML-{{ profile.id }}">
+                                                        <div role="tabpanel" class="tab-pane active"
+                                                             id="generalTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6">
@@ -217,7 +226,8 @@
 
                                                         </div>
 
-                                                        <div role="tabpanel" class="tab-pane" id="addressTabHTML-{{ profile.id }}">
+                                                        <div role="tabpanel" class="tab-pane"
+                                                             id="addressTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-12">
@@ -262,7 +272,8 @@
 
                                                         </div>
 
-                                                        <div role="tabpanel" class="tab-pane" id="paymentTabHTML-{{ profile.id }}">
+                                                        <div role="tabpanel" class="tab-pane"
+                                                             id="paymentTabHTML-{{ profile.id }}">
                                                             <div class="form text-white-50">
                                                                 <div class="form-row">
                                                                     <div class="form-group col-md-6">
@@ -310,35 +321,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            {% block javascripts %}
-                                <script>
-                                    function addImage(pk) {
--                                        alert("addImage: " + pk);
--                                    }
--
--                                    $('#add-profile .save').click(function (e) {
--                                        e.preventDefault();
--                                        addImage(5);
--                                        $('#add-profile').modal('hide');
--                                        {#$(this).tab('show')#}
--                                        return false;
--                                    })
-
-                                    function addImage(pk) {
-                                        alert("addImage: " + pk);
-                                    }
-
-                                    $('#edit-profile-{{ profile.id }} .save').click(function (e) {
-                                        e.preventDefault();
-                                        addImage(5);
-                                        $('#edit-profile-{{ profile.id }}').modal('hide');
-                                        {#$(this).tab('show')#}
-                                        return false;
-                                    })
-                                </script>
-                            {% endblock javascripts %}
-
                         </tr>
                     {% endfor %}
 
@@ -549,34 +531,10 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{#{% block javascripts %}#}
-{##}
-{#    <script>#}
-{#        function addImage(pk) {#}
-{#            alert("addImage: " + pk);#}
-{#        }#}
-{##}
-{#        $('#add-profile .save').click(function (e) {#}
-{#            e.preventDefault();#}
-{#            addImage(5);#}
-{#            $('#add-profile').modal('hide');#}
-{#$(this).tab('show')#}
-{#            return false;#}
-{#        })#}
-{##}
-{##}
-{#        function addImage(pk) {#}
-{#            alert("addImage: " + pk);#}
-{#        }#}
-{##}
-{#        $('#edit-profile-9 .save').click(function (e) {#}
-{#            e.preventDefault();#}
-{#            addImage(5);#}
-{#            $('#edit-profile-9').modal('hide');#}
-{#$(this).tab('show')#}
-{#            return false;#}
-{#        })#}
-{#    </script>#}
-{##}
-{#{% endblock javascripts %}#}
-
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({});
+        });
+    </script>
+{% endblock javascripts %}
