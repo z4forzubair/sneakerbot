@@ -45,6 +45,7 @@ def update_config(request, config_form):
                 timeout=form_data['timeout'],
                 retry=form_data['retry'],
                 monitor=form_data['monitor'],
+                webhook=None if form_data['webhook'] == '' else form_data['webhook'],
                 sleep=5,
                 user_id=user.id
             )
@@ -52,6 +53,7 @@ def update_config(request, config_form):
             config.timeout = form_data['timeout']
             config.retry = form_data['retry']
             config.monitor = form_data['monitor']
+            config.webhook = None if form_data['webhook'] == '' else form_data['webhook']
         try:
             config.save()
         except Exception:
@@ -155,7 +157,7 @@ def perform_picture_update(request):
         try:
             picture.save()
         except Exception as ex:
-            msg = 'Profile picture could not be uplaoded'
+            msg = 'Profile picture could not be uploaded'
             messages.warning(request, msg)
         else:
             user.refresh_from_db()
