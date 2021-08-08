@@ -46,6 +46,7 @@ def update_config(request, config_form):
                 retry=form_data['retry'],
                 monitor=form_data['monitor'],
                 webhook=None if form_data['webhook'] == '' else form_data['webhook'],
+                auto_solve=None if form_data['auto_solve'] == '' else form_data['auto_solve'],
                 sleep=5,
                 user_id=user.id
             )
@@ -54,6 +55,7 @@ def update_config(request, config_form):
             config.retry = form_data['retry']
             config.monitor = form_data['monitor']
             config.webhook = None if form_data['webhook'] == '' else form_data['webhook']
+            config.auto_solve = None if form_data['auto_solve'] == '' else form_data['auto_solve']
         try:
             config.save()
         except Exception:

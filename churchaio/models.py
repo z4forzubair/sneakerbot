@@ -46,6 +46,7 @@ class Configuration(models.Model):
     # sounds = models.BooleanField(default=True)
     # captcha = models.BooleanField(default=True)
     webhook = models.URLField(max_length=200, null=True, blank=True)
+    auto_solve = models.URLField(max_length=200, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -54,7 +54,7 @@
 
                         <div class="row profile-span">
                             <div class="profile-delays-inline">
-                                <i class="tim-icons icon-compass-05 pb-1 pr-1 text-neutral"></i>
+                                <i class="tim-icons icon-compass-05 pb-1 text-neutral"></i>
                                 <span>Delays</span>
                             </div>
                         </div>
@@ -80,9 +80,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <i class="tim-icons icon-chat-33 small pb-1 pr-1 text-neutral"></i>
-                                <label>Webhook</label>
+                                <label>
+                                    <i class="tim-icons icon-chat-33 pb-1 text-neutral"></i>
+                                    Webhook
+                                </label>
                                 {{ config_form.webhook }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>
+                                    <i class="tim-icons icon-molecule-40 pb-1 text-neutral"></i>
+                                    AutoSolve
+                                </label>
+                                {{ config_form.auto_solve }}
                             </div>
                         </div>
                     </div>
