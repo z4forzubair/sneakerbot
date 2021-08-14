@@ -9,62 +9,64 @@
 {% load static %}
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicon.png' %}">
-  <link rel="icon" type="image/png"          href="{% static 'assets/img/favicon.png'    %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicon.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
 
-  <title>
-    ChurchAIO Sneakerbot - {% block title %}{% endblock %}
-  </title>
+    <title>
+        ChurchAIO Sneakerbot - {% block title %}{% endblock %}
+    </title>
 
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
-  <!-- Nucleo Icons -->
-  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet" />
-  <!-- My CSS Files -->
-  <link href="{% static 'assets/css/churchaio-styling.css' %}" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet"/>
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{% static 'assets/demo/demo.css' %}" rel="stylesheet"/>
+    <!-- My CSS Files -->
+    <link href="{% static 'assets/css/churchaio-styling.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/jquery-dataTable.css' %}" rel="stylesheet"/>
 
-  <!-- Specific Page CSS goes HERE  -->
-  {% block stylesheets %}{% endblock stylesheets %}
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 
 <body class="">
-  <div class="wrapper">
+<div class="wrapper">
 
     {% include 'includes/sidebar.html' %}
 
     <div class="main-panel">
 
-      {% include 'includes/navigation.html' %}
+        {% include 'includes/navigation.html' %}
 
-      <div class="content">
+        <div class="content">
 
-        {% block content %}{% endblock content %}
+            {% block content %}{% endblock content %}
 
-      </div>
+        </div>
     </div>
 
     {% include 'includes/footer.html' %}
 
-  </div>
+</div>
 
-  {% include 'includes/fixed-plugin.html' %}
+{% include 'includes/fixed-plugin.html' %}
 
-  {% include 'includes/scripts.html' %}
+{% include 'includes/scripts.html' %}
 
-  {% include 'includes/scripts-sidebar.html' %}
+{% include 'includes/scripts-sidebar.html' %}
 
-  <!-- Specific Page JS goes HERE  -->
-  {% block javascripts %}{% endblock javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
 
 </body>
 

@@ -61,7 +61,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table tablesorter " id="">
+                <table class="table tablesorter " id="myTable" data-page-length="25">
                     <thead class=" text-primary">
                     <tr>
                         <th>
@@ -94,7 +94,7 @@
                                 {{ task.store_name }}
                             </td>
                             <td>
-                                <a href="{{ task.sku_link}}">{{ task.sku_link|slice:"35:45"}}</a>
+                                <a href="{{ task.sku_link }}">{{ task.sku_link|slice:"35:45" }}</a>
                             </td>
                             <td>
                                 {% if task.shoe_size != -1 %} {{ task.shoe_size }} {% else %} {{ 'Random' }} {% endif %}
@@ -298,4 +298,12 @@
     </div>
 
 {% endblock content %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({});
+        });
+    </script>
+{% endblock javascripts %}
 
