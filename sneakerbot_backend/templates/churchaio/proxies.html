@@ -65,7 +65,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table tablesorter " id="">
+                <table class="table tablesorter " id="myTable" data-page-length="25">
                     <thead class=" text-primary">
                     <tr>
                         <th>
@@ -176,6 +176,9 @@
 
 {% block javascripts %}
     <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({});
+        });
         $('#id_proxy_list ').change(function () {
             $('#select_proxy_list').click()
         })
