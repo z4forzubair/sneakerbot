@@ -28,7 +28,7 @@ class TaskForm(forms.Form):
                 'placeholder': 'Random'
             }
         ), required=False)
-    sku_link = forms.URLField(max_length=120)
+    sku_link = forms.URLField(max_length=200)
     task_count = forms.IntegerField(initial=1)
     proxy_list = forms.ModelChoiceField(queryset=None, required=False, empty_label='Proxy List')
     profile = forms.ModelChoiceField(queryset=None, required=False, empty_label='Profile')
@@ -156,6 +156,7 @@ class ProxyForm(forms.Form):
         super(ProxyForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control proxy-area'
+
     proxies = forms.CharField(widget=forms.Textarea)
 
 
@@ -165,6 +166,7 @@ class ProxyListForm(forms.Form):
         super(ProxyListForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
+
     name = forms.CharField(max_length=50)
 
 
@@ -176,6 +178,7 @@ class ProxyDropdownForm(forms.Form):
         self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.user)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control proxy-dropdown'
+
     proxy_list = forms.ModelChoiceField(queryset=None, empty_label='Select Proxy List')
 
 
@@ -188,8 +191,10 @@ class ConfigurationForm(forms.Form):
             self.fields['timeout'].initial = self.config.timeout
             self.fields['retry'].initial = self.config.retry
             self.fields['monitor'].initial = self.config.monitor
+            self.fields['webhook'].initial = self.config.webhook
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control custom-options'
+        self.fields['webhook'].required = False
 
     timeout = forms.IntegerField(
         widget=forms.NumberInput(
@@ -206,6 +211,11 @@ class ConfigurationForm(forms.Form):
             attrs={
                 'placeholder': 'Monitor'
             }), min_value=0)
+    webhook = forms.URLField(
+        widget=forms.URLInput(
+            attrs={
+                'placeholder': 'Webhook URL'
+            }), max_length=200)
 
 
 class AccountForm(forms.Form):
@@ -238,6 +248,7 @@ class PictureForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super(PictureForm, self).__init__(*args, **kwargs)
+
     picture = forms.ImageField()
 
 

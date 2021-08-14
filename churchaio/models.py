@@ -45,6 +45,7 @@ class Configuration(models.Model):
     # notifications = models.BooleanField(default=True)
     # sounds = models.BooleanField(default=True)
     # captcha = models.BooleanField(default=True)
+    webhook = models.URLField(max_length=200, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -163,7 +164,7 @@ class Payment(models.Model):
 class Task(models.Model):
     store_name = models.CharField(max_length=50)
     shoe_size = models.IntegerField(default=-1)
-    sku_link = models.URLField(max_length=120)  # db_index???
+    sku_link = models.URLField(max_length=200)  # db_index???
 
     class STATUS(models.TextChoices):
         IMMATURE = 'IMMATURE', _('Immature')
