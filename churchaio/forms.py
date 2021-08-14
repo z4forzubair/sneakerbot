@@ -192,9 +192,11 @@ class ConfigurationForm(forms.Form):
             self.fields['retry'].initial = self.config.retry
             self.fields['monitor'].initial = self.config.monitor
             self.fields['webhook'].initial = self.config.webhook
+            self.fields['auto_solve'].initial = self.config.auto_solve
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control custom-options'
         self.fields['webhook'].required = False
+        self.fields['auto_solve'].required = False
 
     timeout = forms.IntegerField(
         widget=forms.NumberInput(
@@ -216,6 +218,7 @@ class ConfigurationForm(forms.Form):
             attrs={
                 'placeholder': 'Webhook URL'
             }), max_length=200)
+    auto_solve = forms.URLField(max_length=200)
 
 
 class AccountForm(forms.Form):
