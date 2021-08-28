@@ -1,11 +1,8 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from django.forms.utils import ErrorList
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from churchaio.alerts import LOGIN_ALERTS
 from .forms import LoginForm, SignUpForm
 
 
@@ -14,6 +11,7 @@ def login_view(request):
         return redirect('home')
     form = LoginForm(request.POST or None)
 
+    success = None
     msg = None
 
     if request.method == "POST":
@@ -23,14 +21,33 @@ def login_view(request):
             password = form.cleaned_data.get("password")
             user = authenticate(username=username, password=password)
             if user is not None:
+                redirect_to = "userProfile" if user.last_login is None else "home"
                 login(request, user)
-                return redirect("/")
+                return redirect(redirect_to)
             else:
-                msg = 'Invalid credentials'
+                success = False
+                msg = LOGIN_ALERTS.get("invalid")
         else:
-            msg = 'Error validating the form'
+            success = False
+            msg = LOGIN_ALERTS.get("form_error")
 
-    return render(request, "accounts/login.html", {"form": form, "msg": msg})
+    new_user = request.session.get('_new_user')
+    if new_user == True:
+        request.session['_new_user'] = None
+        success = True
+        msg = LOGIN_ALERTS.get("stripe_success")
+    elif new_user == False:
+        request.session['_new_user'] = None
+        success = False
+        msg = LOGIN_ALERTS.get("stripe_fail")
+
+    context = {
+        "form": form,
+        "banner_msg": msg,
+        "success": success
+    }
+
+    return render(request, "accounts/login.html", context=context)
 
 
 def register_user(request):

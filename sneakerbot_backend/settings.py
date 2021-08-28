@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-!3$*k*q2mp1eebpu)41vm)!3aoovz6b1je%p+$+(xuwks-mb=a
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,14 +72,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sneakerbot_backend.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 try:
     from sneakerbot_backend.local_settings import DATABASES
 except ImportError:
     pass
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -101,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -114,7 +109,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -133,3 +127,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+STRIPE_SECRET_KEY = 'sk_test_51JMQxLEKaFNIZH766T9xAyKWKmJ6TqhFBYzS1op5SzfhYIq2NRF44pzqihHD6HTncJ0oa5jN1Kx6LGH92dGq8F0900Uk0rYsUj'
+STRIPE_PUBLIC_KEY = 'pk_test_51JMQxLEKaFNIZH76M2PaNX6bpxyJk1RCr38VrJiFbVDJjB2A38GpyyFHw660hP7oDJ6MHqXlJ45rtog8y1c2Uo2a005AUCwnN2'
+STRIPE_WEBHOOK_SECRET = 'whsec_SxzQiqcy5bgpbhINLz2ROg9kXpAlIpoU'
