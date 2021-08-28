@@ -7,10 +7,13 @@ from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeFie
 from django.utils.translation import gettext_lazy as _
 
 
+# def get_display_price(self):
+#         return "{0:.2f}".format(self.price / 100)
+
 # Create your models here.
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    expiry_date = models.DateField(null=True, blank=True)
+    expiry_date = models.DateField()
     renew_count = models.IntegerField(null=True, blank=True, default=0)
 
     class SEX(models.TextChoices):
