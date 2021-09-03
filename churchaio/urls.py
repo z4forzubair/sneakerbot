@@ -4,6 +4,7 @@ from churchaio import views
 urlpatterns = [
 
     # The home page
+    # to revert these two
     path('landing/', views.index, name='home'),
     path('', views.LandingPageView.as_view(), name='landing_page_view'),
 
@@ -39,11 +40,11 @@ urlpatterns = [
 
     # payment
     path('webhooks/stripe/', views.stripe_webhook, name='stripe_webhook'),
-    path('success/', views.success_view, name='success'),
-    path('cancel/', views.cancel_view, name='cancel'),
-    path('create_checkout_session/', views.CreateCheckoutSessionView.as_view(), name='create_checkout_session'),
+    path('success/<int:product_id>/', views.success_view, name='success'),
+    path('cancel/<int:product_id>/', views.cancel_view, name='cancel'),
+    path('create_checkout_session/<pk>/', views.CreateCheckoutSessionView.as_view(), name='create_checkout_session'),
 
     # Matches any html file
     # to change the following and its view to handle 404/500 responses
-    re_path(r'^.*\.*', views.pages, name='pages'),
+    # re_path(r'^.*\.*', views.pages, name='pages'),
 ]

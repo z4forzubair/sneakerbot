@@ -85,3 +85,8 @@
     box-shadow: none;
     color: #ffffff;
 }
+
+.subscript_btn {
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
