@@ -3,6 +3,9 @@
         <div class="card">
             <div class="card-body {% if success %} banner-success {% else %} banner-fail {% endif %}">
                 {{ banner_msg }}
+                {% if STRIPE_PUBLIC_KEY %}
+                    {% include 'churchaio/subscription_banner.html' %}
+                {% endif %}
             </div>
         </div>
     </div>

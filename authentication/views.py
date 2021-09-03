@@ -1,8 +1,11 @@
 # Create your views here.
+import datetime
+
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
-from churchaio.alerts import LOGIN_ALERTS
+from churchaio.alerts import LOGIN_ALERTS, GENERAL_ALERTS
 from .forms import LoginForm, SignUpForm
 
 
@@ -13,23 +16,32 @@ def login_view(request):
 
     success = None
     msg = None
-
+    expired = None
     if request.method == "POST":
 
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                redirect_to = "userProfile" if user.last_login is None else "home"
-                login(request, user)
-                return redirect(redirect_to)
+        if request.session.get('_new_sub') is None:
+            if form.is_valid():
+                username = form.cleaned_data.get("username")
+                password = form.cleaned_data.get("password")
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    try:
+                        account = user.account
+                        expired = True if account.expiry_date < datetime.date.today() else False
+                    except Exception:
+                        msg = GENERAL_ALERTS.get("unknown_error")
+                    if expired == False:
+                        redirect_to = "userProfile" if user.last_login is None else "home"
+                        login(request, user)
+                        return redirect(redirect_to)
+                    elif expired == True:
+                        msg = LOGIN_ALERTS.get("expired")
+                else:
+                    success = False
+                    msg = LOGIN_ALERTS.get("invalid")
             else:
                 success = False
-                msg = LOGIN_ALERTS.get("invalid")
-        else:
-            success = False
-            msg = LOGIN_ALERTS.get("form_error")
+                msg = LOGIN_ALERTS.get("form_error")
 
     new_user = request.session.get('_new_user')
     if new_user == True:
@@ -41,11 +53,25 @@ def login_view(request):
         success = False
         msg = LOGIN_ALERTS.get("stripe_fail")
 
+    new_sub = request.session.get('_new_sub')
+    if new_sub == True:
+        request.session['_new_sub'] = None
+        success = True
+        msg = LOGIN_ALERTS.get("stripe_subscribe")
+    elif new_sub == False:
+        request.session['_new_sub'] = None
+        success = False
+        msg = LOGIN_ALERTS.get("stripe_fail")
+
     context = {
         "form": form,
         "banner_msg": msg,
         "success": success
     }
+
+    if expired:
+        context["STRIPE_PUBLIC_KEY"] = settings.STRIPE_PUBLIC_KEY
+        context["product_id"] = 2
 
     return render(request, "accounts/login.html", context=context)
 
