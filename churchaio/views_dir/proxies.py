@@ -11,12 +11,14 @@ def render_proxies(request):
     user = request.user
     global proxy_lists
     proxies = None
+    count = 0
     proxy_list_id = request.session.get('_proxy_list_id')
     request.session['_proxy_list_id'] = None
     if proxy_list_id is not None:
         try:
             proxy_list = ProxyList.objects.filter(user_id=user.id).get(id=int(proxy_list_id))
             proxies = proxy_list.proxy_set.all().order_by("created_at")
+            count = proxies.count()
         except Proxy.DoesNotExist:
             msg = 'no proxies found'
     form = ProxyForm(request.POST or None)
@@ -25,6 +27,7 @@ def render_proxies(request):
     context = {
         'segment': 'proxies',
         'proxies': proxies,
+        'count': count,
         'form': form,
         'proxy_list_form': proxy_list_form,
         'proxy_dropdown': proxy_dropdown
