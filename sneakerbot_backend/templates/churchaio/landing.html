@@ -16,8 +16,9 @@
         <div class="main">
             <div class="background"></div>
             <nav class="nav-content aos-init aos-animate" data-aos="fade-in">
-                <div class="nav-logo"><img src="{% static 'assets/img/favicon.png' %}" height="40"></div>
-                <div class="nav-toggle" id="nav-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                {% if not request.user.is_authenticated %}
+                    <div class="nav-logo"><img src="{% static 'assets/img/favicon.png' %}" height="40"></div>
+                {% endif %}
                 <div class="nav-main" id="nav-main">
                     <div class="nav-main-item"><a href="#features">Features</a></div>
                     <div class="nav-main-item"><a href="#retailers">Retailers</a></div>
@@ -53,8 +54,8 @@
                             </a>
                         {% else %}
                             <div class="header-text-secondary"><span> Join ChurchAIO on discord</span> <img
-                                    src="{% static 'assets/img/icons-discord.svg' %}" alt="discord" width="25"
-                                    height="25">
+                                    src="{% static 'assets/img/icons-discord.svg' %}" alt="discord" width="30"
+                                    height="30">
                             </div>
                             <a href="https://discord.gg/wUmYCX2t" target="_blank" class="btn btn-round btn-success"
                                type="button"

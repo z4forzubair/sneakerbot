@@ -12,77 +12,61 @@
         </a>
 
         <ul class="nav">
-            {% if request.user.is_authenticated %}
-                {#                <li class="{% if 'index' in segment %} active {% endif %} ">#}
-                {#                    <a href="/">#}
-                {#                        <i class="tim-icons icon-chart-pie-36"></i>#}
-                {#                        <p>Dashboard</p>#}
-                {#                    </a>#}
-                {#                </li>#}
-                <li class="{% if 'tasks' in segment %} active {% endif %} ">
-                    <a href="{% url 'tasks' %}">
-                        <i class="tim-icons icon-bullet-list-67"></i>
-                        <p>Tasks</p>
-                    </a>
-                </li>
-                <li class="{% if 'profiles' in segment %} active {% endif %} ">
-                    <a href="{% url 'billing' %}">
-                        <i class="tim-icons icon-badge"></i>
-                        <p>Billing Profiles</p>
-                    </a>
-                </li>
-                <li class="{% if 'proxies' in segment %} active {% endif %} ">
-                    <a href="{% url 'proxies' %}">
-                        <i class="tim-icons icon-spaceship"></i>
-                        <p>Proxies</p>
-                    </a>
-                </li>
-                <li class="{% if 'icons' in segment %} active {% endif %}">
-                    <a href="/ui-icons.html">
-                        <i class="tim-icons icon-atom"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li class="{% if 'maps' in segment %} active {% endif %}">
-                    <a href="/ui-maps.html">
-                        <i class="tim-icons icon-pin"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li class="{% if 'notifications' in segment %} active {% endif %}">
-                    <a href="/ui-notifications.html">
-                        <i class="tim-icons icon-bell-55"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li class="{% if 'tables' in segment %} active {% endif %}">
-                    <a href="/ui-tables.html">
-                        <i class="tim-icons icon-puzzle-10"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
-                <li class="{% if 'typography' in segment %} active {% endif %}">
-                    <a href="/ui-typography.html">
-                        <i class="tim-icons icon-align-center"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'logout' %}">
-                        <i class="tim-icons icon-user-run"></i>
-                        <p>Logout</p>
-                    </a>
-                </li>
-            {% else %}
-                <li class="active">
-                    <a target="_blank"
-                       href="https://www.creative-tim.com/product/black-dashboard-pro-django">
-                        <i class="tim-icons icon-spaceship"></i>
-                        <p>PRO Version</p>
-                    </a>
-                </li>
-            {% endif %}
-
+            <li class="{% if 'tasks' in segment %} active {% endif %} ">
+                <a href="{% url 'tasks' %}">
+                    <i class="tim-icons icon-bullet-list-67"></i>
+                    <p>Tasks</p>
+                </a>
+            </li>
+            <li class="{% if 'profiles' in segment %} active {% endif %} ">
+                <a href="{% url 'billing' %}">
+                    <i class="tim-icons icon-badge"></i>
+                    <p>Billing Profiles</p>
+                </a>
+            </li>
+            <li class="{% if 'proxies' in segment %} active {% endif %} ">
+                <a href="{% url 'proxies' %}">
+                    <i class="tim-icons icon-spaceship"></i>
+                    <p>Proxies</p>
+                </a>
+            </li>
+            {#                <li class="{% if 'notifications' in segment %} active {% endif %}">#}
+            {#                    <a href="/ui-notifications.html">#}
+            {#                        <i class="tim-icons icon-bell-55"></i>#}
+            {#                        <p>Notifications</p>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#                <li class="{% if 'icons' in segment %} active {% endif %}">#}
+            {#                    <a href="/ui-icons.html">#}
+            {#                        <i class="tim-icons icon-atom"></i>#}
+            {#                        <p>Icons</p>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#                <li class="{% if 'tables' in segment %} active {% endif %}">#}
+            {#                    <a href="/ui-tables.html">#}
+            {#                        <i class="tim-icons icon-puzzle-10"></i>#}
+            {#                        <p>Table List</p>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#                <li class="{% if 'typography' in segment %} active {% endif %}">#}
+            {#                    <a href="/ui-typography.html">#}
+            {#                        <i class="tim-icons icon-align-center"></i>#}
+            {#                        <p>Typography</p>#}
+            {#                    </a>#}
+            {#                </li>#}
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="tim-icons icon-user-run"></i>
+                    <p>Logout</p>
+                </a>
+            </li>
+            {#                <li class="active">#}
+            {#                    <a target="_blank"#}
+            {#                       href="https://www.creative-tim.com/product/black-dashboard-pro-django">#}
+            {#                        <i class="tim-icons icon-spaceship"></i>#}
+            {#                        <p>PRO Version</p>#}
+            {#                    </a>#}
+            {#                </li>#}
         </ul>
 
     </div>
