@@ -1,22 +1,73 @@
-from django.contrib.auth.decorators import login_required
+import stripe
 from django import template
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.template import loader
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 
-from churchaio.views_dir.user_accounts import render_user_profile, perform_user_update, perform_picture_update
-from churchaio.views_dir.tasks import render_tasks, perform_create_task, perform_udpate_task, perform_delete_task, \
-    perform_clear_tasks, perform_task, perform_all_tasks
 from churchaio.views_dir.billing_profiles import render_billing, perform_create_billing, perform_update_billing, \
     perform_delete_billing, perform_clear_billing, add_favorite_profile
 from churchaio.views_dir.proxies import render_proxies, perform_create_proxy_list, perform_create_proxies, \
     perform_delete_proxy, perform_set_proxy_list
+from churchaio.views_dir.stripe import create_checkout_session, trigger_stripe_webhook
+from churchaio.views_dir.tasks import render_tasks, perform_create_task, perform_udpate_task, perform_delete_task, \
+    perform_clear_tasks, perform_task, perform_all_tasks
+from churchaio.views_dir.user_accounts import render_user_profile, perform_user_update, perform_picture_update
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-@login_required(login_url="/login/")
+class CreateCheckoutSessionView(View):
+    def post(self, request, *args, **kwargs):
+        product_id = self.kwargs["pk"]
+        price = 35000 if product_id == '1' else 6000
+        return create_checkout_session(product_id, price)
+
+
+@csrf_exempt
+def stripe_webhook(request):
+    return trigger_stripe_webhook(request=request, settings=settings)
+
+
+def success_view(request, product_id):
+    if product_id == 1:
+        request.session['_new_user'] = True
+    else:
+        request.session['_new_sub'] = True
+    return redirect('login')
+
+
+def cancel_view(request, product_id):
+    if product_id == 1:
+        request.session['_new_user'] = False
+    else:
+        request.session['_new_sub'] = False
+    return redirect('login')
+
+
+class LandingPageView(TemplateView):
+    template_name = "churchaio/landing.html"
+
+    def get_context_data(self, **kwargs):
+        product_name = "ChurchAIO Bot"
+        product_price = 350
+
+        context = super(LandingPageView, self).get_context_data(**kwargs)
+        context.update({
+            "product_name": product_name,
+            "product_price": product_price,
+            "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY,
+            "product_id": 1
+        })
+        return context
+
+
 def index(request):
-    context = {'segment': 'index'}
-    html_template = loader.get_template('index.html')
-    return HttpResponse(html_template.render(context, request))
+    return redirect('landing_page_view')
 
 
 # user accounts

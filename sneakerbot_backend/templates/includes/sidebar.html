@@ -4,19 +4,21 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
 
-        <div class="logo">
-            <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" width="50" height="40">
-            <span class="logo-text logo-normal">ChurchAIO</span>
-        </div>
+        <a href="{% url 'home' %}">
+            <div class="logo">
+                <img src="{% static 'assets/img/favicon.png' %}" alt="Logo" width="50" height="45">
+                <span class="logo-text logo-normal">ChurchAIO</span>
+            </div>
+        </a>
 
         <ul class="nav">
             {% if request.user.is_authenticated %}
-                <li class="{% if 'index' in segment %} active {% endif %} ">
-                    <a href="/">
-                        <i class="tim-icons icon-chart-pie-36"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                {#                <li class="{% if 'index' in segment %} active {% endif %} ">#}
+                {#                    <a href="/">#}
+                {#                        <i class="tim-icons icon-chart-pie-36"></i>#}
+                {#                        <p>Dashboard</p>#}
+                {#                    </a>#}
+                {#                </li>#}
                 <li class="{% if 'tasks' in segment %} active {% endif %} ">
                     <a href="{% url 'tasks' %}">
                         <i class="tim-icons icon-bullet-list-67"></i>
