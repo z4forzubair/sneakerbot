@@ -1,210 +1,314 @@
-<!-- Static assets -->
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Buy cool new product</title>
-    <link rel="stylesheet" href="style.css">
+{% extends "layouts/base.html" %}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+{% block title %} Home {% endblock %}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            height: 100vh;
-            width: 100vw;
-        }
+{% block content %}
 
-        form {
-            width: 30vw;
-            min-width: 500px;
-            align-self: center;
-            box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-            0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
-            border-radius: 7px;
-            padding: 40px;
-        }
+    {% load static %}
 
-        input {
-            border-radius: 6px;
-            margin-bottom: 6px;
-            padding: 12px;
-            border: 1px solid rgba(50, 50, 93, 0.1);
-            height: 44px;
-            font-size: 16px;
-            width: 100%;
-            background: white;
-        }
+    <link href="{% static 'assets/css/landing-page/landing-style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/landing-page/icon-font.css' %}" rel="stylesheet"/>
+    <link href="{% static 'assets/css/landing-page/aos.css' %}" rel="stylesheet"/>
+    <style media="all" id="fa-main"></style>
 
-        .result-message {
-            line-height: 22px;
-            font-size: 16px;
-        }
+    <div onload="onload()">
 
-        .result-message a {
-            color: rgb(89, 111, 214);
-            font-weight: 600;
-            text-decoration: none;
-        }
+        <div class="main">
+            <div class="background"></div>
+            <nav class="nav-content aos-init aos-animate" data-aos="fade-in">
+                <div class="nav-logo"><img src="{% static 'assets/img/favicon.png' %}" height="40"></div>
+                <div class="nav-toggle" id="nav-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <div class="nav-main" id="nav-main">
+                    <div class="nav-main-item"><a href="#features">Features</a></div>
+                    <div class="nav-main-item"><a href="#retailers">Retailers</a></div>
+                    <div class="nav-main-item"><a href="#app">App</a></div>
+                    <div class="nav-main-item"><a href="#success">Success</a></div>
+                    <div class="nav-main-item"><a href="#faq">FAQ</a></div>
+                    <div class="nav-main-item"><a href="https://support.cybersole.io/">Help</a></div>
+                    <div class="nav-main-item"><a href="https://cybersole.io/dashboard"
+                                                  class="nav-main-item-button"><span>Dashboard</span></a>
+                    </div>
+                </div>
+            </nav>
+            <header>
+                <div class="header-content">
+                    <div class="header-text aos-init aos-animate" data-aos="fade-in">
+                        <div class="header-text-primary">
+                            <span>The <span class="header-text-primary-bold">Fastest</span> AIO Bot</span>
+                        </div>
+                        <div class="header-text-secondary"><span> Never miss another drop with ChurchAIO. Supporting over 170 retailers ranging from Shopify to Supreme to Footsites. </span>
+                        </div>
+                        {% if not request.user.is_authenticated %}
+                            <button class="btn btn-round btn-info" type="button"
+                                    id="checkout-button">Get New For $300
+                            </button>
+                            {% csrf_token %}
+                            {% include 'includes/churchaio/stripe_script.html' %}
 
-        .hidden {
-            display: none;
-        }
+                            <div class="header-text-secondary"><span> Already have the bot in your bucket?</span>
+                            </div>
+                            <a href="login" class="btn btn-round btn-success" type="button"
+                               id="login-btn">
+                                Login
+                            </a>
+                        {% else %}
+                            <div class="header-text-secondary"><span> Join ChurchAIO on discord</span> <img
+                                    src="{% static 'assets/img/icons-discord.svg' %}" alt="discord" width="25"
+                                    height="25">
+                            </div>
+                            <a href="https://discord.gg/wUmYCX2t" target="_blank" class="btn btn-round btn-success"
+                               type="button"
+                               id="login-btn">
+                                Join
+                            </a>
+                        {% endif %}
 
-        #card-error {
-            color: rgb(105, 115, 134);
-            text-align: left;
-            font-size: 13px;
-            line-height: 17px;
-            margin-top: 12px;
-        }
-
-        #card-element {
-            border-radius: 4px 4px 0 0;
-            padding: 12px;
-            border: 1px solid rgba(50, 50, 93, 0.1);
-            height: 44px;
-            width: 100%;
-            background: white;
-        }
-
-        #payment-request-button {
-            margin-bottom: 32px;
-        }
-
-        /* Buttons and links */
-        button {
-            background: #5469d4;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            border-radius: 0 0 4px 4px;
-            border: 0;
-            padding: 12px 16px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: block;
-            transition: all 0.2s ease;
-            box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-            width: 100%;
-        }
-
-        button:hover {
-            filter: contrast(115%);
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: default;
-        }
-
-        /* spinner/processing state, errors */
-        .spinner,
-        .spinner:before,
-        .spinner:after {
-            border-radius: 50%;
-        }
-
-        .spinner {
-            color: #ffffff;
-            font-size: 22px;
-            text-indent: -99999px;
-            margin: 0px auto;
-            position: relative;
-            width: 20px;
-            height: 20px;
-            box-shadow: inset 0 0 0 2px;
-            -webkit-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            transform: translateZ(0);
-        }
-
-        .spinner:before,
-        .spinner:after {
-            position: absolute;
-            content: "";
-        }
-
-        .spinner:before {
-            width: 10.4px;
-            height: 20.4px;
-            background: #5469d4;
-            border-radius: 20.4px 0 0 20.4px;
-            top: -0.2px;
-            left: -0.2px;
-            -webkit-transform-origin: 10.4px 10.2px;
-            transform-origin: 10.4px 10.2px;
-            -webkit-animation: loading 2s infinite ease 1.5s;
-            animation: loading 2s infinite ease 1.5s;
-        }
-
-        .spinner:after {
-            width: 10.4px;
-            height: 10.2px;
-            background: #5469d4;
-            border-radius: 0 10.2px 10.2px 0;
-            top: -0.1px;
-            left: 10.2px;
-            -webkit-transform-origin: 0px 10.2px;
-            transform-origin: 0px 10.2px;
-            -webkit-animation: loading 2s infinite ease;
-            animation: loading 2s infinite ease;
-        }
-
-        @-webkit-keyframes loading {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes loading {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-
-        @media only screen and (max-width: 600px) {
-            form {
-                width: 80vw;
-            }
-        }
-    </style>
-</head>
-<body>
-<section>
-    <div class="product">
-        {#         comment  #}
-        <img
-                src="{% static 'assets/img/favicon.png' %}"
-                alt="The cover of Stubborn Attachments"
-                width="500" height="450"
-        />
-        {#        endcomment #}
-        <div class="description">
-            <h3>{{ product_name }}</h3>
-            <h3>${{ product_price }}</h3>
+                    </div>
+                    <img class="header-image aos-init aos-animate" data-aos="fade-up"
+                         src="{% static 'assets/img/CyberAIO.webp' %}">
+                </div>
+            </header>
         </div>
+        <section id="features">
+            <div class="features-content">
+                <div class="section-break aos-init aos-animate" data-aos="fade-in"></div>
+                <div class="section-text">
+                    <span>Built with <span class="header-text-primary-bold">Powerful</span> Features</span>
+                </div>
+                <div class="section-subtext"><span> We've ensured that ChurchAIO runs as smoothly as possible so you can run hundreds of tasks without the need of expensive servers </span>
+                </div>
+                <div class="features-main aos-init aos-animate" data-aos="fade-up">
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-rocket"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>Lightning Fast</span></div>
+                            <span class="features-main-card-text-secondary"> Fully multi-threaded for a blazing fast and reliable experience </span>
+                        </div>
+                    </div>
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-list"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>Unlimited Tasks</span></div>
+                            <span class="features-main-card-text-secondary">Run as many tasks as you want, from hundreds to thousands</span>
+                        </div>
+                    </div>
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-sync"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>New Captcha Solver</span></div>
+                            <span class="features-main-card-text-secondary">Featuring a multi-tab and multi-window captcha solver</span>
+                        </div>
+                    </div>
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-smartphone"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>Mobile App</span></div>
+                            <span class="features-main-card-text-secondary">Comes with a free mobile companion app to control your bot on the go</span>
+                        </div>
+                    </div>
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-clock"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>Restock Mode</span></div>
+                            <span class="features-main-card-text-secondary">Missed the drop? No problem, the bot will automatically wait for restocks</span>
+                        </div>
+                    </div>
+                    <div class="features-main-card">
+                        <div class="features-main-card-icon"><span class="lnr lnr-users"></span></div>
+                        <div class="features-main-card-text">
+                            <div class="features-main-card-text-primary"><span>Support</span></div>
+                            <span class="features-main-card-text-secondary">We offer free 24/7 support via email or Twitter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="retailers">
+            <div class="sitelist-content">
+                <div class="section-break aos-init aos-animate" data-aos="fade-in"></div>
+                <div class="sitelist-main aos-init aos-animate" data-aos="fade-up">
+                    <div class="sitelist-main-image"><img src="{% static 'assets/img/sites.svg' %}"></div>
+                    <div class="sitelist-main-text">
+                        <div class="sitelist-main-text-primary"><span>True <b>All In One</b></span></div>
+                        <div class="sitelist-main-text-secondary"><span> Supporting a wide variety of retailers including Shopify, Supreme, Footsites and Mesh. You'll never need another bot again </span>
+                        </div>
+                        <br>
+                        <div class="sitelist-main-text-primary"><span><b>270+</b> Stores</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="app">
+            <div class="app-content">
+                <div class="section-break aos-init aos-animate" data-aos="fade-in"></div>
+                <div class="section-text">
+                    <span>At your <span class="header-text-primary-bold">Fingertips</span></span>
+                </div>
+                <div class="section-subtext"><span> Download our free iOS and Android mobile companion app to control your bot from anywhere in the world </span>
+                </div>
+                <div class="app-main">
+                    <div class="app-main-mobile-card-group">
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-right"><span
+                                class="features-main-card-text-primary">Easily create tasks</span> <span
+                                class="features-main-card-text-secondary">Quickly create quick tasks via the app, a Discord monitor or the force touch command</span>
+                        </div>
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-right"><span
+                                class="features-main-card-text-primary">Control your tasks</span> <span
+                                class="features-main-card-text-secondary">View, start, stop and delete existing tasks in real-time</span>
+                        </div>
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-right"><span
+                                class="features-main-card-text-primary">Solve captchas on the fly</span> <span
+                                class="features-main-card-text-secondary">Quickly solve captcha in our integrated captcha solver</span>
+                        </div>
+                    </div>
+                    <div class="app-main-image"><img src="{% static 'assets/img/app-fade.png' %}" height="405"
+                                                     data-aos="fade-up"
+                                                     data-aos-easing="ease" class="aos-init aos-animate"></div>
+                    <div class="app-main-mobile-card-group">
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-left"><span
+                                class="features-main-card-text-primary">Execute commands</span> <span
+                                class="features-main-card-text-secondary">Reset your license, start all tasks and stop all tasks with one click</span>
+                        </div>
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-left"><span
+                                class="features-main-card-text-primary">View purchases and analytics</span> <span
+                                class="features-main-card-text-secondary">View and track your analytics and recent checkouts</span>
+                        </div>
+                        <div class="app-main-card aos-init aos-animate" data-aos="fade-left"><span
+                                class="features-main-card-text-primary">Notifications</span> <span
+                                class="features-main-card-text-secondary">Instantly receive mobile notifications upon checking out or once a captcha needs to be solved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="success">
+            <div class="success-content">
+                <div class="section-break aos-init aos-animate" data-aos="fade-in"></div>
+                <div class="success-main">
+                    <div class="success-main-text aos-init aos-animate" data-aos="fade-in">
+                        <div class="success-main-text-primary"><span>Proven <b>Success</b></span></div>
+                        <div class="success-main-text-secondary"><span> With over a million successful checkouts. ChurchAIO is the most successful sneaker bot on the market. </span>
+                        </div>
+                    </div>
+                    <div class="success-main-image aos-init aos-animate" data-aos="fade-left" data-aos-easing="ease">
+                        <img src="{% static 'assets/img/success.svg' %}"></div>
+                </div>
+            </div>
+        </section>
+        <section id="faq">
+            <div class="faq-content">
+                <div class="section-break aos-init aos-animate" data-aos="fade-in"></div>
+                <div class="section-text">
+                    <span>Frequently <span class="header-text-primary-bold">Asked</span> Questions</span>
+                </div>
+                <div class="faq-main aos-init aos-animate" data-aos="fade-up">
+                    <div class="faq-main-card"><span
+                            class="features-main-card-text-primary">How much does it cost?</span> <span
+                            class="features-main-card-text-secondary"> The retail price is £300 and comes with 6 months of free updates. You must then renew for £100 every 6 months. </span>
+                    </div>
+                    <div class="faq-main-card"><span class="features-main-card-text-primary">What operating systems are supported?</span>
+                        <span class="features-main-card-text-secondary"> ChurchAIO currently only support Windows 8 and 10. </span>
+                    </div>
+                    <div class="faq-main-card"><span
+                            class="features-main-card-text-primary">When will you restock?</span> <span
+                            class="features-main-card-text-secondary"> We restock randomly about once a month. We recommend that you follow us on <a
+                            href="https://twitter.com/cybersole"><b>Twitter</b></a> to be notified when we release. </span>
+                    </div>
+                    <div class="faq-main-card"><span
+                            class="features-main-card-text-primary">Do you offer groupbuys?</span>
+                        <span class="features-main-card-text-secondary"> We do not currently offer any private or group sales. The only way to get a license from us is via a public release. </span>
+                    </div>
+                    <div class="faq-main-card"><span
+                            class="features-main-card-text-primary">What stores do you support?</span>
+                        <span class="features-main-card-text-secondary">We support nearly all major retailers. We do not support Adidas or Nike.</span>
+                    </div>
+                    <div class="faq-main-card"><span class="features-main-card-text-primary">What countries does ChurchAIO support?</span>
+                        <span class="features-main-card-text-secondary">We support all countries that are supported by Shopify.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer data-aos="fade-in" class="aos-init aos-animate">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-main-section">
+                        <div class="footer-main-section-text-primary"><span>Payments Accepted</span></div>
+                        <div class="footer-section-break aos-init aos-animate" data-aos="fade-in"></div>
+                        <div class="footer-main-section-text-secondary"><a style="color: rgba(255, 255, 255, 0.65)"
+                                                                           href="https://stripe.com/">Credit Cards</a>
+                        </div>
+                    </div>
+                    <div class="footer-main-section">
+                        <div class="footer-main-section-text-primary"><span>Contact Info</span></div>
+                        <div class="footer-section-break aos-init aos-animate" data-aos="fade-in"></div>
+                        <div class="footer-main-section-text-secondary"><a style="color: rgba(255, 255, 255, 0.65)"
+                                                                           href="mailto:info@cybersole.io">info@cybersole.io</a>
+                        </div>
+                    </div>
+                    <div class="footer-main-section">
+                        <div class="footer-main-section-text-primary"><span>Links</span></div>
+                        <div class="footer-section-break aos-init aos-animate" data-aos="fade-in"></div>
+                        <div class="footer-main-section-text-secondary"><a style="color: rgba(255, 255, 255, 0.65)"
+                                                                           href="">Terms &amp;
+                            Conditions</a></div>
+                        <div class="footer-main-section-text-secondary"><a style="color: rgba(255, 255, 255, 0.65)"
+                                                                           href="">Privacy
+                            Policy</a></div>
+                    </div>
+                    <div class="footer-main-section">
+                        <div class="footer-main-section-text-primary"><span>Stay Updated</span></div>
+                        <div class="footer-section-break aos-init aos-animate" data-aos="fade-in"></div>
+                        <div class="footer-main-section-icon">
+                            <a href="https://twitter.com/"> <i style="color: rgba(255, 255, 255, 0.65)"
+                                                               class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://instagram.com/"> <i style="color: rgba(255, 255, 255, 0.65)"
+                                                                 class="fab fa-instagram"
+                                                                 aria-hidden="true"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-text">
+                    <div class="footer-text-primary"><span>Church Ltd | Copyright 2020 | All rights reserved</span>
+                    </div>
+                    <div class="footer-text-secondary"><span> The product you are viewing is a piece of software designed to help increase your chances of purchasing limited edition sneakers and clothing from numerous sites listed on the home page. By purchasing ChurchAIO you are accepting the terms and conditions, and you also understand that this software does not guarantee your future purchases from the listed sites, but it does drastically increase your chances. </span>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </footer>
     </div>
-    <button type="button" id="checkout-button">Checkout</button>
-</section>
-{% csrf_token %}
-{% include 'includes/churchaio/stripe_script.html'%}
-</body>
-</html>
+{% endblock content %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-142712156-1');
+    </script>
+
+    <script type="text/javascript">
+        AOS.init({
+            once: true,
+            duration: 1000
+        });
+        let navMain = document.getElementById('nav-main');
+        let navToggle = document.getElementById('nav-toggle');
+        navToggle.addEventListener('click', function () {
+            navMain.classList.toggle('nav-active');
+        });
+
+        function onload() {
+            document.getElementById("loader").classList.add("hide");
+            setTimeout(() => document.getElementById("loader").remove(), 500);
+        }
+    </script>
+    <script defer="" src="./Cybersole_files/beacon.min.js"
+            data-cf-beacon="{&quot;rayId&quot;:&quot;6891a1ad6ec8ca80&quot;,&quot;token&quot;:&quot;1cdd031106bb40c4b954a1551d6cb3e4&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;si&quot;:10}"></script>
+
+{% endblock javascripts %}
