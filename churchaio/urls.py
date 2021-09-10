@@ -1,10 +1,12 @@
-from django.urls import path
+from django.urls import path, re_path
 from churchaio import views
 
 urlpatterns = [
 
     # The home page
-    path('', views.index, name='home'),
+    # to revert these two
+    path('landing/', views.index, name='home'),
+    path('', views.LandingPageView.as_view(), name='landing_page_view'),
 
     # user
     path('user_profile/', views.user_profile, name='userProfile'),
@@ -35,6 +37,12 @@ urlpatterns = [
     path('proxies/create/', views.create_proxies, name='createProxies'),
     path('proxies/<int:proxy_id>/delete/', views.delete_proxy, name='deleteProxy'),
     path('proxies/set_list/', views.set_proxy_list, name='setProxyList'),
+
+    # payment
+    path('webhooks/stripe/', views.stripe_webhook, name='stripe_webhook'),
+    path('success/<int:product_id>/', views.success_view, name='success'),
+    path('cancel/<int:product_id>/', views.cancel_view, name='cancel'),
+    path('create_checkout_session/<pk>/', views.CreateCheckoutSessionView.as_view(), name='create_checkout_session'),
 
     # Matches any html file
     # to change the following and its view to handle 404/500 responses

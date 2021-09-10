@@ -1,16 +1,15 @@
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
-from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.forms import ModelForm
-from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 # Create your models here.
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    expiry_date = models.DateField(null=True, blank=True)
+    expiry_date = models.DateField()
     renew_count = models.IntegerField(null=True, blank=True, default=0)
 
     class SEX(models.TextChoices):

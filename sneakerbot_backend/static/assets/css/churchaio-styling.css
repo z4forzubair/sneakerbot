@@ -58,8 +58,35 @@
     max-height: 100% !important;
 }
 
-.proxy-dropdown{
+.proxy-dropdown {
     width: 100% !important;
     float: right;
     background-color: #0a0c0d !important;
+}
+
+.banner-success {
+    color: wheat;
+    font-style: oblique;
+    border-radius: 5px;
+    background-size: 210% 210%;
+    background: #00f2c3 linear-gradient(to bottom left, cornflowerblue, #0098f0, #00f2c3) top right;
+    transition: all 0.15s ease;
+    box-shadow: none;
+    color: #ffffff;
+}
+
+.banner-fail {
+    color: white;
+    font-style: oblique;
+    border-radius: 5px;
+    background-size: 210% 210%;
+    background: #fd5d93 linear-gradient(to bottom left, #fd5d93, #ec250d, #fd5d93) top right;
+    transition: all 0.15s ease;
+    box-shadow: none;
+    color: #ffffff;
+}
+
+.subscript_btn {
+    text-transform: capitalize;
+    font-variant: small-caps;
 }
