@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
 from churchaio.alerts import LOGIN_ALERTS, GENERAL_ALERTS
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm
 
 
 def login_view(request):
@@ -74,31 +74,3 @@ def login_view(request):
         context["product_id"] = 2
 
     return render(request, "accounts/login.html", context=context)
-
-
-def register_user(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-    msg = None
-    success = False
-
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
-
-            msg = 'User created - please <a href="/login">login</a>.'
-            success = True
-            if user is not None:
-                login(request=request, user=user)
-                return redirect('userProfile')
-
-        else:
-            msg = 'Form is not valid'
-    else:
-        form = SignUpForm()
-
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
