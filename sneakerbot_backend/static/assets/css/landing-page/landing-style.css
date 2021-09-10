@@ -128,7 +128,7 @@ section {
     justify-content: flex-end;
     align-items: flex-end;
     width: 100%;
-    color: #aab7c4
+    color: white;
 }
 
 .payment-image {
@@ -165,7 +165,7 @@ section {
 }
 
 .form-row-input::-webkit-input-placeholder {
-    color: #aab7c4
+    color: white;
 }
 
 .form-actions {
@@ -224,6 +224,15 @@ section {
     align-items: center;
     list-style-type: none;
     padding-left: 30%;
+}
+
+.nav-main2 {
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: center;
 }
 
 .nav-main-item {
@@ -296,7 +305,7 @@ section {
 .header-text-secondary {
     font-size: 20px;
     width: 60%;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .header-image {
@@ -328,9 +337,10 @@ section {
 
 .section-subtext {
     margin-top: 10px;
-    font-size: 20px;
+    font-size: large;
+    font-weight: 300;
     width: 60%;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .features-content {
@@ -357,13 +367,12 @@ section {
     width: 250px;
     margin: 10px;
     padding: 20px;
-    background-color: #1d1d2a;
-    border-radius: 10px;
-    box-shadow: 0 12px 26px rgba(0, 0, 0, .4)
+    box-shadow: 0 12px 26px rgba(0, 0, 0, .4);
+    border-radius: 50px;
 }
 
 .features-main-card-icon {
-    color: cyan;
+    color: white;
     font-size: 50px
 }
 
@@ -416,7 +425,7 @@ section {
 
 .sitelist-main-text-secondary {
     font-size: 20px;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .app-content {
@@ -491,7 +500,7 @@ section {
 
 .success-main-text-secondary {
     font-size: 20px;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .faq-content {
@@ -567,13 +576,13 @@ section {
 .footer-main-section-text-secondary {
     margin-bottom: 10px;
     font-size: 15px;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .footer-main-section-icon {
     margin-bottom: 10px;
     font-size: 30px;
-    color: rgba(255, 255, 255, .65)
+    color: white;
 }
 
 .footer-text {
@@ -588,7 +597,8 @@ section {
 
 .footer-text-secondary {
     font-size: 15px;
-    color: rgba(255, 255, 255, .65);
+    font-weight: 100;
+    color: white;
     margin-bottom: 40px
 }
 
@@ -607,7 +617,13 @@ section {
     .nav-main {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end
+        justify-content: flex-end;
+    }
+
+    .nav-main2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
     }
 }
 
@@ -639,7 +655,8 @@ section {
 
     .section-subtext {
         width: 80%;
-        font-size: 17.5px
+        font-size: large;
+        font-weight: 300;
     }
 
     .app-main {
@@ -766,4 +783,9 @@ section {
     font-family: 'Circular-Loom';
 
     src: url('https://cdn.loom.com/assets/fonts/circular/CircularXXWeb-Black-bf067ecb8aa777ceb6df7d72226febca.woff2') format('woff2');
+}
+
+.landing-background {
+    background-color: #2f599b;
+    font-family: Poppins, sans-serif;
 }
