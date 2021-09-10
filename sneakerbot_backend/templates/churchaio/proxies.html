@@ -5,7 +5,7 @@
 {% block content %}
     <div class="card ">
         <div class="card-header row">
-            <h4 class="card-title col-md-6"> Proxies</h4>
+            <h4 class="card-title col-md-6"> Proxies ({{ count }} Total) </h4>
             <form action="{% url 'setProxyList' %}" method="post" class="col-md-6">
                 {% csrf_token %}
                 {{ proxy_dropdown.proxy_list }}
@@ -29,6 +29,8 @@
                     <i class="tim-icons icon-simple-add small pb-1 pr-1 text-success"></i>
                     Create Proxies
                 </button>
+            </div>
+            <div>
                 <button type="button" name="login"
                         class="btn btn-sm border-bottom border-danger small-font small-width">
                     <i class="tim-icons icon-trash-simple small pb-1 pr-1 text-danger"></i>
@@ -36,31 +38,31 @@
                 </button>
             </div>
 
-            <div>
-                <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-success small-font small-width">
-                    <i class="tim-icons icon-compass-05 small pb-1 pr-1"></i>
-                    Test Proxies
-                </button>
-                <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-danger small-font small-width">
-                    <i class="tim-icons icon-button-pause small pb-1 pr-1"></i>
-                    Stop Test
-                </button>
-            </div>
+            {#            <div>#}
+            {#                <button type="button" name="login"#}
+            {#                        class="btn btn-sm border-bottom border-success small-font small-width">#}
+            {#                    <i class="tim-icons icon-compass-05 small pb-1 pr-1"></i>#}
+            {#                    Test Proxies#}
+            {#                </button>#}
+            {#                <button type="button" name="login"#}
+            {#                        class="btn btn-sm border-bottom border-danger small-font small-width">#}
+            {#                    <i class="tim-icons icon-button-pause small pb-1 pr-1"></i>#}
+            {#                    Stop Test#}
+            {#                </button>#}
+            {#            </div>#}
 
-            <div>
-                <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-primary small-font small-width">
-                    <i class="tim-icons icon-simple-remove small pb-1 pr-1"></i>
-                    Clear Failed
-                </button>
-                <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-neutral small-font small-width">
-                    <i class="tim-icons icon-bag-16 small pb-1 pr-1"></i>
-                    Buy Proxies
-                </button>
-            </div>
+            {#            <div>#}
+            {#                <button type="button" name="login"#}
+            {#                        class="btn btn-sm border-bottom border-primary small-font small-width">#}
+            {#                    <i class="tim-icons icon-simple-remove small pb-1 pr-1"></i>#}
+            {#                    Clear Failed#}
+            {#                </button>#}
+            {#                <button type="button" name="login"#}
+            {#                        class="btn btn-sm border-bottom border-neutral small-font small-width">#}
+            {#                    <i class="tim-icons icon-bag-16 small pb-1 pr-1"></i>#}
+            {#                    Buy Proxies#}
+            {#                </button>#}
+            {#            </div>#}
 
         </div>
         <div class="card-body">
