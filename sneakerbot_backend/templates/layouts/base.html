@@ -42,28 +42,35 @@
 <body class="">
 <div class="wrapper">
 
-    {% include 'includes/sidebar.html' %}
+    {% if request.user.is_authenticated %}
+        {% include 'includes/sidebar.html' %}
+    {% endif %}
 
-    <div class="main-panel">
-
+    {% if request.user.is_authenticated %}
+        <div class="main-panel">
         {% include 'includes/navigation.html' %}
+    {% endif %}
 
-        <div class="content">
-
-            {% block content %}{% endblock content %}
-
-        </div>
+    <div class="content">
+        {% block content %}{% endblock content %}
     </div>
 
-    {% include 'includes/footer.html' %}
+    {% if request.user.is_authenticated %}
+        </div>
+        {% include 'includes/footer.html' %}
+    {% endif %}
 
 </div>
 
-{% include 'includes/fixed-plugin.html' %}
+{% if request.user.is_authenticated %}
+    {% include 'includes/fixed-plugin.html' %}
+{% endif %}
 
 {% include 'includes/scripts.html' %}
 
-{% include 'includes/scripts-sidebar.html' %}
+{% if request.user.is_authenticated %}
+    {% include 'includes/scripts-sidebar.html' %}
+{% endif %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}{% endblock javascripts %}

@@ -7,6 +7,8 @@
 
 {% block content %}
 
+    {% load static %}
+
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-8">
             {% if messages %}
@@ -81,7 +83,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label>
-                                    <i class="tim-icons icon-chat-33 pb-1 text-neutral"></i>
+                                    <img src="{% static "assets/img/icons-discord-user.svg" %}" alt="discord" width="25"
+                                         height="30">
                                     Webhook
                                 </label>
                                 {{ config_form.webhook }}
