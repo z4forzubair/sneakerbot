@@ -1,14 +1,10 @@
+from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
-from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from django.forms import ModelForm
-from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
-
-# def get_display_price(self):
-#         return "{0:.2f}".format(self.price / 100)
 
 # Create your models here.
 class Account(models.Model):
