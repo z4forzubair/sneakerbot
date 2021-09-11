@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 
 from churchaio.views_dir.billing_profiles import render_billing, perform_create_billing, perform_update_billing, \
     perform_delete_billing, perform_clear_billing, add_favorite_profile
+from churchaio.views_dir.helper_views import check_if_expired
 from churchaio.views_dir.proxies import render_proxies, perform_create_proxy_list, perform_create_proxies, \
     perform_delete_proxy, perform_set_proxy_list
 from churchaio.views_dir.stripe import create_checkout_session, trigger_stripe_webhook
@@ -89,6 +90,9 @@ def update_profile_picture(request):
 # tasks
 @login_required(login_url="/login/")
 def tasks(request):
+    if check_if_expired(request.user):
+        request.session["expired"] = True
+        return redirect("logout")
     return render_tasks(request=request)
 
 
