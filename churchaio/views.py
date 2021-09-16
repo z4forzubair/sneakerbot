@@ -53,6 +53,14 @@ def cancel_view(request, product_id):
 class LandingPageView(TemplateView):
     template_name = "churchaio/landing.html"
 
+    def render_to_response(self, context, **response_kwargs):
+        response = super(LandingPageView, self).render_to_response(context, **response_kwargs)
+        cookie = self.request.session.get('p_usr_login')
+        if cookie is not None:
+            self.request.session['p_usr_login'] = None
+            response.set_cookie('p_usr_login', cookie)
+        return response
+
     def get_context_data(self, **kwargs):
         product_name = "ChurchAIO Bot"
         product_price = 350
