@@ -1,5 +1,7 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.template import loader
 
 from churchaio.bots.footlocker import *
 from churchaio.forms import TaskForm
@@ -25,7 +27,9 @@ def render_tasks(request):
         'count': count,
         'form': form
     }
-    return render(request, 'churchaio/tasks.html', context)
+    html_template = loader.get_template('churchaio/tasks.html')
+    response = HttpResponse(html_template.render(context, request))
+    return response
 
 
 def mature_task_status(task, proxy_list, profile):

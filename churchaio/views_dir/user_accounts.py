@@ -1,5 +1,7 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.template import loader
 
 from churchaio.forms import UserForm, ConfigurationForm, AccountForm, PictureForm
 from churchaio.models import Configuration, Picture, Account
@@ -31,7 +33,13 @@ def render_user_profile(request):
         'account_form': account_form,
         'picture_form': picture_form
     }
-    return render(request, 'page-user.html', context=context)
+    html_template = loader.get_template('page-user.html')
+    response = HttpResponse(html_template.render(context, request))
+    cookie = request.session.get('p_usr_login')
+    if cookie is not None:
+        request.session['p_usr_login'] = None
+        response.set_cookie('p_usr_login', cookie)
+    return response
 
 
 def update_config(request, config_form):
