@@ -8,11 +8,13 @@ from django.contrib.auth.views import LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
+from authentication.views_dir.login import login_helper
 from churchaio.alerts import LOGIN_ALERTS, GENERAL_ALERTS
 from .forms import LoginForm
 
 
 class MyLogoutView(LogoutView):
+
     # modifying the method inside LogoutView
     def dispatch(self, request, *args, **kwargs):
         expired = request.session.get("expired")
@@ -48,8 +50,15 @@ def login_view(request):
                         msg = GENERAL_ALERTS.get("unknown_error")
                     if expired == False:
                         redirect_to = "userProfile" if user.last_login is None else "home"
-                        login(request, user)
-                        return redirect(redirect_to)
+
+                        login_allow, data = login_helper(request=request, user=user)
+                        if login_allow:
+                            login(request, user)
+                            if data is not None:
+                                request.session['p_usr_login'] = data
+                            return redirect(redirect_to)
+                        else:
+                            msg = data
                 else:
                     success = False
                     msg = LOGIN_ALERTS.get("invalid")
