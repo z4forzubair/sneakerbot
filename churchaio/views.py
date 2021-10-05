@@ -13,7 +13,7 @@ from churchaio.views_dir.billing_profiles import render_billing, perform_create_
     perform_delete_billing, perform_clear_billing, add_favorite_profile
 from churchaio.views_dir.helper_views import check_if_expired
 from churchaio.views_dir.proxies import render_proxies, perform_create_proxy_list, perform_create_proxies, \
-    perform_delete_proxy, perform_set_proxy_list
+    perform_delete_proxy, perform_set_proxy_list, perform_clear_proxy_list
 from churchaio.views_dir.stripe import create_checkout_session, trigger_stripe_webhook
 from churchaio.views_dir.tasks import render_tasks, perform_create_task, perform_udpate_task, perform_delete_task, \
     perform_clear_tasks, perform_task, perform_all_tasks
@@ -186,12 +186,17 @@ def create_proxies(request):
 
 @login_required(login_url='/login/')
 def delete_proxy(request, proxy_id):
-    return perform_delete_proxy(request=request)
+    return perform_delete_proxy(request=request, proxy_id=proxy_id)
 
 
 @login_required(login_url='/login/')
 def set_proxy_list(request):
     return perform_set_proxy_list(request=request)
+
+
+@login_required(login_url='/login/')
+def clear_proxy_list(request):
+    return perform_clear_proxy_list(request=request)
 
 
 @login_required(login_url="/login/")

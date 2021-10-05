@@ -37,6 +37,7 @@ urlpatterns = [
     path('proxies/create/', views.create_proxies, name='createProxies'),
     path('proxies/<int:proxy_id>/delete/', views.delete_proxy, name='deleteProxy'),
     path('proxies/set_list/', views.set_proxy_list, name='setProxyList'),
+    path('proxies/clear_list', views.clear_proxy_list, name='clearProxyList'),
 
     # payment
     path('webhooks/stripe/', views.stripe_webhook, name='stripe_webhook'),
