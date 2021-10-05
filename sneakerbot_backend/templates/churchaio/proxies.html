@@ -32,7 +32,8 @@
             </div>
             <div>
                 <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-danger small-font small-width">
+                        class="btn btn-sm border-bottom border-danger small-font small-width" data-toggle="modal"
+                        data-target="#clear-proxies">
                     <i class="tim-icons icon-trash-simple small pb-1 pr-1 text-danger"></i>
                     Clear Proxies
                 </button>
@@ -173,6 +174,34 @@
             </div>
         </div>
     </div>
+
+    {% if proxy_list_id_form %}
+        <!-- Clear Proxy List Modal -->
+        <div class="modal fade" id="clear-proxies" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog bg-dark" role="document">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body align-self-md-center">
+                        <h2>Delete this Proxy List?</h2>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <form action="{% url 'clearProxyList' %}" method="post">
+                            {% csrf_token %}
+                            {{ proxy_list_id_form.proxy_list_id.as_hidden }}
+                            <button type="submit" class="btn btn-info">Yes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock content %}
 
