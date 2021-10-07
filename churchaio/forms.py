@@ -172,14 +172,25 @@ class ProxyListForm(forms.Form):
 
 class ProxyDropdownForm(forms.Form):
     def __init__(self, *args, **kwargs):
+        self.empty_label = kwargs.pop('empty_label', None)
         self.user = kwargs.pop('user', None)
         self.request = kwargs.pop('request', None)
         super(ProxyDropdownForm, self).__init__(*args, **kwargs)
         self.fields['proxy_list'].queryset = ProxyList.objects.filter(user=self.user)
+        self.fields['proxy_list'].empty_label = 'Select Proxy List' if self.empty_label is None else self.empty_label
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control proxy-dropdown'
 
-    proxy_list = forms.ModelChoiceField(queryset=None, empty_label='Select Proxy List')
+    proxy_list = forms.ModelChoiceField(queryset=None)
+
+
+class ProxyListIDFieldForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs.pop('id', None)
+        super(ProxyListIDFieldForm, self).__init__(*args, **kwargs)
+        self.fields["proxy_list_id"].initial = self.id
+
+    proxy_list_id = forms.IntegerField()
 
 
 class ConfigurationForm(forms.Form):
