@@ -3,7 +3,7 @@ from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
-from churchaio.forms import ProxyListForm, ProxyDropdownForm, ProxyForm
+from churchaio.forms import ProxyListForm, ProxyDropdownForm, ProxyForm, ProxyListIDFieldForm
 from churchaio.models import ProxyList, Proxy
 
 
@@ -12,25 +12,30 @@ def render_proxies(request):
     global proxy_lists
     proxies = None
     count = 0
+    proxy_list_id_form = None
+    empty_label = None
     proxy_list_id = request.session.get('_proxy_list_id')
     request.session['_proxy_list_id'] = None
     if proxy_list_id is not None:
+        proxy_list_id_form = ProxyListIDFieldForm(id=proxy_list_id)
         try:
             proxy_list = ProxyList.objects.filter(user_id=user.id).get(id=int(proxy_list_id))
             proxies = proxy_list.proxy_set.all().order_by("created_at")
             count = proxies.count()
+            empty_label = proxy_list.name
         except Proxy.DoesNotExist:
             msg = 'no proxies found'
     form = ProxyForm(request.POST or None)
     proxy_list_form = ProxyListForm(request.POST or None)
-    proxy_dropdown = ProxyDropdownForm(request.POST or None, user=user)
+    proxy_dropdown = ProxyDropdownForm(request.POST or None, user=user, empty_label=empty_label)
     context = {
         'segment': 'proxies',
         'proxies': proxies,
         'count': count,
         'form': form,
         'proxy_list_form': proxy_list_form,
-        'proxy_dropdown': proxy_dropdown
+        'proxy_dropdown': proxy_dropdown,
+        'proxy_list_id_form': proxy_list_id_form
     }
 
     return render(request, 'churchaio/proxies.html', context=context)
@@ -53,7 +58,7 @@ def perform_create_proxy_list(request):
         )
         proxy_list.save()
     except Exception:
-        msg = 'Proxy List could not be created due to some error!'
+        msg = 'Proxy List could not be created due to some issue(s). Please check the name before retrying.'
 
     if proxy_list.id is not None:
         proxy_list_id = str(proxy_list.id)
@@ -109,7 +114,7 @@ def perform_create_proxies(request):
     return redirect('proxies')
 
 
-def perform_delete_proxy(request):
+def perform_delete_proxy(request, proxy_id):
     if request.method == 'POST':
         try:
             # issue here with proxy
@@ -135,4 +140,41 @@ def perform_delete_proxy(request):
 def perform_set_proxy_list(request):
     proxy_list_id = request.POST.get('proxy_list')
     request.session['_proxy_list_id'] = proxy_list_id
+    return redirect('proxies')
+
+
+def delete_empty_lists(user):
+    try:
+        pls = ProxyList.objects.filter(user_id=user.id)
+    except ProxyList.DoesNotExist:
+        msg = "Unknown issue"
+    else:
+        for pl in pls:
+            if len(pl.proxy_set.all()) == 0:
+                try:
+                    pl.delete()
+                except Exception:
+                    msg = "Could not delete list"
+
+
+def perform_clear_proxy_list(request):
+    user = request.user
+    form = ProxyListIDFieldForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form_data = form.cleaned_data
+            try:
+                id = form_data.get('proxy_list_id')
+                proxy_list = ProxyList.objects.filter(user_id=user.id).get(id=id)
+            except ProxyList.DoesNotExist:
+                msg = "Proxy List not found"
+            else:
+                try:
+                    proxy_list.delete()
+                    delete_empty_lists(user)
+                except Exception:
+                    msg = "Proxy List could not be deleted"
+                else:
+                    msg = "Proxy List deleted successfully"
+            messages.warning(request, msg)
     return redirect('proxies')
