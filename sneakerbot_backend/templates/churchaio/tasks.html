@@ -106,12 +106,14 @@
                                 {{ task.proxy_list }}
                             </td>
                             <td>
-                                {{ task.status }}
+                                <span id="status-{{ task.id }}">
+                                    {{ task.status }}
+                                </span>
                             </td>
                             <td class="text-center">
                                 <button type="button" name="starttask"
                                         class="btn btn-sm small-font small-width table-icons"
-                                        onclick="location.href='{% url 'startTask' task.id %}'">
+                                        onclick="start_task({{ task.id }})">
                                     <i class="tim-icons icon-triangle-right-17 small text-success"></i>
                                 </button>
                                 <button type="button" name="stoptask"
@@ -304,6 +306,21 @@
         $(document).ready(function () {
             $('#myTable').DataTable({});
         });
+
+        function start_task(task_id) {
+            $.ajax({
+                url: "{% url 'startTask' %}",
+                data: {"task_id": task_id},
+                success: function (data) {
+                    alert(data.msg)
+                    status_span = $("#status-" + task_id)
+                    status_span.text(data.msg)
+                    console.log(data.done)
+                    status_span.addClass((data.done === true) ? "text-success" : "text-danger")
+                }
+            })
+        }
+
     </script>
 {% endblock javascripts %}
 
