@@ -20,7 +20,7 @@ urlpatterns = [
     path('tasks/<int:task_id>/delete/', views.delete_task, name='deleteTask'),
     path('tasks/clear/', views.clear_tasks, name='clearTasks'),
     path('tasks/start_all/', views.start_all_tasks, name='startAllTasks'),
-    path('tasks/<int:task_id>/start/', views.start_task, name='startTask'),
+    path('tasks/start/', views.start_task, name='startTask'),
 
 
     # billing profile

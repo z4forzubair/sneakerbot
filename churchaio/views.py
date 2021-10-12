@@ -128,8 +128,8 @@ def clear_tasks(request):
 
 
 @login_required(login_url='/login/')
-def start_task(request, task_id):
-    return perform_task(request=request, task_id=task_id)
+def start_task(request):
+    return perform_task(request=request)
 
 
 @login_required(login_url="/login/")

@@ -1,5 +1,7 @@
+import time
+
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
 
@@ -172,34 +174,50 @@ def failed_task_message(request):
     messages.warning(request, msg)
 
 
-def perform_task(request, task_id):
+def perform_task(request):
+    task_id = request.GET.get('task_id')
     try:
         task = Task.objects.filter(user_id=request.user.id).get(id=task_id)
     except Task.DoesNotExist:
         error = 'error'
         msg = 'The task does not exist'
-        messages.warning(request, msg)
+        done = False
+        # messages.warning(request, msg)
     else:
         if task.status == Task.STATUS.MATURE:
-            url = task.sku_link
-            bot = FootlockerBot(url=url, task=task)
-            if bot.returnStatus():
-                if bot.addToCart():
-                    # add to cart successful
-                    if bot.checkout():
-                        msg = 'Successfully purchased'
-                        messages.success(request, msg)
-                    else:
-                        failed_task_message(request)
-                else:
-                    failed_task_message(request)
-            else:
-                failed_task_message(request)
+
+            # add the task to queue here
+            msg = "Task started"
+            done = True
+
+
+            # url = task.sku_link
+            # bot = FootlockerBot(url=url, task=task)
+            # if bot.returnStatus():
+            #     if bot.addToCart():
+            #         # add to cart successful
+            #         if bot.checkout():
+            #             msg = 'Successfully purchased'
+            #             messages.success(request, msg)
+            #         else:
+            #             failed_task_message(request)
+            #     else:
+            #         failed_task_message(request)
+            # else:
+            #     failed_task_message(request)
         else:
             msg = 'Cannot execute this task'
-            messages.warning(request, msg)
+            done = False
+            # messages.warning(request, msg)
 
-    return redirect('tasks')
+    messages.warning(request, msg)
+
+    data = {
+        'msg': msg,
+        'done': done
+    }
+
+    return JsonResponse(data)
 
 
 def perform_all_tasks(request):
