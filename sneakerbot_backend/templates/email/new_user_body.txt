@@ -1,0 +1,3 @@
+Please go to the login url {{login_url}} Your ChurchAIO login username is:  {{user_name}} , and password: {{user_password}}
+
+Warning: Please note that the first device you log in will be automatically registered by the system, and after taht you will only be able to login from that device.

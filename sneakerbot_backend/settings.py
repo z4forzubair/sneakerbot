@@ -131,8 +131,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGOUT_REDIRECT_URL = 'login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STRIPE_SECRET_KEY = 'sk_test_51JMQxLEKaFNIZH766T9xAyKWKmJ6TqhFBYzS1op5SzfhYIq2NRF44pzqihHD6HTncJ0oa5jN1Kx6LGH92dGq8F0900Uk0rYsUj'
 STRIPE_PUBLIC_KEY = 'pk_test_51JMQxLEKaFNIZH76M2PaNX6bpxyJk1RCr38VrJiFbVDJjB2A38GpyyFHw660hP7oDJ6MHqXlJ45rtog8y1c2Uo2a005AUCwnN2'
 STRIPE_WEBHOOK_SECRET = 'whsec_SxzQiqcy5bgpbhINLz2ROg9kXpAlIpoU'
+
+# CELERY
+CELERY_BROKER_URL = 'redis://localhost:6379'
+# BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Karachi'
+
+#email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = 'mycel <mycel@example.com>'
