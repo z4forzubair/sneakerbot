@@ -5,3 +5,4 @@ bs4~=0.0.1
 beautifulsoup4~=4.9.3
 stripe~=2.60.0
 python-dateutil~=2.7.3
+celery~=5.1.2
