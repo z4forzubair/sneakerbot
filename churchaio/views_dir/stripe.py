@@ -2,11 +2,11 @@ import datetime
 
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 from django.http import JsonResponse, HttpResponse
 
 import stripe
 from churchaio.models import Account
+from churchaio.tasks import new_user_email_task, update_subscription_email_task
 
 
 def create_checkout_session(product_id, price):
@@ -112,13 +112,14 @@ def new_user(session):
     except Exception:
         msg = 'Expiry date could not be updated'
 
-    # to take the email content from alerts/mailbox file
-    send_mail(
-        subject="Your New ChurchAIO Bot",
-        message=f"Please go to the login url Your ChurchAIO login username is:  {user_name} , and password: {user_password}",
-        recipient_list=[user_email],
-        from_email="temp@gmail.com"
-    )
+    login_url = 'http://localhost:8000/login/'
+    email_context = {
+        'user_email': user_email,
+        'user_name': user_name,
+        'user_password': user_password,
+        'login_url': login_url
+    }
+    new_user_email_task.delay(email_context)
     print("Fulfilling new order")
 
 
@@ -139,11 +140,8 @@ def update_subscription(session):
     except Exception:
         msg = 'Expiry date could not be updated'
 
-    # to take the email content from alerts/mailbox file
-    send_mail(
-        subject="Subscribed ChurchAIO Bot",
-        message="Congratulations! You have successfully subscribed to ChurchAIO bot for another one month",
-        recipient_list=[user_email],
-        from_email="temp@gmail.com"
-    )
+    email_context = {
+        'user_email': user_email
+    }
+    update_subscription_email_task.delay(email_context)
     print("Adding subscription")
