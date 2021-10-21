@@ -90,3 +90,7 @@
     text-transform: capitalize;
     font-variant: small-caps;
 }
+
+.display-none{
+    display: none;
+}

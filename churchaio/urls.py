@@ -19,8 +19,10 @@ urlpatterns = [
     path('tasks/<int:task_id>/update/', views.update_task, name='updateTask'),
     path('tasks/<int:task_id>/delete/', views.delete_task, name='deleteTask'),
     path('tasks/clear/', views.clear_tasks, name='clearTasks'),
-    path('tasks/start_all/', views.start_all_tasks, name='startAllTasks'),
     path('tasks/start/', views.start_task, name='startTask'),
+    path('tasks/stop/', views.stop_task, name='stopTask'),
+    path('tasks/start_all/', views.start_all_tasks, name='startAllTasks'),
+    path('tasks/stop_all/', views.stop_all_tasks, name='stopAllTasks'),
 
 
     # billing profile

@@ -188,6 +188,7 @@ class Task(models.Model):
         default=STATUS.IMMATURE
     )
 
+    celery_id = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # there can be more than one proxy_lists for a task(the mentioned feature might be added later)
     proxy_list = models.ForeignKey(ProxyList, on_delete=models.SET_NULL, blank=True, null=True)

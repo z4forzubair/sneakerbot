@@ -16,7 +16,7 @@ from churchaio.views_dir.proxies import render_proxies, perform_create_proxy_lis
     perform_delete_proxy, perform_set_proxy_list, perform_clear_proxy_list
 from churchaio.views_dir.stripe import create_checkout_session, trigger_stripe_webhook
 from churchaio.views_dir.tasks import render_tasks, perform_create_task, perform_udpate_task, perform_delete_task, \
-    perform_clear_tasks, perform_task, perform_all_tasks
+    perform_clear_tasks, perform_task, perform_all_tasks, revoke_task, revoke_all_tasks
 from churchaio.views_dir.user_accounts import render_user_profile, perform_user_update, perform_picture_update
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -128,13 +128,25 @@ def clear_tasks(request):
 
 
 @login_required(login_url='/login/')
+@csrf_exempt
 def start_task(request):
     return perform_task(request=request)
+
+
+@login_required(login_url='/login/')
+@csrf_exempt
+def stop_task(request):
+    return revoke_task(request=request)
 
 
 @login_required(login_url="/login/")
 def start_all_tasks(request):
     return perform_all_tasks(request)
+
+
+@login_required(login_url="/login/")
+def stop_all_tasks(request):
+    return revoke_all_tasks(request)
 
 
 # billing profile
