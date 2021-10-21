@@ -208,7 +208,9 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable({});
+            $('#myTable').DataTable({
+                "order": []
+            });
         });
         $('#id_proxy_list ').change(function () {
             $('#select_proxy_list').click()
