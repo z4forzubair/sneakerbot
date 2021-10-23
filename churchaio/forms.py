@@ -93,7 +93,6 @@ class AddressForm(forms.Form):
             self.fields['city'].initial = self.address.city
             self.fields['country'].initial = self.address.country
             self.fields['state'].initial = self.address.state
-            self.fields['zip_code'].initial = self.address.zip_code
             self.fields['postal_code'].initial = self.address.postal_code
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control custom-options'
@@ -121,7 +120,6 @@ class AddressForm(forms.Form):
         (ACT, 'Australian Capital Territory'),
     )
     state = forms.ChoiceField(choices=STATE_CHOICES)
-    zip_code = forms.IntegerField()
     postal_code = forms.IntegerField()
 
 
