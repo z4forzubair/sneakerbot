@@ -91,7 +91,6 @@ def perform_create_billing(request):
                             city=form_data['city'],
                             country=form_data['country'],
                             state=form_data['state'],
-                            zip_code=form_data['zip_code'],
                             postal_code=form_data['postal_code'],
                             profile_id=profile.id
                         )
@@ -146,7 +145,6 @@ def save_address(profile, request, address=None):
                     city=form_data['city'],
                     country=form_data['country'],
                     state=form_data['state'],
-                    zip_code=form_data['zip_code'],
                     postal_code=form_data['postal_code'],
                     profile_id=profile.id
                 )
@@ -156,7 +154,6 @@ def save_address(profile, request, address=None):
                 address.city = form_data['city']
                 address.country = form_data['country']
                 address.state = form_data['state']
-                address.zip_code = form_data['zip_code']
                 address.postal_code = form_data['postal_code']
             address.save()
         except Exception as ex:
