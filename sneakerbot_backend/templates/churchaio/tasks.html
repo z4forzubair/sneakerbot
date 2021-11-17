@@ -313,7 +313,9 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable({});
+            $('#myTable').DataTable({
+                "order": []
+            });
         });
 
         function start_task(task_id) {
