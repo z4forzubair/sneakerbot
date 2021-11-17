@@ -39,7 +39,8 @@
                     Start Tasks
                 </button>
                 <button type="button" name="login"
-                        class="btn btn-sm border-bottom border-danger small-font small-width">
+                        class="btn btn-sm border-bottom border-danger small-font small-width"
+                        onclick="location.href='{% url 'stopAllTasks' %}'">
                     <i class="tim-icons icon-button-pause small pb-1 pr-1 text-danger"></i>
                     Stop Tasks
                 </button>
@@ -106,22 +107,30 @@
                                 {{ task.proxy_list }}
                             </td>
                             <td>
-                                <span id="status-{{ task.id }}">
+                                <span id="status-{{ task.id }}"
+                                      class="{% if task.status == TASK_STATUS.IMMATURE %} text-muted
+                                             {% elif task.status == TASK_STATUS.RUNNING %} text-primary
+                                             {% elif task.status == TASK_STATUS.COMPLETED %} text-success
+                                             {% elif task.status == TASK_STATUS.FAILED %} text-danger
+                                             {% endif %}">
                                     {{ task.status }}
                                 </span>
                             </td>
                             <td class="text-center">
-                                <button type="button" name="starttask"
-                                        class="btn btn-sm small-font small-width table-icons"
-                                        onclick="start_task({{ task.id }})">
-                                    <i class="tim-icons icon-triangle-right-17 small text-success"></i>
-                                </button>
-                                <button type="button" name="stoptask"
-                                        class="btn btn-sm small-font small-width table-icons"
-                                        data-toggle="modal"
-                                        data-target="#add-tasks" hidden>
-                                    <i class="tim-icons icon-button-pause small text-danger"></i>
-                                </button>
+                                <span>
+                                    <button id="start-{{ task.id }}" type="button" name="starttask"
+                                            class="btn btn-sm small-font small-width table-icons
+                                            {% if task.status == TASK_STATUS.RUNNING %} display-none {% endif %}"
+                                            onclick="start_task({{ task.id }})">
+                                        <i class="tim-icons icon-triangle-right-17 small text-success"></i>
+                                    </button>
+                                    <button id="stop-{{ task.id }}" type="button" name="stoptask"
+                                            class="btn btn-sm small-font small-width table-icons
+                                            {% if task.status != TASK_STATUS.RUNNING %} display-none {% endif %}"
+                                            onclick="stop_task({{ task.id }})">
+                                        <i class="tim-icons icon-button-pause small text-danger"></i>
+                                    </button>
+                                </span>
                                 <button type="button" name="edittask"
                                         class="btn btn-sm small-font small-width table-icons"
                                         data-toggle="modal"
@@ -310,13 +319,36 @@
         function start_task(task_id) {
             $.ajax({
                 url: "{% url 'startTask' %}",
+                method: "POST",
                 data: {"task_id": task_id},
                 success: function (data) {
-                    alert(data.msg)
-                    status_span = $("#status-" + task_id)
+                    const status_span = $("#status-" + task_id);
+                    status_span.text(data.msg)
+                    status_span.removeClass()
+                    status_span.addClass((data.done === true) ? "text-info" : "text-danger")
+                    if (data.done === true) {
+                        $("#start-" + task_id).hide();
+                        $("#stop-" + task_id).show();
+                    }
+                }
+            })
+        }
+
+        function stop_task(task_id) {
+            $.ajax({
+                url: "{% url 'stopTask' %}",
+                method: "POST",
+                data: {"task_id": task_id},
+                success: function (data) {
+                    const status_span = $("#status-" + task_id);
                     status_span.text(data.msg)
                     console.log(data.done)
-                    status_span.addClass((data.done === true) ? "text-success" : "text-danger")
+                    status_span.removeClass()
+                    status_span.addClass((data.done === true) ? "text-info" : "text-danger")
+                    if (data.done === true) {
+                        $("#stop-" + task_id).hide();
+                        $("#start-" + task_id).show();
+                    }
                 }
             })
         }
