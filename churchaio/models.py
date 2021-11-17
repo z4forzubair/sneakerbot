@@ -145,7 +145,6 @@ class Address(models.Model):
         choices=AU_STATES.choices,
         default=AU_STATES.VIC,
     )
-    zip_code = models.IntegerField()
     postal_code = models.IntegerField()
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
