@@ -1,13 +1,12 @@
-import time
-
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
 
-from churchaio.bots.footlocker import *
 from churchaio.forms import TaskForm
 from churchaio.models import Task
+from churchaio.tasks import footlocker_bot_task
+from sneakerbot_backend.celery import app
 
 
 def render_tasks(request):
@@ -26,6 +25,7 @@ def render_tasks(request):
     context = {
         'segment': 'tasks',
         'edit_tasks_list': edit_tasks_list,
+        'TASK_STATUS': Task.STATUS,
         'count': count,
         'form': form
     }
@@ -169,27 +169,40 @@ def perform_clear_tasks(request):
 
 
 # running the tasks
-def failed_task_message(request):
-    msg = 'The task failed'
-    messages.warning(request, msg)
+# def failed_task_message(request):
+#     msg = 'The task failed'
+#     messages.warning(request, msg)
+
+
+def start_task_operation(task):
+    result = footlocker_bot_task.delay(task.id, task.user_id)
+    task.celery_id = result.task_id
+    task.status = Task.STATUS.RUNNING
 
 
 def perform_task(request):
-    task_id = request.GET.get('task_id')
+    task_id = request.POST.get('task_id')
     try:
         task = Task.objects.filter(user_id=request.user.id).get(id=task_id)
     except Task.DoesNotExist:
         error = 'error'
-        msg = 'The task does not exist'
+        msg = 'Unknown error'
         done = False
         # messages.warning(request, msg)
     else:
         if task.status == Task.STATUS.MATURE:
 
             # add the task to queue here
-            msg = "Task started"
-            done = True
 
+            try:
+                start_task_operation(task)
+                task.save()
+            except Exception:
+                msg = "Status update failed"
+                done = False
+            else:
+                msg = "Task started"
+                done = True
 
             # url = task.sku_link
             # bot = FootlockerBot(url=url, task=task)
@@ -205,12 +218,12 @@ def perform_task(request):
             #         failed_task_message(request)
             # else:
             #     failed_task_message(request)
-        else:
-            msg = 'Cannot execute this task'
+        elif task.status == Task.STATUS.COMPLETED:
+            msg = 'DONE'
             done = False
-            # messages.warning(request, msg)
-
-    messages.warning(request, msg)
+        else:
+            msg = 'Inconceivable!'
+            done = False
 
     data = {
         'msg': msg,
@@ -221,4 +234,81 @@ def perform_task(request):
 
 
 def perform_all_tasks(request):
+    try:
+        tasks = Task.objects.filter(user_id=request.user.id).filter(status=Task.STATUS.MATURE)
+    except Task.DoesNotExist:
+        msg = 'No tasks found'
+    else:
+        if tasks.count() == 0:
+            msg = "No tasks to run"
+            messages.warning(request, msg)
+        else:
+            for task in tasks:
+                start_task_operation(task)
+            try:
+                Task.objects.bulk_update(tasks, ['celery_id', 'status'])
+            except Exception:
+                msg = 'Unknown error'
+                messages.warning(request, msg)
+            else:
+                msg = "All Tasks started successfully"
+                messages.success(request, msg)
+    return redirect('tasks')
+
+
+def revoke_task_operation(task):
+    app.control.revoke(task.celery_id, terminate=True)
+    task.status = Task.STATUS.MATURE
+
+
+def revoke_task(request):
+    task_id = request.POST.get("task_id")
+    try:
+        task = Task.objects.filter(user_id=request.user.id).get(id=task_id)
+    except Task.DoesNotExist:
+        error = 'error'
+        msg = "Unknown error"
+        done = False
+    else:
+        if task.status == Task.STATUS.RUNNING:
+            revoke_task_operation(task)
+            try:
+                task.save()
+            except Exception:
+                msg = "Status update failed"
+                done = False
+            else:
+                msg = "Stopped"
+                done = True
+        else:
+            msg = 'Inconceivable!'
+            done = False
+
+    data = {
+        'msg': msg,
+        'done': done
+    }
+    return JsonResponse(data)
+
+
+def revoke_all_tasks(request):
+    try:
+        tasks = Task.objects.filter(user_id=request.user.id).filter(status=Task.STATUS.RUNNING)
+    except Task.DoesNotExist:
+        msg = 'No tasks found'
+    else:
+        if tasks.count() == 0:
+            msg = 'No tasks to stop'
+            messages.warning(request, msg)
+        else:
+            for task in tasks:
+                revoke_task_operation(task)
+            try:
+                Task.objects.bulk_update(tasks, ['status'])
+            except Exception:
+                msg = 'Unknown error'
+                messages.warning(request, msg)
+            else:
+                msg = "All Tasks stopped"
+                messages.success(request, msg)
     return redirect('tasks')
