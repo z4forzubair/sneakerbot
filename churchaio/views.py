@@ -157,7 +157,7 @@ def billing(request):
 
 @login_required(login_url="/login/")
 def create_billing(request):
-    perform_create_billing(request=request)
+    return perform_create_billing(request=request)
 
 
 @login_required(login_url="/login/")
