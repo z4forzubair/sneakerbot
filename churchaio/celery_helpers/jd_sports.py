@@ -1,11 +1,11 @@
 import json
 import random
 import re
-import time
 
 import requests
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,7 +15,11 @@ from churchaio.celery_helpers.task_data import get_task_attr
 from churchaio.models import Task
 
 
-def jd_sports_bot(task_id):
+class MyException(Exception):
+    pass
+
+
+def bot(task_id):
     def task_failed():
         try:
             task = Task.objects.get(id=task_id)
@@ -27,10 +31,12 @@ def jd_sports_bot(task_id):
                 task.save()
             except Exception:
                 msg = "Task not found"
+        finally:
+            raise MyException
 
     task_attr = get_task_attr(task_id=task_id)
-
     print(task_attr)
+
     session = requests.session()
 
     payload = {}
@@ -50,7 +56,10 @@ def jd_sports_bot(task_id):
     }
 
     main_url = task_attr["sku_link"]
-    response = session.request("GET", main_url, headers=headers, data=payload)
+    try:
+        response = session.request("GET", main_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(response)
 
     # add to cart
@@ -91,10 +100,12 @@ def jd_sports_bot(task_id):
         else:
             task_failed()
     cart_url = f"https://www.jd-sports.com.au/cart/{size}/"
-    print(main_url)
-    print(cart_url)
-    cart_resp = session.request("POST", url=cart_url, headers=headers, data=payload)
+    try:
+        cart_resp = session.request("POST", url=cart_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(cart_resp)
+    print(cart_resp.ok)
 
     # login as guest
     deliveryMethodID = cart_resp.json()["delivery"]["deliveryMethodID"]
@@ -118,7 +129,10 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8'
     }
     guest_url = "https://www.jd-sports.com.au/checkout/guest/"
-    guest_resp = session.request("POST", guest_url, headers=headers, data=payload)
+    try:
+        guest_resp = session.request("POST", guest_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(guest_resp)
 
     payload = json.dumps({'deliveryMethodID': deliveryMethodID, 'deliveryLocation': 'au'})
@@ -139,7 +153,10 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8'
     }
     cart_s_url = "https://www.jd-sports.com.au/cart/"
-    cart_s_resp = session.request("PUT", cart_s_url, headers=headers, data=payload)
+    try:
+        cart_s_resp = session.request("PUT", cart_s_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(cart_s_resp)
 
     payload = {}
@@ -158,7 +175,10 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8'
     }
     order_total_url = f"https://www.jd-sports.com.au/checkout/orderTotals/?deliveryLocation=au&AJAX=1&deliveryMethodID={deliveryMethodID}"
-    order_total_resp = session.request("GET", url=order_total_url, headers=headers, data=payload)
+    try:
+        order_total_resp = session.request("GET", url=order_total_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(order_total_resp)
 
     payload = json.dumps({
@@ -170,7 +190,7 @@ def jd_sports_bot(task_id):
         "locale": "",
         "address1": task_attr["address1"],
         "address2": task_attr["address2"],
-        "town": "Harrington Park",
+        "town": task_attr["city"],
         "county": task_attr["state"],
         "postcode": task_attr["postal_code"],
         "addressPredict": "",
@@ -194,7 +214,10 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8'
     }
     address_book_url = "https://www.jd-sports.com.au/myaccount/addressbook/add/"
-    address_book_resp = session.request("POST", address_book_url, headers=headers, data=payload)
+    try:
+        address_book_resp = session.request("POST", address_book_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(address_book_resp)
 
     address_book_resp_json = address_book_resp.json()
@@ -221,7 +244,11 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8'
     }
     delivery_add_update_url = "https://www.jd-sports.com.au/checkout/updateDeliveryAddressAndMethod/ajax/"
-    delivery_add_update_resp = session.request("POST", delivery_add_update_url, headers=headers, data=payload)
+    try:
+        delivery_add_update_resp = session.request("POST", delivery_add_update_url, headers=headers, data=payload,
+                                                   timeout=120)
+    except Exception:
+        task_failed()
     print(delivery_add_update_resp)
 
     payload = "paySelect=card&isSafari=true"
@@ -242,11 +269,12 @@ def jd_sports_bot(task_id):
         'accept-language': 'en-US,en;q=0.9,ur;q=0.8',
     }
     payment_v3_url = "https://www.jd-sports.com.au/checkout/paymentV3/"
-    payment_v3_resp = session.request("POST", payment_v3_url, headers=headers, data=payload)
+    try:
+        payment_v3_resp = session.request("POST", payment_v3_url, headers=headers, data=payload, timeout=120)
+    except Exception:
+        task_failed()
     print(payment_v3_resp)
-    print(payment_v3_resp.text)
     payload_url = payment_v3_resp.text.replace("\\", "").replace("\"", "")
-    print(payload_url)
 
     def wait_by_xpath(element_path, wait_count=None, first_try=True):
         try:
@@ -284,7 +312,9 @@ def jd_sports_bot(task_id):
         element_input.clear()
         element_input.send_keys(element_val)
 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     wait = WebDriverWait(driver, 10)
 
     driver.get(payload_url)
@@ -320,5 +350,27 @@ def jd_sports_bot(task_id):
     pay_btn = driver.find_element_by_xpath(pay_btn_path)
     pay_btn.click()
 
-    time.sleep(1)
     driver.close()
+
+    def task_completed():
+        try:
+            task = Task.objects.get(id=task_id)
+        except Task.DoesNotExist:
+            msg = "Task not found"
+        else:
+            task.status = Task.STATUS.COMPLETED
+            try:
+                task.save()
+            except Exception:
+                msg = "Task not found"
+        finally:
+            raise MyException
+
+    task_completed()
+
+
+def jd_sports_bot(task_id):
+    try:
+        bot(task_id=task_id)
+    except MyException:
+        return
