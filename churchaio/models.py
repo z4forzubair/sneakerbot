@@ -170,7 +170,17 @@ class Payment(models.Model):
 
 
 class Task(models.Model):
-    store_name = models.CharField(max_length=50)
+    class STORE_NAME(models.TextChoices):
+        FOOTLOCKER = 'FOOTLOCKER', _('Footlocker')
+        JD_SPORTS = 'JD_SPORTS', _('JD_Sports')
+        HYPEDC = 'HYPEDC', _('hypedc')
+        CULTURE_KINGS = 'CULTURE_KINGS', _('Culture Kings')
+
+    store_name = models.CharField(
+        max_length=50,
+        choices=STORE_NAME.choices,
+        default=STORE_NAME.JD_SPORTS
+    )
     shoe_size = models.IntegerField(default=-1)
     sku_link = models.URLField(max_length=200)  # db_index???
 

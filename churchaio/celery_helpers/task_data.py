@@ -11,24 +11,34 @@ def get_profile_model(task, task_attr):
     task_attr["last_name"] = task.profile.last_name
     task_attr["email"] = task.profile.email
     task_attr["salutation"] = task.profile.salutation
-    task_attr["contact"] = task.profile.contact
-    task_attr["dob_day"] = task.profile.day
-    task_attr["dob_month"] = task.profile.month
-    task_attr["dob_year"] = task.profile.year
+    task_attr["contact"] = task.profile.contact.raw_input
+    if len(str(task.profile.day)) == 1:
+        task_attr["dob_day"] = '0' + str(task.profile.day)
+    else:
+        task_attr["dob_day"] = str(task.profile.day)
+    if len(str(task.profile.month)) == 1:
+        task_attr["dob_month"] = '0' + str(task.profile.month)
+    else:
+        task_attr["dob_month"] = str(task.profile.month)
+    task_attr["dob_year"] = str(task.profile.year)
 
 
 def get_address_model(task, task_attr):
     task_attr["address1"] = task.profile.address.address1
-    task_attr["address2"] = task.profile.address.address1
+    task_attr["address2"] = str(task.profile.address.address2)
     task_attr["city"] = task.profile.address.city
     task_attr["country"] = task.profile.address.country
     task_attr["state"] = task.profile.address.state
-    task_attr["postal_code"] = task.profile.address.postal_code
+    task_attr["postal_code"] = str(task.profile.address.postal_code)
 
 
 def get_payment_model(task, task_attr):
     task_attr["cc_number"] = task.profile.payment.cc_number
-    task_attr["cc_expiry"] = task.profile.payment.cc_expiry
+    if len(str(task.profile.payment.cc_expiry.month)) == 1:
+        task_attr["month"] = '0' + str(task.profile.payment.cc_expiry.month)
+    else:
+        task_attr["month"] = str(task.profile.payment.cc_expiry.month)
+    task_attr["year"] = str(task.profile.payment.cc_expiry.year)[-2:]
     task_attr["cc_code"] = task.profile.payment.cc_code
 
 
