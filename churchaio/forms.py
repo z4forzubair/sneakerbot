@@ -21,7 +21,13 @@ class TaskForm(forms.Form):
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control custom-options'
 
-    store_name = forms.CharField(max_length=50)
+    STORE_NAME_CHOICES = (
+        # (Task.STORE_NAME.FOOTLOCKER, 'Footlocker'),
+        (Task.STORE_NAME.JD_SPORTS, 'JD_Sports'),
+        # (Task.STORE_NAME.HYPEDC, 'hypedc'),
+        # (Task.STORE_NAME.CULTURE_KINGS, 'Culture Kings')
+    )
+    store_name = forms.ChoiceField(choices=sorted(STORE_NAME_CHOICES))
     shoe_size = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={

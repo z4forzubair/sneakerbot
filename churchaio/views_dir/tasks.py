@@ -5,7 +5,7 @@ from django.template import loader
 
 from churchaio.forms import TaskForm
 from churchaio.models import Task
-from churchaio.tasks import footlocker_bot_task
+from churchaio.tasks import footlocker_bot_task, jd_sports_bot_task
 from sneakerbot_backend.celery import app
 
 
@@ -175,9 +175,15 @@ def perform_clear_tasks(request):
 
 
 def start_task_operation(task):
-    result = footlocker_bot_task.delay(task.id, task.user_id)
+    if task.store_name == Task.STORE_NAME.JD_SPORTS:
+        result = jd_sports_bot_task.delay(task.id, task.user_id)
+    # elif task.store_name == Task.STORE_NAME.FOOTLOCKER:
+    #     result = footlocker_bot_task.delay(task.id, task.user_id)
+    else:
+        return False
     task.celery_id = result.task_id
     task.status = Task.STATUS.RUNNING
+    return True
 
 
 def perform_task(request):
@@ -194,15 +200,18 @@ def perform_task(request):
 
             # add the task to queue here
 
-            try:
-                start_task_operation(task)
-                task.save()
-            except Exception:
-                msg = "Status update failed"
-                done = False
+            if start_task_operation(task):
+                try:
+                        task.save()
+                except Exception:
+                    msg = "Status update failed"
+                    done = False
+                else:
+                    msg = "Task started"
+                    done = True
             else:
-                msg = "Task started"
-                done = True
+                msg = "Store not found"
+                done = False
 
             # url = task.sku_link
             # bot = FootlockerBot(url=url, task=task)
