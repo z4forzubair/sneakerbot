@@ -31,4 +31,4 @@ def footlocker_bot_task(task_id, user_id):
 
 @shared_task()
 def jd_sports_bot_task(task_id, user_id):
-    return jd_sports_bot(task_id=task_id)
+    return jd_sports_bot(task_id=task_id, user_id=user_id)
