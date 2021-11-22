@@ -25,7 +25,7 @@ def get_profile_model(task, task_attr):
 
 def get_address_model(task, task_attr):
     task_attr["address1"] = task.profile.address.address1
-    task_attr["address2"] = str(task.profile.address.address2)
+    task_attr["address2"] = task.profile.address.address2
     task_attr["city"] = task.profile.address.city
     task_attr["country"] = task.profile.address.country
     task_attr["state"] = task.profile.address.state

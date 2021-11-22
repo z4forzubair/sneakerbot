@@ -126,7 +126,7 @@ class Profile(models.Model):
 
 class Address(models.Model):
     address1 = models.CharField(max_length=100)
-    address2 = models.IntegerField()
+    address2 = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
 
