@@ -23,7 +23,7 @@ class TaskForm(forms.Form):
 
     STORE_NAME_CHOICES = (
         # (Task.STORE_NAME.FOOTLOCKER, 'Footlocker'),
-        (Task.STORE_NAME.JD_SPORTS, 'JD_Sports'),
+        (Task.STORE_NAME.JD_SPORTS, Task.STORE_NAME.JD_SPORTS.label),
         # (Task.STORE_NAME.HYPEDC, 'hypedc'),
         # (Task.STORE_NAME.CULTURE_KINGS, 'Culture Kings')
     )

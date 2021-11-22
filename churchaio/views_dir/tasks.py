@@ -196,13 +196,11 @@ def perform_task(request):
         done = False
         # messages.warning(request, msg)
     else:
-        if task.status == Task.STATUS.MATURE:
-
+        if task.status != Task.STATUS.IMMATURE and task.status != Task.STATUS.COMPLETED and task.status != Task.STATUS.RUNNING:
             # add the task to queue here
-
             if start_task_operation(task):
                 try:
-                        task.save()
+                    task.save()
                 except Exception:
                     msg = "Status update failed"
                     done = False
