@@ -190,9 +190,15 @@ class Task(models.Model):
         RUNNING = 'RUNNING', _('Running')
         FAILED = 'FAILED', _('Failed')
         COMPLETED = 'COMPLETED', _('Completed')
+        # adding failure messages
+        NO_SKU = 'NO_SKU', _('SKU not found')
+        NO_SHOE = 'NO_SHOE', _('Shoe size not found')
+        CART_FAIL = 'CART_FAIL', _('Add to cart failed')
+        CHECKOUT_FAIL = 'CHECKOUT_FAIL', _('Checkout failed')
+        PAYMENT_FAIL = 'PAYMENT_FAIL', _('Payment failed')
 
     status = models.CharField(
-        max_length=10,
+        max_length=30,
         choices=STATUS.choices,
         default=STATUS.IMMATURE
     )

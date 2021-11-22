@@ -21,13 +21,13 @@ class MyException(Exception):
 
 
 def bot(task_id):
-    def task_failed():
+    def task_failed(status):
         try:
             task = Task.objects.get(id=task_id)
         except Task.DoesNotExist:
             msg = "Task not found"
         else:
-            task.status = Task.STATUS.FAILED
+            task.status = status
             try:
                 task.save()
             except Exception:
@@ -36,7 +36,6 @@ def bot(task_id):
             raise MyException
 
     task_attr = get_task_attr(task_id=task_id)
-    print(task_attr)
 
     session = requests.session()
 
@@ -60,8 +59,10 @@ def bot(task_id):
     try:
         response = session.request("GET", main_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.NO_SKU)
     print(response)
+    if not response.ok:
+        task_failed(Task.STATUS.NO_SKU)
 
     # add to cart
     payload = json.dumps({
@@ -99,14 +100,16 @@ def bot(task_id):
             index = size_nos.index(str(task_attr["shoe_size"]))
             size = size_nos[index]
         else:
-            task_failed()
+            task_failed(Task.STATUS.NO_SHOE)
     cart_url = f"https://www.jd-sports.com.au/cart/{size}/"
     try:
         cart_resp = session.request("POST", url=cart_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CART_FAIL)
     print(cart_resp)
     print(cart_resp.ok)
+    if not cart_resp.ok:
+        task_failed(Task.STATUS.CART_FAIL)
 
     # login as guest
     deliveryMethodID = cart_resp.json()["delivery"]["deliveryMethodID"]
@@ -133,8 +136,10 @@ def bot(task_id):
     try:
         guest_resp = session.request("POST", guest_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
     print(guest_resp)
+    if not guest_resp.ok:
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
 
     payload = json.dumps({'deliveryMethodID': deliveryMethodID, 'deliveryLocation': 'au'})
     headers = {
@@ -157,8 +162,10 @@ def bot(task_id):
     try:
         cart_s_resp = session.request("PUT", cart_s_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
     print(cart_s_resp)
+    if not cart_s_resp.ok:
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
 
     payload = {}
     headers = {
@@ -179,8 +186,10 @@ def bot(task_id):
     try:
         order_total_resp = session.request("GET", url=order_total_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
     print(order_total_resp)
+    if not order_total_resp.ok:
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
 
     payload = json.dumps({
         "useDeliveryAsBilling": True,
@@ -218,8 +227,10 @@ def bot(task_id):
     try:
         address_book_resp = session.request("POST", address_book_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
     print(address_book_resp)
+    if not address_book_resp.ok:
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
 
     address_book_resp_json = address_book_resp.json()
     addressId = address_book_resp_json["ID"]
@@ -249,8 +260,10 @@ def bot(task_id):
         delivery_add_update_resp = session.request("POST", delivery_add_update_url, headers=headers, data=payload,
                                                    timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
     print(delivery_add_update_resp)
+    if not delivery_add_update_resp.ok:
+        task_failed(Task.STATUS.CHECKOUT_FAIL)
 
     payload = "paySelect=card&isSafari=true"
     headers = {
@@ -273,8 +286,10 @@ def bot(task_id):
     try:
         payment_v3_resp = session.request("POST", payment_v3_url, headers=headers, data=payload, timeout=120)
     except Exception:
-        task_failed()
+        task_failed(Task.STATUS.PAYMENT_FAIL)
     print(payment_v3_resp)
+    if not payment_v3_resp.ok:
+        task_failed(Task.STATUS.PAYMENT_FAIL)
     payload_url = payment_v3_resp.text.replace("\\", "").replace("\"", "")
 
     def wait_by_xpath(element_path, wait_count=None, first_try=True):
@@ -288,7 +303,7 @@ def bot(task_id):
             if wait_count < 3:
                 wait_by_xpath(element_path, wait_count, False)
             else:
-                task_failed()
+                task_failed(Task.STATUS.PAYMENT_FAIL)
         finally:
             pass
 
@@ -303,7 +318,7 @@ def bot(task_id):
             if wait_count < 3:
                 wait_by_id(element_path, wait_count, False)
             else:
-                task_failed()
+                task_failed(Task.STATUS.PAYMENT_FAIL)
         finally:
             pass
 
