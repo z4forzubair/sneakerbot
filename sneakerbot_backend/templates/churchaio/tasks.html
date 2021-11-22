@@ -111,9 +111,22 @@
                                       class="{% if task.status == TASK_STATUS.IMMATURE %} text-muted
                                              {% elif task.status == TASK_STATUS.RUNNING %} text-primary
                                              {% elif task.status == TASK_STATUS.COMPLETED %} text-success
-                                             {% elif task.status == TASK_STATUS.FAILED %} text-danger
+                                             {% elif task.status == TASK_STATUS.MATURE %} text-normal
+                                             {% else %} text-danger
                                              {% endif %}">
+                                {% if task.status == TASK_STATUS.CART_FAIL %}
+                                    {{ TASK_STATUS.CART_FAIL.label }}
+                                {% elif task.status == TASK_STATUS.CHECKOUT_FAIL %}
+                                    {{ TASK_STATUS.CHECKOUT_FAIL.label }}
+                                {% elif task.status == TASK_STATUS.PAYMENT_FAIL %}
+                                    {{ TASK_STATUS.PAYMENT_FAIL.label }}
+                                {% elif task.status == TASK_STATUS.NO_SKU %}
+                                    {{ TASK_STATUS.NO_SKU.label }}
+                                {% elif task.status == TASK_STATUS.NO_SHOE %}
+                                    {{ TASK_STATUS.NO_SHOE.label }}
+                                {% else %}
                                     {{ task.status }}
+                                {% endif %}
                                 </span>
                             </td>
                             <td class="text-center">
