@@ -11,6 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
+from churchaio.celery_helpers.discord_message import successful_checkout
 from churchaio.celery_helpers.task_data import get_task_attr
 from churchaio.models import Task
 
@@ -363,14 +364,15 @@ def bot(task_id):
                 task.save()
             except Exception:
                 msg = "Task not found"
-        finally:
-            raise MyException
 
     task_completed()
+    title_regex = re.compile('\\s*<title\>(.*)\<')
+    return title_regex.findall(response.content.decode())[0]
 
 
-def jd_sports_bot(task_id):
+def jd_sports_bot(task_id, user_id):
     try:
-        bot(task_id=task_id)
+        title = bot(task_id=task_id)
+        successful_checkout(user_id, title)
     except MyException:
         return
