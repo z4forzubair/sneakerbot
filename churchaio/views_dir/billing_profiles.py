@@ -121,7 +121,7 @@ def perform_create_billing(request):
                         messages.warning(request, msg)
                 else:
                     error = 'Invalid payment form'
-                    msg = 'Address could not be saved'
+                    msg = 'Payment info not valid'
                     messages.warning(request, msg)
         else:
             error = 'Invalid profile form'
