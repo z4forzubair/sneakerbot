@@ -104,7 +104,7 @@ class AddressForm(forms.Form):
             visible.field.widget.attrs['class'] = 'form-control custom-options'
 
     address1 = forms.CharField(max_length=100)
-    address2 = forms.IntegerField()
+    address2 = forms.CharField(max_length=100)
     city = forms.CharField(max_length=50)
     country = forms.CharField(max_length=50)
     VIC = 'VIC'
