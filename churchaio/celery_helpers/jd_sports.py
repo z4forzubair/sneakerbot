@@ -331,6 +331,7 @@ def bot(task_id):
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    driver.maximize_window()
     wait = WebDriverWait(driver, 10)
 
     driver.get(payload_url)

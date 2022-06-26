@@ -5,6 +5,7 @@ from celery.utils.log import get_task_logger
 from churchaio.celery_helpers.emails import new_user_email, update_subscription_email
 from churchaio.celery_helpers.footlocker import footlocker_bot
 from churchaio.celery_helpers.jd_sports import jd_sports_bot
+from churchaio.celery_helpers.culture_kings import culture_kings_bot
 
 logger = get_task_logger(__name__)
 
@@ -32,3 +33,8 @@ def footlocker_bot_task(task_id, user_id):
 @shared_task()
 def jd_sports_bot_task(task_id, user_id):
     return jd_sports_bot(task_id=task_id, user_id=user_id)
+
+
+@shared_task()
+def culture_kings_bot_task(task_id, user_id):
+    return culture_kings_bot(task_id, user_id)

@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-# Create your models here.
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     expiry_date = models.DateField()
@@ -147,6 +146,7 @@ class Address(models.Model):
     )
     postal_code = models.IntegerField()
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
