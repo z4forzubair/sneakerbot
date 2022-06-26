@@ -5,7 +5,7 @@ from django.template import loader
 
 from churchaio.forms import TaskForm
 from churchaio.models import Task
-from churchaio.tasks import footlocker_bot_task, jd_sports_bot_task
+from churchaio.tasks import footlocker_bot_task, jd_sports_bot_task, culture_kings_bot_task
 from sneakerbot_backend.celery import app
 
 
@@ -177,8 +177,10 @@ def perform_clear_tasks(request):
 def start_task_operation(task):
     if task.store_name == Task.STORE_NAME.JD_SPORTS:
         result = jd_sports_bot_task.delay(task.id, task.user_id)
-    # elif task.store_name == Task.STORE_NAME.FOOTLOCKER:
-    #     result = footlocker_bot_task.delay(task.id, task.user_id)
+    elif task.store_name == Task.STORE_NAME.CULTURE_KINGS:
+        result = culture_kings_bot_task.delay(task.id, task.user_id)
+    elif task.store_name == Task.STORE_NAME.FOOTLOCKER:
+        result = footlocker_bot_task.delay(task.id, task.user_id)
     else:
         return False
     task.celery_id = result.task_id

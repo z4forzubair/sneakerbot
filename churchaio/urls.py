@@ -24,7 +24,6 @@ urlpatterns = [
     path('tasks/start_all/', views.start_all_tasks, name='startAllTasks'),
     path('tasks/stop_all/', views.stop_all_tasks, name='stopAllTasks'),
 
-
     # billing profile
     path('billing_profiles/', views.billing, name='billing'),
     path('billing_profiles/create/', views.create_billing, name='createBilling'),
