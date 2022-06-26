@@ -14,7 +14,7 @@ colorama==0.4.5
 configparser==5.2.0
 crayons==0.4.0
 discord-webhook==0.14.0
-Django==3.2.1
+Django==3.2.13
 django-clear-cache==0.3
 django-credit-cards==0.4.1
 django-environ==0.8.1
