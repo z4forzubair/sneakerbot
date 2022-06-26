@@ -1,5 +1,6 @@
 .env.local*
 .env.docker
+.env
 .venv/
 venv/*
 .local/
