@@ -14,11 +14,6 @@
         </div>
         <div class="card-header">
             <h6 class="card-category">
-                {% if messages %}
-                    {% for msg in messages %}
-                        <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
-                    {% endfor %}
-                {% endif %}
             </h6>
         </div>
         <div class="d-flex ml-md-2 justify-content-between mr-md-2">
@@ -211,6 +206,11 @@
             $('#myTable').DataTable({
                 "order": []
             });
+            {% if messages %}
+                {% for msg in messages %}
+                    demo.showCustomNotification('top', 'right', '{{ msg.tags }}', '{{ msg }}')
+                {% endfor %}
+            {% endif %}
         });
         $('#id_proxy_list ').change(function () {
             $('#select_proxy_list').click()

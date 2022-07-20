@@ -13,18 +13,13 @@ demo = {
                 from: from, align: align
             }
         });
-    },
-    showCustomNotification: function (from, align, msg_type, msg) {
+    }, showCustomNotification: function (from, align, msg_type, msg) {
         $.notify({
-            icon: "tim-icons icon-bell-55",
-            message: msg
+            icon: "tim-icons icon-bell-55", message: msg
 
         }, {
-            type: msg_type,
-            timer: 8000,
-            placement: {
-                from: from,
-                align: align
+            type: msg_type, timer: 500, placement: {
+                from: from, align: align
             }
         });
     }

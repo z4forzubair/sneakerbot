@@ -11,11 +11,6 @@
 
     <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-8">
-            {% if messages %}
-                {% for msg in messages %}
-                    <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
-                {% endfor %}
-            {% endif %}
             <div class="card">
                 <form action="{% url 'updateUserProfile' %}" method="POST">
                     {% csrf_token %}
@@ -183,5 +178,10 @@
         $('#id_picture').change(function () {
             $('#form_picture').submit()
         });
+        {% if messages %}
+            {% for msg in messages %}
+                demo.showCustomNotification('top', 'right', '{{ msg.tags }}', '{{ msg }}')
+            {% endfor %}
+        {% endif %}
     </script>
 {% endblock javascripts %}
