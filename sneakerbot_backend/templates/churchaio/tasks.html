@@ -7,11 +7,6 @@
         <div class="card-header">
             <h4 class="card-title"> Tasks ({{ count }} Total) </h4>
             <h6 class="card-category">
-                {% if messages %}
-                    {% for msg in messages %}
-                        <span {% if msg.tags %} class="text-{{ msg.tags }}" {% endif %}>{{ msg }}</span>
-                    {% endfor %}
-                {% endif %}
             </h6>
         </div>
 
@@ -329,6 +324,11 @@
             $('#myTable').DataTable({
                 "order": []
             });
+            {% if messages %}
+                {% for msg in messages %}
+                    demo.showCustomNotification('top', 'right', '{{ msg.tags }}', '{{ msg }}')
+                {% endfor %}
+            {% endif %}
         });
 
         function start_task(task_id) {
