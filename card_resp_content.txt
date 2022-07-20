@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en"><head> 
+<script src="//assets.adobedtm.com/b714f0d8126e/a99da3653abf/launch-fab0c48eabab.min.js" async></script><meta charset="utf-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex, follow" /> 
+<meta name="title" content="Footlocker AU" /><meta name="description" content="Footlocker AU" /><meta name="keywords" content="Footlocker AU" /><title>Footlocker AU</title><link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" /><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,700" data-font="Roboto"/><link rel="stylesheet" href="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/bundles/css/base.min.css?lastModified=1619823621000"><link rel="stylesheet" type="text/css" href="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/FootlockerAustraliaPacific-Footlocker_AU/en_AU/css/custom.css"/><meta data-type="pagedata" data-key="caching" data-value="true" data-content="boolean">
+<meta data-type="pagedata" data-key="requestlocale" data-value="en_AU"><meta data-type="pagedata" data-key="r42id" data-value="1073-v1"><style id="antiClickjack">body{display:none !important;}</style> 
+<script type="text/javascript">
+if (self === top)
+{ 
+var antiClickjack = document.getElementById("antiClickjack");
+antiClickjack.parentNode.removeChild(antiClickjack);
+}
+else
+{
+top.location = self.location; 
+}
+</script><script src="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/bundles/js/core.min.js?lastModified=1619823621000#"></script><script type="text/javascript">
+// tracking function exists
+if (typeof window['_st'] === "function")
+{
+
+_st('addTagProperty', 'hash', '');
+_st('addTagProperty', 'userid', '');
+
+_st('setPageStructure', 'Checkout Pages');
+_st('addTagProperty', 'pagetype', 'Checkout Page');
+_st('addTagProperty', 'currency', 'AUD');
+_st('addTagProperty', 'cartContent', [{position:"0",id:"244102139904095",basesku:"244102139904",name:"Nike Lebron 18 - Men Shoes",category:"fl_1175\/fl_1187\/fl_1268",brand:"Nike",variant:"University Blue-Metallic Gold",quantity:"1.00",list:"Shopping Cart",size:"9.5",price:"320.00",price_net:"290.91",gender:"unisex"}]);
+_st('addTagProperty', 'products', []);
+
+_st('setEnvironment', 'prod');
+
+_st("loadTags");
+}
+</script><script src="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/FootlockerAustraliaPacific-Footlocker_AU/en_AU/js/custom.js"></script><link rel="icon" href="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/icons/favicon/favicon.ico" type="image/x-icon" /><script type="text/javascript">
+var countryLanguageSettings = {"notificationEnabled":true,"userLanguage":"en","countryCookieEnabled":true,"applicationCountryCode":"AU","redirectUrl":"https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCountryRedirect-Common?CurrentPageURL=http%3A%2F%2Fwww.footlocker.com.au%2Fservlet%2FBeehive%2FWFS%2FFootlockerAustraliaPacific-Footlocker_AU-Site%2Fen_AU%2F-%2FAUD%2FViewData-Start%2F230376821&CurrentPageParameters=JumpTarget%3DViewCheckoutOverview-PaymentFailed"};
+countryLanguageSettings['userCountryCodeUrl'] = "https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCountryRedirect-GetUserCountryCode"
+</script></head>
+<body><div
+data-svg-sprite="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/icons/svg-sprite.svg"
+></div>
+<div data-scroll-to-target="top"></div>
+<div class="fl-cookie-notice"
+data-cookie-notice-container=""
+data-toggle-container=""
+data-offcanvas-shift=""
+data-testid="fl-cookie-notice"
+>
+<div class="fl-cookie-notice--container">
+<div class="fl-cookie-notice--container--inner">
+<p class="fl-cookie-notice--message"
+data-testid="fl-cookie-notice-message"
+>We use cookies to give you the best experience on our website. If you continue without changing your cookie settings, we assume that you consent to our use of cookies on this device.</p>
+<button class="fl-cookie-notice--close"
+data-cookie-notice-closure=""
+data-toggle-container-close=""
+data-testid="fl-cookie-notice-close"
+>
+<span class="fl-icon fl-icon__standalone fl-icon__close">
+<span class="fl-icon--shape">x</span>
+</span>
+</button>
+</div>
+</div>
+</div> <header class="fl-header fl-header__minimal"
+data-testid="fl-header-minimal"
+id="flcomponentheaderminimal"
+>
+<a href="https://www.footlocker.com.au/en/homepage"
+class="fl-header--logo"
+data-offcanvas-shift-module=""
+data-testid="fl-header-logo"
+><picture class="fl-picture"><!--[if IE 9]><video style="display: none;"><![endif]--><source
+srcset="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/brand/logo-320.png"
+media="(max-width: 319px)"
+><source
+srcset="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/brand/logo-1440.png"
+media="(max-width: 1339px)"
+><!--[if IE 9]></video><![endif]--><img
+class="fl-picture--img"
+srcset="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/brand/logo-1440.png"
+ alt="&quot;Brand Logo&quot;"
+/></picture></a>
+</header><main class="fl-frame-container" data-offcanvas-shift>
+<div class="container-fluid"><div class="fl-navigation-big--wrapper">
+<div class="fl-navigation-big fl-panel--body__big hidden-xs hidden-sm" data-toggle-container>
+<div data-navigation-placeholder></div>
+<button data-toggle-container-close data-navigation-container-close-std class="fl-btn fl-btn__close" type="button">x</button>
+</div>
+</div><div class="fl-checkout">
+<div class="fl-checkout--progressbar-container"><ol class="fl-progressbar">
+<li class="fl-progressbar--item fl-progressbar--item__is-active">
+<span class="fl-progressbar--item--step">
+<a class="fl-progressbar--item--step--link" href="https://www.footlocker.com.au/en/checkout-overview">1. Shipping</a>
+</span>
+</li>
+<li class="fl-progressbar--item ">
+<span class="fl-progressbar--item--step">2. Payment</span>
+</li>
+</ol></div>
+
+
+<!-- show a notification in case the billing country is not a Loyalty enabled country --><!-- show a notification in case of errors while processing the payment --><div class="fl-notification fl-notification__error">An error occurred while trying to authorise your payment. Please try again.</div><form method="post" data-flash-error-selector=".flash-errors" class="fl-form form-horizontal" action="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-Dispatch"><input type="hidden" name="SynchronizerToken" value="afc397ff946ca50a15b2a67cd3e58cdc0982f760de5fb6880e9c08f804a4ac77"/><div class="fl-checkout--content-container">
+<div class="fl-checkout--content-container--cms-content fl-cart-summary--cms-content">  
+<div class="fl-comp-list fl-comp-list__default fl-comp-list__block" 
+data-testid="fl-comp-list" id="flcomponentminicartlist"
+><ul class="fl-comp-list--list" 
+data-testid="fl-comp-list--list" 
+><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml1">100% Satisfaction guaranteed (28 day return service).</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml2">Free standard delivery orders A$150+.</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml3">Free returns.</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml4">Afterpay available online and in-store within Australia</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="FLcomponentminicarthtml6">Online Afterpay orders must be sent back to the warehouse.
+Online Afterpay orders cannot be exchanged instore.</div></li></ul></div></div>
+<div class="fl-checkout--content-container--address-block">
+<h2 class="fl-checkout--headline">Billing Address</h2>
+<div
+class="fl-load-animation fl-hide"
+data-ajaxcontent-loader="billingAddressLoader">
+</div><div
+
+data-ajaxcontent="billing"
+data-ajaxcontent-source="billing"
+
+data-address-type="billing"
+>
+ 
+<input type="hidden" value="" name="isshippingaddress"/><div class="form-group fl-form-group__radioboxes">
+<span class="col-xs-12 control-label">
+<span class="fl-label--inner">Salutation:</span>
+</span>
+<div class="col-xs-12">
+<label class="radio-inline fl-radio fl-radio__inline ">
+<input 
+type="radio" 
+id="title-mr-checkout-billing-address-form" 
+class="fl-radio--input" 
+value="common.account.salutation.mr.text" 
+name="billing_Title" 
+data-testid="fl-radio-button-male-checkout-billing-address-form"
+
+checked="checked"
+
+data-hj-suppress=""
+>
+<label 
+class="fl-radio--label"
+for="title-mr-checkout-billing-address-form" 
+data-testid="fl-radio-label-male-checkout-billing-address-form" 
+>
+<span class="fl-label--inner">Mr.</span>
+</label> 
+</label> 
+<label class="radio-inline fl-radio fl-radio__inline "> 
+<input 
+type="radio" 
+id="title-mrs-checkout-billing-address-form" 
+class="fl-radio--input" 
+value="common.account.salutation.ms.text" 
+name="billing_Title" 
+data-testid="fl-radio-button-female-checkout-billing-address-form"
+
+data-hj-suppress="" 
+>
+<label for="title-mrs-checkout-billing-address-form" class="fl-radio--label">
+<span class="fl-label--inner">Ms.</span>
+</label> 
+</label> 
+</div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_FirstNamecheckout-billing-address-form">
+<span class="fl-label--inner">First Name<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="25"
+
+aria-required="true"
+data-validate="required"
+
+value="Jacob"
+
+class="form-control "
+name="billing_FirstName"
+id="billing_FirstNamecheckout-billing-address-form"
+data-validate-error-message="First name is mandatory. Please provide a first name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-firstname-checkout-billing-address-form"
+placeholder="First Name"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_LastName">
+<span class="fl-label--inner">Last Name<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="25"
+
+aria-required="true"
+data-validate="required"
+
+value="Church"
+
+class="form-control "
+name="billing_LastName"
+id="billing_LastName"
+data-validate-error-message="Last name is mandatory. Please provide a last name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-lastname-checkout-billing-address-form"
+placeholder="Last Name"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_CompanyName">
+<span class="fl-label--inner">Company</span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="35"
+
+aria-required="true"
+data-validate="required"
+
+value=""
+
+class="form-control "
+name="billing_CompanyName"
+id="billing_CompanyName"
+data-testid="fl-input-field-company-checkout-billing-address-form"
+placeholder="Company"
+data-predict-manualinput="company"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_CountryCode">Country<span class="fl-form--indicates-required">*</span>
+</label><div class="col-xs-12"> 
+ 
+ 
+<div class="dropdown fl-dropdown" data-dropdown>
+<button
+class="dropdown-toggle form-control fl-dropdown--field  "
+type="button"
+id="country-dropdown-menu-checkout-billing-address-form"
+data-toggle="dropdown"
+data-testid="fl-country-select-button-checkout-billing-address-form"
+><span class="fl-dropdown--field--inner" data-dropdown-selected="" data-predict-form-identity="checkout-billing-address-form" data-predict-country-display="">Australia</span>
+<span class="fl-dropdown--field--caret fl-icon fl-icon__standalone fl-icon__arrow fl-icon__arrow__down">
+<svg class="fl-icon--shape">
+<use xlink:href="#fl-shape-arrow" />
+</svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</button>
+<ul class="dropdown-menu fl-dropdown--list" role="menu" aria-labelledby="country-dropdown-menu-checkout-billing-address-form"><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+data-dropdown-option=""
+data-form-field-target="billing_CountryCodecheckout-billing-address-form"
+data-form-field-value="NZ"
+data-testid="fl-country-selection-option-NZ-checkout-billing-address-form"
+class="fl-dropdown--list--item--content"
+role="menuitem" tabindex="-1"
+>New Zealand</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+data-dropdown-option=""
+data-form-field-target="billing_CountryCodecheckout-billing-address-form"
+data-form-field-value="AU"
+data-testid="fl-country-selection-option-AU-checkout-billing-address-form"
+class="fl-dropdown--list--item--content"
+role="menuitem" tabindex="-1"
+>Australia</a>
+</li></ul>
+<input 
+type="hidden" 
+value="AU" 
+data-form-field="billing_CountryCodecheckout-billing-address-form" 
+id="billing_CountryCodecheckout-billing-address-form" 
+name="billing_CountryCode"
+data-testid="fl-input-hidden-country-code-checkout-billing-address-form" 
+data-country-select="true"
+data-predict-manualinput="country"
+data-hj-suppress="" 
+
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-UpdateBillingCountryJSON" 
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-parameter-handler="footlocker.addressForm.serialize"
+data-ajaxcontent-event="change" 
+data-ajaxcontent-loader-target="billingAddressLoader"
+data-ajaxcontent-success-handler="dropdownsKeepFocus" 
+
+>
+</div></div>
+</div><div 
+class="form-group fl-form-group__inline fl-form-group__address"
+
+>
+<div class="col-xs-12 control-label">
+<label class="control-label fl-form-label__street" for="billing_Address1checkout-billing-address-form">
+<span class="fl-label--inner fl-form-label__street">Street name<span class="fl-form--indicates-required">*</span>
+</span>
+</label><label class="control-label fl-form-label__street-number" for="billing_Address2checkout-billing-address-form">
+<span class="fl-label--inner">Unit &#47; No.<span class="fl-form--indicates-required">*</span>
+</span>
+</label></div>
+<div class="col-xs-12"><label class="sr-only" for="billing_Address2checkout-billing-address-form">Street name</label><input type="text" aria-required="true" data-validate="required"
+
+maxlength="29"
+
+value="4 crain court harrington park"
+
+class="form-control fl-form-control__street "
+name="billing_Address1"
+id="billing_Address1checkout-billing-address-form"
+data-validate-error-message="Street name is mandatory. Please provide a street name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-street-checkout-billing-address-form"
+placeholder="Street name"
+data-predict-manualinput="street"
+data-hj-suppress=""
+/><label class="sr-only" for="billing_Address2checkout-billing-address-form">Address Line 2</label><input type="text"
+maxlength="12"
+class="form-control fl-form-control__street-number "
+
+value="2567"
+
+name="billing_Address2"
+id="billing_Address2checkout-billing-address-form"
+data-testid="fl-input-field-street-number-checkout-billing-address-form"
+placeholder="Unit &#47; No."
+data-predict-manualinput="housenumber"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_Citycheckout-billing-address-form">
+<span class="fl-label--inner">Suburb<span class="fl-form--indicates-required">*</span>
+</span>
+</label><div class="col-xs-12">
+<input type="text" maxlength="30" aria-required="true" data-validate="required"
+
+value="Melbourne"
+
+class="form-control "
+style="~text-indent:0;"
+name="billing_City"
+id="billing_Citycheckout-billing-address-form"
+data-validate-error-message="Suburb is mandatory. Please provide a Suburb."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-city-checkout-billing-address-form"
+placeholder="Suburb"
+data-predict-manualinput="city"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="billing_PostalCodecheckout-billing-address-form">
+<span class="fl-label--inner">Post Code<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input aria-required="true" data-validate="required zipcode"
+type="text"
+
+maxlength="10"
+
+value="3000"
+
+class="form-control "
+name="billing_PostalCode"
+data-testid="fl-input-field-zip-checkout-billing-address-form"
+id="billing_PostalCodecheckout-billing-address-form"
+
+data-validate-error-message="Please enter a valid ZIP Code"
+
+data-flash-error-keys="fieldFailureMessageGlobal"
+
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-UpdateBillingCountryJSON" 
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-parameter-handler="footlocker.addressForm.serialize"
+data-ajaxcontent-event="change"
+data-ajaxcontent-loader-target="billingAddressLoader"
+data-ajaxcontent-success-handler="footlocker.addressForm.maintainFocus" 
+
+placeholder="Post Code"
+data-predict-manualinput="postcode"
+data-hj-suppress=""
+/></div>
+</div> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="form-group" data-ajaxcontent="fl-billing-select-state-container-checkout-billing-address-form" data-testid="fl-country-state-selection-au" data-hj-suppress=""> 
+<label class="col-xs-12 control-label" for="billing_State">State<span class="fl-form--indicates-required">*</span></label>
+<div class="col-xs-12">
+<div class="dropdown fl-dropdown" data-dropdown>
+<button class="dropdown-toggle form-control fl-dropdown--field " type="button" id="country-state-dropdown-menu-checkout-billing-address-form" data-toggle="dropdown" data-testid="fl-country-state-select-button-checkout-billing-address-form" >
+<span class="fl-dropdown--field--inner" data-dropdown-selected>Victoria 
+</span>
+<span class="fl-dropdown--field--caret fl-icon fl-icon__standalone fl-icon__arrow fl-icon__arrow__down">
+<svg class="fl-icon--shape">
+<use xlink:href="#fl-shape-arrow" />
+</svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</button>
+<ul class="dropdown-menu fl-dropdown--list" role="menu" aria-labelledby="country-state-dropdown-menu-checkout-billing-address-form"><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="VIC"
+data-testid="fl-country-state-selection-option-VIC-checkout-billing-address-form"
+>Victoria</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="WA"
+data-testid="fl-country-state-selection-option-WA-checkout-billing-address-form"
+>Western Australia</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="TAS"
+data-testid="fl-country-state-selection-option-TAS-checkout-billing-address-form"
+>Tasmania</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="QLD"
+data-testid="fl-country-state-selection-option-QLD-checkout-billing-address-form"
+>Queensland</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="NT"
+data-testid="fl-country-state-selection-option-NT-checkout-billing-address-form"
+>Northern Territory</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="SA"
+data-testid="fl-country-state-selection-option-SA-checkout-billing-address-form"
+>South Australia</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="NSW"
+data-testid="fl-country-state-selection-option-NSW-checkout-billing-address-form"
+>New South Wales</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="billing_Statecheckout-billing-address-form"
+data-form-field-value="ACT"
+data-testid="fl-country-state-selection-option-ACT-checkout-billing-address-form"
+>Australian Capital Territory</a>
+</li></ul>
+<input 
+type="hidden" 
+
+value="VIC"
+
+data-form-field="billing_Statecheckout-billing-address-form" 
+id="billing_Statecheckout-billing-address-form" 
+name="billing_State"
+data-ajaxcontent-parameter="fl-ajax-state-selection-checkout-billing-address-form"
+data-testid="fl-input-hidden-state-code-checkout-billing-address-form"
+>
+</div></div>
+</div><div class="form-group fl-form-group__help">
+<label class="col-xs-12 control-label" for="billing_PhoneHomecheckout-billing-address-form">
+<span class="fl-label--inner">Phone<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+maxlength="(\P{sc=Han})+"
+type="tel"
+
+value="390355511"
+
+class="form-control "
+name="billing_PhoneHome"
+id="billing_PhoneHomecheckout-billing-address-form"
+data-validate-error-message="Telephone is mandatory. Please provide a Telephone."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-phone-checkout-billing-address-form"
+placeholder="Phone"
+data-hj-suppress=""
+/><p class="fl-hide fl-help-message" data-toggle-container="fl-phone-input-help-container">
+<span class="fl-icon fl-icon__question fl-icon__question__small">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>Please provide your telephone number as either a 10 digit mobile number or 10 digit landline.</p>
+<span class="fl-icon fl-icon__question"
+data-toggle="" data-toggle-target="fl-phone-input-help-container">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</div>
+</div><div class="form-group fl-form-group__inline fl-form-group__date fl-form-group__help">
+<span class="col-xs-12 control-label">
+<span class="fl-label--inner">Birthday<span class="fl-form--indicates-required">*</span>
+<input type="hidden" value="true" name="billing_BirthdayRequired" />
+<br />
+<span class="fl-label--inner--additional-info">(DD.MM.YYYY)</span>
+</span>
+</span>
+<div class="col-xs-12"><label for="Day" class="sr-only">Day</label>
+<input
+type="number"
+maxlength="2"
+value="30"
+class="form-control"
+name="billing_Birthday_Day"
+id="Day"
+size="2"
+data-testid="fl-input-field-birth-day-"
+placeholder="Day"
+data-hj-suppress=""
+/>
+<label for="Month" class="sr-only">Month</label>
+<input
+type="number"
+value="12"
+maxlength="2"
+class="form-control"
+name="billing_Birthday_Month"
+id="Month"
+size="2"
+data-testid="fl-input-field-birth-month-"
+placeholder="Month"
+data-hj-suppress=""
+/>
+<label for="Year" class="sr-only">Year</label>
+<input
+type="number"
+value="1990"
+maxlength="4"
+class="form-control"
+name="billing_Birthday_Year"
+id="Year"
+size="4"
+data-testid="fl-input-field-birth-year-"
+placeholder="Year"
+data-hj-suppress=""
+/><p class="fl-hide fl-help-message" data-toggle-container="fl-birthday-input-help-container">
+<span class="fl-icon fl-icon__question fl-icon__question__small">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>Please provide your date of birth in the format DD.MM.YYYY.</p>
+<span class="fl-icon fl-icon__question"
+data-toggle="" data-toggle-target="fl-birthday-input-help-container">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</div>
+</div></div><input type="hidden" name="billing_AddressID" value="iCGsFf0XITUAAAF53uZbiyk8"/><div class="fl-checkout--content-container--address-block--email-field">
+<div class="form-group">
+<label class="col-xs-12 control-label" for="fl-login-input-email-billing">
+<span class="fl-label--inner">E-Mail-Address<span class="fl-form--indicates-required">*</span>
+</span>
+</label>
+<div class="col-xs-12">
+<input
+type="email"
+data-testid="fl-input-field-email-login-checkout-address-panel"
+class="form-control "
+id="fl-login-input-email-billing"
+name="email_Email"
+value="zubairpunjab786@gmail.com"
+placeholder="E-Mail-Address"
+data-mailcheck-input
+maxlength="35"
+data-hj-suppress=""
+/>
+<p class="fl-mailcheck--suggestion"
+data-mailcheck-suggestion>Did you mean <a class='fl-link__primary' data-mailcheck-suggestion-link></a>?</p></div>
+</div>
+</div><div class="fl-checkout--content-container--address-block--options-field"><div class="form-group">
+<div class="col-xs-12">
+<div class="radio fl-radio">
+<input
+type="radio"
+class="fl-radio--input "
+checked="checked"
+value="true"
+id="fl-shipping-address-same-as-billing"
+name="billing_ShippingAddressSameAsBilling"
+>
+<label
+for="fl-shipping-address-same-as-billing"
+class="fl-radio--label"
+data-toggle-target-close="fl-checkout--content-container--address-block-shipping"
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU"
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-parameter-handler="footlocker.addressForm.serialize"
+data-ajaxcontent-event="change"
+data-ajaxcontent-url-handler="checkoutBillingSameAsShippingUrlHandler"
+>
+<span class="fl-label--inner">
+<strong>Delivery address is the same as billing address</strong>
+</span>
+</label>
+</div>
+<div class="radio fl-radio">
+<input
+type="radio"
+class="fl-radio--input"
+
+value=""
+id="fl-shipping-address-not-same-as-billing"
+name="billing_ShippingAddressSameAsBilling"
+>
+<label
+for="fl-shipping-address-not-same-as-billing"
+class="fl-radio--label"
+data-toggle-target="fl-checkout--content-container--address-block-shipping"
+>
+<span class="fl-label--inner">
+<strong>Send to a different address</strong></span>
+</label>
+</div>
+</div>
+</div><div
+class="fl-hide fl-checkout--content-container--address-block fl-checkout--content-container--address-block__shipping"
+id="fl-checkout--content-container--address-block-shipping"
+data-toggle-container="fl-checkout--content-container--address-block-shipping"
+>
+<h2 class="fl-checkout--headline">Shipping Address</h2><div>
+<div
+class="fl-load-animation fl-hide"
+data-ajaxcontent-loader="shippingAddressLoader">
+</div><div
+
+data-ajaxcontent="shipping"
+data-ajaxcontent-source="shipping"
+
+data-address-type="shipping"
+>
+ 
+<input type="hidden" value="" name="isshippingaddress"/><div class="form-group fl-form-group__radioboxes">
+<span class="col-xs-12 control-label">
+<span class="fl-label--inner">Salutation:</span>
+</span>
+<div class="col-xs-12">
+<label class="radio-inline fl-radio fl-radio__inline ">
+<input 
+type="radio" 
+id="title-mr-checkout-shipping-address-form" 
+class="fl-radio--input" 
+value="common.account.salutation.mr.text" 
+name="shipping_Title" 
+data-testid="fl-radio-button-male-checkout-shipping-address-form"
+
+checked="checked"
+
+data-hj-suppress=""
+>
+<label 
+class="fl-radio--label"
+for="title-mr-checkout-shipping-address-form" 
+data-testid="fl-radio-label-male-checkout-shipping-address-form" 
+>
+<span class="fl-label--inner">Mr.</span>
+</label> 
+</label> 
+<label class="radio-inline fl-radio fl-radio__inline "> 
+<input 
+type="radio" 
+id="title-mrs-checkout-shipping-address-form" 
+class="fl-radio--input" 
+value="common.account.salutation.ms.text" 
+name="shipping_Title" 
+data-testid="fl-radio-button-female-checkout-shipping-address-form"
+
+data-hj-suppress="" 
+>
+<label for="title-mrs-checkout-shipping-address-form" class="fl-radio--label">
+<span class="fl-label--inner">Ms.</span>
+</label> 
+</label> 
+</div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_FirstNamecheckout-shipping-address-form">
+<span class="fl-label--inner">First Name<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="25"
+
+aria-required="true"
+data-validate="dependsOn('input[name=ShippingAddressOption]:checked',2) required"
+
+value="Jacob"
+
+class="form-control "
+name="shipping_FirstName"
+id="shipping_FirstNamecheckout-shipping-address-form"
+data-validate-error-message="First name is mandatory. Please provide a first name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-firstname-checkout-shipping-address-form"
+placeholder="First Name"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_LastName">
+<span class="fl-label--inner">Last Name<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="25"
+
+aria-required="true"
+data-validate="dependsOn('input[name=ShippingAddressOption]:checked',2) required"
+
+value="Church"
+
+class="form-control "
+name="shipping_LastName"
+id="shipping_LastName"
+data-validate-error-message="Last name is mandatory. Please provide a last name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-lastname-checkout-shipping-address-form"
+placeholder="Last Name"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_CompanyName">
+<span class="fl-label--inner">Company</span>
+</label><div class="col-xs-12">
+<input
+type="text"
+
+maxlength="35"
+
+aria-required="true"
+data-validate="dependsOn('input[name=ShippingAddressOption]:checked',2) required"
+
+value=""
+
+class="form-control "
+name="shipping_CompanyName"
+id="shipping_CompanyName"
+data-testid="fl-input-field-company-checkout-shipping-address-form"
+placeholder="Company"
+data-predict-manualinput="company"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_CountryCode">Country<span class="fl-form--indicates-required">*</span>
+</label><div class="col-xs-12"> 
+<div class="dropdown fl-dropdown" data-dropdown>
+<button
+class="dropdown-toggle form-control fl-dropdown--field disabled "
+type="button"
+id="country-dropdown-menu-checkout-shipping-address-form"
+data-toggle="dropdown"
+data-testid="fl-country-select-button-checkout-shipping-address-form"
+><span class="fl-dropdown--field--inner" data-dropdown-selected="" data-predict-form-identity="checkout-shipping-address-form" data-predict-country-display="">Australia</span>
+<span class="fl-dropdown--field--caret fl-icon fl-icon__standalone fl-icon__arrow fl-icon__arrow__down">
+<svg class="fl-icon--shape">
+<use xlink:href="#fl-shape-arrow" />
+</svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</button>
+<ul class="dropdown-menu fl-dropdown--list" role="menu" aria-labelledby="country-dropdown-menu-checkout-shipping-address-form"><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+data-dropdown-option=""
+data-form-field-target="shipping_CountryCodecheckout-shipping-address-form"
+data-form-field-value="AU"
+data-testid="fl-country-selection-option-AU-checkout-shipping-address-form"
+class="fl-dropdown--list--item--content"
+role="menuitem" tabindex="-1"
+>Australia</a>
+</li></ul>
+<input 
+type="hidden" 
+value="AU" 
+data-form-field="shipping_CountryCodecheckout-shipping-address-form" 
+id="shipping_CountryCodecheckout-shipping-address-form" 
+name="shipping_CountryCode"
+data-testid="fl-input-hidden-country-code-checkout-shipping-address-form" 
+data-country-select="true"
+data-predict-manualinput="country"
+data-hj-suppress="" 
+
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-UpdateShippingCountryJSON" 
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-parameter-handler="footlocker.addressForm.serialize"
+data-ajaxcontent-event="change" 
+data-ajaxcontent-loader-target="shippingAddressLoader"
+data-ajaxcontent-success-handler="dropdownsKeepFocus" 
+
+>
+</div></div>
+</div><div 
+class="form-group fl-form-group__inline fl-form-group__address"
+
+>
+<div class="col-xs-12 control-label">
+<label class="control-label fl-form-label__street" for="shipping_Address1checkout-shipping-address-form">
+<span class="fl-label--inner fl-form-label__street">Street name<span class="fl-form--indicates-required">*</span>
+</span>
+</label><label class="control-label fl-form-label__street-number" for="shipping_Address2checkout-shipping-address-form">
+<span class="fl-label--inner">Unit &#47; No.<span class="fl-form--indicates-required">*</span>
+</span>
+</label></div>
+<div class="col-xs-12"><label class="sr-only" for="shipping_Address2checkout-shipping-address-form">Street name</label><input type="text" aria-required="true" data-validate="dependsOn(&#39;input[name=ShippingAddressOption]:checked&#39;,2) required"
+
+maxlength="29"
+
+value="4 crain court harrington park"
+
+class="form-control fl-form-control__street "
+name="shipping_Address1"
+id="shipping_Address1checkout-shipping-address-form"
+data-validate-error-message="Street name is mandatory. Please provide a street name."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-street-checkout-shipping-address-form"
+placeholder="Street name"
+data-predict-manualinput="street"
+data-hj-suppress=""
+/><label class="sr-only" for="shipping_Address2checkout-shipping-address-form">Address Line 2</label><input type="text"
+maxlength="12"
+class="form-control fl-form-control__street-number "
+
+value="2567"
+
+name="shipping_Address2"
+id="shipping_Address2checkout-shipping-address-form"
+data-testid="fl-input-field-street-number-checkout-shipping-address-form"
+placeholder="Unit &#47; No."
+data-predict-manualinput="housenumber"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_Citycheckout-shipping-address-form">
+<span class="fl-label--inner">Suburb<span class="fl-form--indicates-required">*</span>
+</span>
+</label><div class="col-xs-12">
+<input type="text" maxlength="30" aria-required="true" data-validate="dependsOn(&#39;input[name=ShippingAddressOption]:checked&#39;,2) required"
+
+value="Melbourne"
+
+class="form-control "
+style="~text-indent:0;"
+name="shipping_City"
+id="shipping_Citycheckout-shipping-address-form"
+data-validate-error-message="Suburb is mandatory. Please provide a Suburb."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-city-checkout-shipping-address-form"
+placeholder="Suburb"
+data-predict-manualinput="city"
+data-hj-suppress=""
+/></div>
+</div><div class="form-group">
+<label class="col-xs-12 control-label" for="shipping_PostalCodecheckout-shipping-address-form">
+<span class="fl-label--inner">Post Code<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input aria-required="true" data-validate="dependsOn(&#39;input[name=ShippingAddressOption]:checked&#39;,2) required zipcode"
+type="text"
+
+maxlength="10"
+
+value="3000"
+
+class="form-control "
+name="shipping_PostalCode"
+data-testid="fl-input-field-zip-checkout-shipping-address-form"
+id="shipping_PostalCodecheckout-shipping-address-form"
+
+data-validate-error-message="Please enter a valid ZIP Code"
+
+data-flash-error-keys="fieldFailureMessageGlobal"
+
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-UpdateShippingCountryJSON" 
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-parameter-handler="footlocker.addressForm.serialize"
+data-ajaxcontent-event="change"
+data-ajaxcontent-loader-target="shippingAddressLoader"
+data-ajaxcontent-success-handler="footlocker.addressForm.maintainFocus" 
+
+placeholder="Post Code"
+data-predict-manualinput="postcode"
+data-hj-suppress=""
+/></div>
+</div> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div class="form-group" data-ajaxcontent="fl-shipping-select-state-container-checkout-shipping-address-form" data-testid="fl-country-state-selection-au" data-hj-suppress=""> 
+<label class="col-xs-12 control-label" for="shipping_State">State<span class="fl-form--indicates-required">*</span></label>
+<div class="col-xs-12">
+<div class="dropdown fl-dropdown" data-dropdown>
+<button class="dropdown-toggle form-control fl-dropdown--field " type="button" id="country-state-dropdown-menu-checkout-shipping-address-form" data-toggle="dropdown" data-testid="fl-country-state-select-button-checkout-shipping-address-form" >
+<span class="fl-dropdown--field--inner" data-dropdown-selected>Victoria 
+</span>
+<span class="fl-dropdown--field--caret fl-icon fl-icon__standalone fl-icon__arrow fl-icon__arrow__down">
+<svg class="fl-icon--shape">
+<use xlink:href="#fl-shape-arrow" />
+</svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</button>
+<ul class="dropdown-menu fl-dropdown--list" role="menu" aria-labelledby="country-state-dropdown-menu-checkout-shipping-address-form"><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="VIC"
+data-testid="fl-country-state-selection-option-VIC-checkout-shipping-address-form"
+>Victoria</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="WA"
+data-testid="fl-country-state-selection-option-WA-checkout-shipping-address-form"
+>Western Australia</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="TAS"
+data-testid="fl-country-state-selection-option-TAS-checkout-shipping-address-form"
+>Tasmania</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="QLD"
+data-testid="fl-country-state-selection-option-QLD-checkout-shipping-address-form"
+>Queensland</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="NT"
+data-testid="fl-country-state-selection-option-NT-checkout-shipping-address-form"
+>Northern Territory</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="SA"
+data-testid="fl-country-state-selection-option-SA-checkout-shipping-address-form"
+>South Australia</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="NSW"
+data-testid="fl-country-state-selection-option-NSW-checkout-shipping-address-form"
+>New South Wales</a>
+</li><li 
+class="fl-dropdown--list--item" 
+role="presentation"
+>
+<a
+href="#"
+class="fl-dropdown--list--item--content"
+role="menuitem"
+tabindex="-1"
+data-dropdown-option=""
+data-form-field-target="shipping_Statecheckout-shipping-address-form"
+data-form-field-value="ACT"
+data-testid="fl-country-state-selection-option-ACT-checkout-shipping-address-form"
+>Australian Capital Territory</a>
+</li></ul>
+<input 
+type="hidden" 
+
+value="VIC"
+
+data-form-field="shipping_Statecheckout-shipping-address-form" 
+id="shipping_Statecheckout-shipping-address-form" 
+name="shipping_State"
+data-ajaxcontent-parameter="fl-ajax-state-selection-checkout-shipping-address-form"
+data-testid="fl-input-hidden-state-code-checkout-shipping-address-form"
+>
+</div></div>
+</div><div class="form-group fl-form-group__help">
+<label class="col-xs-12 control-label" for="shipping_PhoneHomecheckout-shipping-address-form">
+<span class="fl-label--inner">Phone<span class="fl-form--indicates-required">*</span></span>
+</label><div class="col-xs-12">
+<input
+maxlength="(\P{sc=Han})+"
+type="tel"
+
+value="390355511"
+
+class="form-control "
+name="shipping_PhoneHome"
+id="shipping_PhoneHomecheckout-shipping-address-form"
+data-validate-error-message="Telephone is mandatory. Please provide a Telephone."
+data-flash-error-keys="fieldFailureMessageGlobal"
+data-testid="fl-input-field-phone-checkout-shipping-address-form"
+placeholder="Phone"
+data-hj-suppress=""
+/><p class="fl-hide fl-help-message" data-toggle-container="fl-phone-input-help-container">
+<span class="fl-icon fl-icon__question fl-icon__question__small">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>Please provide your telephone number as either a 10 digit mobile number or 10 digit landline.</p>
+<span class="fl-icon fl-icon__question"
+data-toggle="" data-toggle-target="fl-phone-input-help-container">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-question"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>
+</div>
+</div></div></div>
+</div><div class="form-group">
+<div class="col-xs-12">
+<div class="checkbox fl-checkbox fl-checkout-checkbox">
+<input type="checkbox" checked="checked"
+value="true"
+name="optionsForm_AccountCreation"
+id="fl-input-checkbox-create-account-panel"
+class="fl-checkbox--input"
+data-testid="fl-input-checkbox-create-account-checkout-address-panel"
+toggle-target="#fl-login-and-pw"
+/>
+<label for="fl-input-checkbox-create-account-panel" class="fl-checkbox--label">
+<span class="fl-label--inner">I want to create a account to easily track order status and speed up next orders</span>
+</label>
+</div>
+</div>
+</div></div><div class="fl-login-and-pw  " id="fl-login-and-pw" ><div class="form-group" data-pw-rule-container><div class="col-xs-6 control-label pull-right">
+<span class="fl-login-and-pw--toggle-visibility">
+<button
+type="button"
+class="fl-btn__link fl-link__primary"
+data-toggle-pwd
+>Show password</button>
+</span>
+</div><label class="col-xs-6 control-label" for="fl-input-password-checkout-address-panel">
+<span class="fl-label--inner" data-testid="fl-LoginPWInput-span">Password<span class="fl-form--indicates-required">*</span>
+</span>
+</label><div class="col-xs-12"><input
+type="password"
+data-pw-field="passwordField1"
+data-pw-rule-min="7"
+data-testid="fl-LoginPWInput-checkout-address-panel"
+class="form-control "
+id="fl-input-password-checkout-address-panel"
+name="CheckoutRegisterForm_Password"
+placeholder="Password"
+autocomplete="off"
+data-pw-rule-field
+value=""
+data-hj-suppress=""
+/><p class="fl-login-and-pw--rules__hint">A secure password includes</p>
+<ul class="fl-login-and-pw--rules" data-pw-rule-list>
+<li class="fl-login-and-pw--rules__item" data-pw-rule="characters-minimum">
+<span class="fl-icon fl-icon__standalone fl-icon__check">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-check"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>7 characters minimum</li>
+<li class="fl-login-and-pw--rules__item" data-pw-rule="characters-uppercase-lowercase">
+<span class="fl-icon fl-icon__standalone fl-icon__check">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-check"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>upper and lower case letters</li>
+<li class="fl-login-and-pw--rules__item" data-pw-rule="numbers-and-special-characters">
+<span class="fl-icon fl-icon__standalone fl-icon__check">
+<svg class="fl-icon--shape"><use xlink:href="#fl-shape-check"/></svg>
+<span class="fl-icon--fallback"></span>
+</span>numbers and special characters</li>
+</ul></div>
+</div></div></div><div
+class="fl-checkout--content-container--summary-block fl-checkout--content-container--summary-block__md"
+data-set="fl-checkout-cart-summary"
+></div> 
+ 
+<div class="fl-checkout--content-container--payment-block">
+<div class="form-group fl-form-group__radioboxes">
+<div class="col-xs-12 col-md-9">
+<h4 class="fl-form-group--headline">Payment Type</h4> 
+ 
+<div class="radio fl-radio">
+<input type="radio"
+data-testid="fl-radio-payment-method-checkout-AFTERPAY_STANDARD"
+class="fl-radio--input"
+name="PaymentServiceSelection"
+id="payment-method-AFTERPAY_STANDARD"
+value="KqqsFf0Sl9MAAAFm5M2QDuwn"
+data-trigger-element=""
+data-trigger-target="fl-update-paymentmethod-checkout-address-panel"
+data-trigger-event="click"
+
+/>
+<label class="fl-radio--label fl-radio--label__centered" for="payment-method-AFTERPAY_STANDARD">
+<span class="fl-label--inner">
+
+
+	<img src="https://www.footlocker.com.au/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/Afterpay-Logo.png" />
+
+</span>
+</label>
+</div> 
+ 
+<div class="radio fl-radio">
+<input type="radio"
+data-testid="fl-radio-payment-method-checkout-BARCLAYCARD_SMARTPAY"
+class="fl-radio--input"
+name="PaymentServiceSelection"
+id="payment-method-BARCLAYCARD_SMARTPAY"
+value="B7.sFf0SCQgAAAFxGLiKmMSH"
+data-trigger-element=""
+data-trigger-target="fl-update-paymentmethod-checkout-address-panel"
+data-trigger-event="click"
+
+checked="checked"
+
+/>
+<label class="fl-radio--label fl-radio--label__centered" for="payment-method-BARCLAYCARD_SMARTPAY">
+<span class="fl-label--inner"><div class="payment-description">
+<span class="payment-name">other payment methods</span>
+</div>
+</a></span>
+</label>
+</div> 
+</div>
+</div>
+</div><!-- include hidden fields necessary for PSP --><!-- Input field for mobile/desktop device flag -->
+<input type="hidden" name="UserDeviceTypeForPaymentRedirect" id="UserDeviceTypeForPaymentRedirect" value=""/>
+<!-- Input field for device fingerprint --><input type="hidden" name="UserDeviceFingerprintForPaymentRedirect" data-io-reputationshield data-io-scripturl="https://mpsnare.iesnare.com/snare.js" /><div class="fl-container fl-checkout-container">
+<div class="fl-container--body"> 
+<div class="fl-checkout--content-container--shipping-block">
+<div
+data-ajaxcontent="ShippingMethodsForm" 
+data-ajaxcontent-source="ShippingMethodsForm"
+> 
+<div class="fl-fixed-hint" data-fixed-hint="checkoutErrorHint">
+<div class="fl-fixed-hint--inner" data-fixed-hint-inner>
+Error. Please reload this page.
+</div>
+</div>
+<div class="form-group radio fl-radio">
+<input type="radio"
+
+checked="checked"
+
+value="q2qsFf0LKIIAAAFceVW0XjJJ"
+id="shipping-method-q2qsFf0LKIIAAAFceVW0XjJJ"
+name="ShippingMethodUUID"
+class="fl-radio--input"
+data-ajaxcontent-event="change"
+data-ajaxcontent-target="checkoutCartSummary"
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewCheckoutOverview-CartSummaryJSON?ShippingMethodUUID=q2qsFf0LKIIAAAFceVW0XjJJ&SynchronizerToken=afc397ff946ca50a15b2a67cd3e58cdc0982f760de5fb6880e9c08f804a4ac77"
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-before-handler="shippingSwitchUIHandlingBefore"
+data-ajaxcontent-success-handler="checkoutShippingMethodSwitchSuccess"
+data-ajaxcontent-success-handler-parameter="checkoutCartSummaryPriceUpdate"
+data-ajaxcontent-error-handler="shippingSwitchError"
+data-testid="fl-radio-shipping-method-checkout-q2qsFf0LKIIAAAFceVW0XjJJ"
+>
+<label for="shipping-method-q2qsFf0LKIIAAAFceVW0XjJJ" class="fl-radio--label "><span class="fl-label--inner">
+<strong>Standard Delivery</strong><strong>
+:&nbsp;
+<meta itemprop="priceCurrency" content="AUD"/>
+<meta itemprop="price" content="0.0"/><span>A$ 0.00</span></strong>
+&nbsp;
+(5-7&nbsp;Working days)
+</span>
+</label></div> 
+</div>
+</div> 
+<div
+class="fl-checkout--content-container--summary-block fl-checkout--content-container--summary-block__xs"
+data-checkout-cart-summary-default-block
+data-set="fl-checkout-cart-summary"
+> 
+<div
+data-checkout-cart-summary-module
+>
+<div data-ajaxcontent="checkoutCartSummary" class="fl-cart-summary">
+<div class="fl-cart-summary--cms-content"></div>
+<h3>Summary</h3><ul
+class="fl-cart-summary--list"
+data-ajaxcontent="CartSummaryProductList"
+data-ajaxcontent-source="CartSummaryProductList"
+><li class="fl-cart-summary--list--item">
+<div class="fl-cart-summary--list--item--cell fl-cart-summary--list--item--cell__image">
+<div class="fl-media-lazyload fl-media-lazyload__bp-s-1-1 fl-media-lazyload__bp-m-1-1 fl-media-lazyload__bp-l-1-1 fl-media-lazyload__bp-xl-1-1"> 
+<img
+
+class="fl-img lazyload"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="&#47;&#47;images.footlocker.com&#47;is&#47;image&#47;FLEU&#47;244102139904?wid=86&amp;hei=86"
+
+alt="Nike Lebron 18 - Men Shoes (DM2813-400)"
+
+/></div>
+</div>
+<div class="fl-cart-summary--list--item--cell fl-cart-summary--list--item--cell__attributes">
+<span class="fl-cart-summary--list--item--cell--attribute fl-cart-summary--list--item--cell--attribute__title"><span itemprop="name">Nike Lebron 18 - Men Shoes</span></span>
+<span class="fl-cart-summary--list--item--cell--attribute">Quantity: 1</span>
+<span class="fl-cart-summary--list--item--cell--attribute">Color: University Blue-Metallic Gold</span>
+<span class="fl-cart-summary--list--item--cell--attribute">Size: US 9.5</span>
+</div>
+<div class="fl-cart-summary--list--item--cell fl-cart-summary--list--item--cell__price"><div itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="fl-price "><span class="
+fl-price--sale
+"
+><meta itemprop="priceCurrency" content="AUD"/>
+<meta itemprop="price" content="320.0"/><span>A$ 320.00</span></span></div></div>
+</li></ul>
+<div
+class="fl-cart-summary--list-total"
+data-ajaxcontent="CartSummaryTotals"
+data-ajaxcontent-source="CartSummaryTotals"
+><div class="fl-cart-summary--list-total--item">
+<div class="fl-cart-summary--list-total--item--label">Standard Delivery</div>
+<div class="fl-cart-summary--list-total--item--value">Free</div>
+</div><div class="fl-cart-summary--list-total--item fl-cart-summary--list-total--item__total">
+<div class="fl-cart-summary--list-total--item--label">
+<span>Total</span>
+</div>
+<div class="fl-cart-summary--list-total--item--value">
+<span><meta itemprop="priceCurrency" content="AUD"/>
+<meta itemprop="price" content="320.0"/><span>A$ 320.00</span><span class="fl-price--vat">GST included</span></span>
+</div>
+</div><div class="fl-fixed-hint" data-fixed-hint="cartSummaryHint">
+<div class="fl-fixed-hint--inner" data-fixed-hint-inner="">
+<span class="fl-fixed-hint--element__secondary">The shipping method has changed. The price has been adjusted.</span><span class="fl-fixed-hint--element__secondary">Standard Delivery:
+</span>
+<strong>Free</strong>
+&nbsp;
+<span class="fl-fixed-hint--element__secondary">Total:
+</span>
+<strong><meta itemprop="priceCurrency" content="AUD"/>
+<meta itemprop="price" content="320.0"/><span>A$ 320.00</span></strong>
+</div>
+<button
+type="button"
+class="fl-fixed-hint--close"
+data-fixed-hint-close
+>X</button>
+</div>
+</div>
+<div class="fl-promotion">
+<div class="fl-promotion--headline">
+<button
+type="button"
+class="fl-btn__link fl-link__primary fl-promotion-link"
+data-toggle=""
+data-toggle-target="fl-promotion-input-container"
+data-testid="fl-promotion-input-container-link"
+>
+<span class="fl-icon fl-icon__standalone fl-icon__arrow__horizontal fl-icon__arrow__horizontal__text-prefix">
+<svg class="fl-icon--shape">
+<use xlink:href="#fl-shape-arrow-horizontal"/>
+</svg>
+<span class="fl-icon--fallback"></span>
+</span>
+<span class="fl-link--inner">Do you have a Promotional Code?</span>
+</button>
+</div><div
+class="fl-promotion--input-field-container"
+data-toggle-container="fl-promotion-input-container"
+data-testid="fl-promotion-input-container"
+style="display:block;"
+>
+<div class="fl-promotion--input-field-container-inner">
+<input
+id="promotionCode"
+class="form-control fl-promotion--input-field-container--input "
+type="text"
+maxlength="128"
+name="promotionCode"
+data-promotion-input=""
+data-testid="fl-promotion-input-field"
+/><button
+class="fl-btn fl-btn__secondary fl-btn-promotion"
+data-testid="fl-prmotion-submit-button"
+data-promotion-button=""
+type="button"
+data-doubleclick-element
+data-doubleclick-parent=".fl-promotion"
+data-ajaxcontent-event="click"
+data-ajaxcontent-target="checkoutCartSummary"
+data-ajaxcontent-url="https://www.footlocker.com.au/INTERSHOP/web/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/en_AU/-/AUD/ViewPromotion-ApplyPromotionCheckoutPage"
+data-ajaxcontent-parameter-handler="promotionParameterSerializer"
+data-ajaxcontent-content-handler="ajaxJSONContentHandler"
+data-ajaxcontent-before-handler="addPromotionUIHandlingBefore"
+data-ajaxcontent-after-handler="addPromotionUIHandlingAfter"
+>OK</button>
+</div>
+<p class="fl-promotion--hint" >Enter Promotional Code</p>
+</div>
+</div><div class="fl-cart-summary--cms-content">  
+<div class="fl-comp-list fl-comp-list__default fl-comp-list__block" 
+data-testid="fl-comp-list" id="flcomponentminicartlist"
+><ul class="fl-comp-list--list" 
+data-testid="fl-comp-list--list" 
+><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml1">100% Satisfaction guaranteed (28 day return service).</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml2">Free standard delivery orders A$150+.</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml3">Free returns.</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="flcomponentminicarthtml4">Afterpay available online and in-store within Australia</div></li><li class="fl-comp-list--list--item "
+data-testid="fl-comp-list--list--item"
+> <div class="fl-comp-html" id="FLcomponentminicarthtml6">Online Afterpay orders must be sent back to the warehouse.
+Online Afterpay orders cannot be exchanged instore.</div></li></ul></div></div>
+</div>
+</div></div><div class="fl-checkout--content-container--messages-block">
+<div class="form-group fl-form-group__checkboxes">
+<div class="col-xs-12 col-md-12">
+<h4 class="fl-form-group--headline">Important Messages</h4><div class="fl-checkout--buttons-container">
+<div class="checkbox fl-checkbox"><input
+type="checkbox"
+value="on"
+id="terms-conditions-agree"
+name="termsAndConditions"
+class="fl-checkbox--input "
+data-testid="fl-checkout-checkbox-terms-and-conditions"
+/>
+<label for="terms-conditions-agree" class="fl-checkbox--label fl-checkbox--label__top-aligned ">
+<span class="fl-label--inner">
+<div class="fl-comp-html">I have read and accepted the Terms and Conditions and Privacy Policy.<br/><br/>I declare that I am 18 years or older or that I otherwise have the permission of my parent or legal guardian to make this purchase.<span class="fl-form--indicates-required">*</span>
+</div>
+</span>
+</label>
+</div></div>
+<input
+type="hidden"
+value="false"
+id="GDPRDataComplianceRequired"
+name="GDPRDataComplianceRequired"
+/><span class="fl-label--inner"><html></span>
+<div class="fl-comp-html">We will e-mail you information on similar products and the latest promotions. The data is not passed on to any third parties! You can object to the use of your data at any time by using the unsubscribe link found in the mailings without incurring any additional costs beyond the transmission costs in the basic tariffs. More information is available in our <a href="https://www.footlocker.com.au/en/privacy-policy" target="_blank">Privacy Policy</a>.</div>
+<input
+type="hidden"
+value="true"
+id="email_Newsletter"
+name="email_Newsletter"
+/></div>
+</div></div>
+</div>
+</div>
+<input
+class="fl-hide"
+type="submit"
+name="updatePayment"
+data-trigger-target-element="fl-update-paymentmethod-checkout-address-panel"
+data-testid="fl-hidden-input-update-checkout-address-panel"
+/>
+<div class="fl-checkout--buttons-container">
+<button class="fl-btn fl-btn__default fl-btn__block fl-checkout-button" name="backToCart" type="submit" data-testid="fl-button-submit-backtocart-checkout-address-panel" >
+<span class="fl-btn--inner">Back</span>
+</button><button data-checkout-buy-button class="fl-btn fl-btn__primary fl-btn__block fl-checkout-button" name="sendOrder" type="submit" data-testid="fl-button-submit-sendorder-checkout-address-panel"  data-doubleclick-element>
+<span class="fl-btn--inner">Buy now</span>
+</button></div></form></div></div>
+</main> <footer class="fl-footer fl-frame-container" data-offcanvas-shift id="flcomponentfooterminimal">
+<div class="container-fluid" >
+<div class="fl-footer--section fl-footer--section__primary"></div>
+<div class="row">
+<div class="col-xs-12">
+<div class="fl-footnotes">
+<small class="fl-footnotes--item">* Required Fields</small>
+<small class="fl-footnotes--item">** Original Price</small>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<div class="fl-footer--section fl-footer--section__secondary"><small class="fl-copyright">&copy; 2021 Foot Locker. All rights reserved.</small>
+</div>
+</div>
+</div>
+</div>
+</footer><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script><!-- ViewManager has to be the very first file in this list --><!-- External Plugins --><!-- Custom Plugins --><!-- Global init & viewmanager register --><script src="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/bundles/js/base.min.js?lastModified=1619823622000"></script> 
+<!--[if lt IE 9 ]>
+<div class="fl-global-warning-layer">
+<img class="fl-global-warning-layer--brand" src="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/images/brand/footlocker-logo-1440.png" />
+<div class="fl-global-warning-layer--title fl-h2">IE Warning Headline</div>
+<p>IE Warning description</p>
+</div>
+<![endif]--><script type="text/javascript" src="/INTERSHOP/static/WFS/FootlockerAustraliaPacific-Footlocker_AU-Site/-/-/en_AU/bundles/js/footlocker-checkout.min.js"></script></body>
+</html>
